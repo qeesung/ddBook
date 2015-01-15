@@ -246,13 +246,13 @@ void protobuf_AddDesc_book_2eproto() {
     "audioData\030\001 \003(\014\"\212\001\n\021IndexDataMapTable\022B\n"
     "\020indexDataMapPair\030\001 \002(\0132(.book.IndexData"
     "MapTable.IndexDataMapPair\0321\n\020IndexDataMa"
-    "pPair\022\r\n\005index\030\001 \002(\005\022\016\n\006offset\030\002 \002(\005\"|\n\t"
+    "pPair\022\r\n\005index\030\001 \002(\007\022\016\n\006offset\030\002 \002(\007\"|\n\t"
     "ModeTable\022:\n\020codeIndexMapPair\030\001 \003(\0132 .bo"
     "ok.ModeTable.CodeIndexMapPair\0323\n\020CodeInd"
-    "exMapPair\022\014\n\004code\030\001 \002(\005\022\021\n\tindexList\030\002 \003"
-    "(\005\"_\n\004Node\022\021\n\tstartCode\030\001 \002(\005\022\017\n\007endCode"
-    "\030\002 \002(\005\022\020\n\010previous\030\003 \002(\005\022\014\n\004next\030\004 \003(\005\022\023"
-    "\n\013defaultCode\030\005 \003(\005\"(\n\010NodeTree\022\034\n\010treeN"
+    "exMapPair\022\014\n\004code\030\001 \002(\007\022\021\n\tindexList\030\002 \003"
+    "(\007\"_\n\004Node\022\021\n\tstartCode\030\001 \002(\007\022\017\n\007endCode"
+    "\030\002 \002(\007\022\020\n\010previous\030\003 \002(\007\022\014\n\004next\030\004 \003(\007\022\023"
+    "\n\013defaultCode\030\005 \003(\007\"(\n\010NodeTree\022\034\n\010treeN"
     "ode\030\001 \003(\0132\n.book.Node\"\251\001\n\004book\022 \n\010nodeTr"
     "ee\030\001 \002(\0132\016.book.NodeTree\022&\n\rmodeTabelLis"
     "t\030\002 \003(\0132\017.book.ModeTable\022+\n\007curMode\030\003 \002("
@@ -551,8 +551,8 @@ IndexDataMapTable_IndexDataMapPair::IndexDataMapTable_IndexDataMapPair(const Ind
 
 void IndexDataMapTable_IndexDataMapPair::SharedCtor() {
   _cached_size_ = 0;
-  index_ = 0;
-  offset_ = 0;
+  index_ = 0u;
+  offset_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -623,26 +623,26 @@ bool IndexDataMapTable_IndexDataMapPair::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 index = 1;
+      // required fixed32 index = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 13) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
                  input, &index_)));
           set_has_index();
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_offset;
+        if (input->ExpectTag(21)) goto parse_offset;
         break;
       }
 
-      // required int32 offset = 2;
+      // required fixed32 offset = 2;
       case 2: {
-        if (tag == 16) {
+        if (tag == 21) {
          parse_offset:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
                  input, &offset_)));
           set_has_offset();
         } else {
@@ -677,14 +677,14 @@ failure:
 void IndexDataMapTable_IndexDataMapPair::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:book.IndexDataMapTable.IndexDataMapPair)
-  // required int32 index = 1;
+  // required fixed32 index = 1;
   if (has_index()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->index(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFixed32(1, this->index(), output);
   }
 
-  // required int32 offset = 2;
+  // required fixed32 offset = 2;
   if (has_offset()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->offset(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFixed32(2, this->offset(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -697,14 +697,14 @@ void IndexDataMapTable_IndexDataMapPair::SerializeWithCachedSizes(
 ::google::protobuf::uint8* IndexDataMapTable_IndexDataMapPair::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:book.IndexDataMapTable.IndexDataMapPair)
-  // required int32 index = 1;
+  // required fixed32 index = 1;
   if (has_index()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->index(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFixed32ToArray(1, this->index(), target);
   }
 
-  // required int32 offset = 2;
+  // required fixed32 offset = 2;
   if (has_offset()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->offset(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFixed32ToArray(2, this->offset(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -719,17 +719,13 @@ int IndexDataMapTable_IndexDataMapPair::RequiredFieldsByteSizeFallback() const {
   int total_size = 0;
 
   if (has_index()) {
-    // required int32 index = 1;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->index());
+    // required fixed32 index = 1;
+    total_size += 1 + 4;
   }
 
   if (has_offset()) {
-    // required int32 offset = 2;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->offset());
+    // required fixed32 offset = 2;
+    total_size += 1 + 4;
   }
 
   return total_size;
@@ -738,15 +734,11 @@ int IndexDataMapTable_IndexDataMapPair::ByteSize() const {
   int total_size = 0;
 
   if (((_has_bits_[0] & 0x00000003) ^ 0x00000003) == 0) {  // All required fields are present.
-    // required int32 index = 1;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->index());
+    // required fixed32 index = 1;
+    total_size += 1 + 4;
 
-    // required int32 offset = 2;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->offset());
+    // required fixed32 offset = 2;
+    total_size += 1 + 4;
 
   } else {
     total_size += RequiredFieldsByteSizeFallback();
@@ -1093,7 +1085,7 @@ ModeTable_CodeIndexMapPair::ModeTable_CodeIndexMapPair(const ModeTable_CodeIndex
 
 void ModeTable_CodeIndexMapPair::SharedCtor() {
   _cached_size_ = 0;
-  code_ = 0;
+  code_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1133,7 +1125,7 @@ ModeTable_CodeIndexMapPair* ModeTable_CodeIndexMapPair::New(::google::protobuf::
 }
 
 void ModeTable_CodeIndexMapPair::Clear() {
-  code_ = 0;
+  code_ = 0u;
   indexlist_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1151,35 +1143,35 @@ bool ModeTable_CodeIndexMapPair::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 code = 1;
+      // required fixed32 code = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 13) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
                  input, &code_)));
           set_has_code();
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_indexList;
+        if (input->ExpectTag(21)) goto parse_indexList;
         break;
       }
 
-      // repeated int32 indexList = 2;
+      // repeated fixed32 indexList = 2;
       case 2: {
-        if (tag == 16) {
+        if (tag == 21) {
          parse_indexList:
           DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 1, 16, input, this->mutable_indexlist())));
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
+                 1, 21, input, this->mutable_indexlist())));
         } else if (tag == 18) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
                  input, this->mutable_indexlist())));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_indexList;
+        if (input->ExpectTag(21)) goto parse_indexList;
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -1209,14 +1201,14 @@ failure:
 void ModeTable_CodeIndexMapPair::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:book.ModeTable.CodeIndexMapPair)
-  // required int32 code = 1;
+  // required fixed32 code = 1;
   if (has_code()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->code(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFixed32(1, this->code(), output);
   }
 
-  // repeated int32 indexList = 2;
+  // repeated fixed32 indexList = 2;
   for (int i = 0; i < this->indexlist_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(
+    ::google::protobuf::internal::WireFormatLite::WriteFixed32(
       2, this->indexlist(i), output);
   }
 
@@ -1230,15 +1222,15 @@ void ModeTable_CodeIndexMapPair::SerializeWithCachedSizes(
 ::google::protobuf::uint8* ModeTable_CodeIndexMapPair::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:book.ModeTable.CodeIndexMapPair)
-  // required int32 code = 1;
+  // required fixed32 code = 1;
   if (has_code()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->code(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFixed32ToArray(1, this->code(), target);
   }
 
-  // repeated int32 indexList = 2;
+  // repeated fixed32 indexList = 2;
   for (int i = 0; i < this->indexlist_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteInt32ToArray(2, this->indexlist(i), target);
+      WriteFixed32ToArray(2, this->indexlist(i), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1252,19 +1244,14 @@ void ModeTable_CodeIndexMapPair::SerializeWithCachedSizes(
 int ModeTable_CodeIndexMapPair::ByteSize() const {
   int total_size = 0;
 
-  // required int32 code = 1;
+  // required fixed32 code = 1;
   if (has_code()) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->code());
+    total_size += 1 + 4;
   }
-  // repeated int32 indexList = 2;
+  // repeated fixed32 indexList = 2;
   {
     int data_size = 0;
-    for (int i = 0; i < this->indexlist_size(); i++) {
-      data_size += ::google::protobuf::internal::WireFormatLite::
-        Int32Size(this->indexlist(i));
-    }
+    data_size = 4 * this->indexlist_size();
     total_size += 1 * this->indexlist_size() + data_size;
   }
 
@@ -1603,9 +1590,9 @@ Node::Node(const Node& from)
 
 void Node::SharedCtor() {
   _cached_size_ = 0;
-  startcode_ = 0;
-  endcode_ = 0;
-  previous_ = 0;
+  startcode_ = 0u;
+  endcode_ = 0u;
+  previous_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1657,7 +1644,7 @@ void Node::Clear() {
 
   if (_has_bits_[0 / 32] & 7) {
     ZR_(startcode_, endcode_);
-    previous_ = 0;
+    previous_ = 0u;
   }
 
 #undef OFFSET_OF_FIELD_
@@ -1681,84 +1668,84 @@ bool Node::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 startCode = 1;
+      // required fixed32 startCode = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 13) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
                  input, &startcode_)));
           set_has_startcode();
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_endCode;
+        if (input->ExpectTag(21)) goto parse_endCode;
         break;
       }
 
-      // required int32 endCode = 2;
+      // required fixed32 endCode = 2;
       case 2: {
-        if (tag == 16) {
+        if (tag == 21) {
          parse_endCode:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
                  input, &endcode_)));
           set_has_endcode();
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_previous;
+        if (input->ExpectTag(29)) goto parse_previous;
         break;
       }
 
-      // required int32 previous = 3;
+      // required fixed32 previous = 3;
       case 3: {
-        if (tag == 24) {
+        if (tag == 29) {
          parse_previous:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
                  input, &previous_)));
           set_has_previous();
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(32)) goto parse_next;
+        if (input->ExpectTag(37)) goto parse_next;
         break;
       }
 
-      // repeated int32 next = 4;
+      // repeated fixed32 next = 4;
       case 4: {
-        if (tag == 32) {
+        if (tag == 37) {
          parse_next:
           DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 1, 32, input, this->mutable_next())));
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
+                 1, 37, input, this->mutable_next())));
         } else if (tag == 34) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
                  input, this->mutable_next())));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(32)) goto parse_next;
-        if (input->ExpectTag(40)) goto parse_defaultCode;
+        if (input->ExpectTag(37)) goto parse_next;
+        if (input->ExpectTag(45)) goto parse_defaultCode;
         break;
       }
 
-      // repeated int32 defaultCode = 5;
+      // repeated fixed32 defaultCode = 5;
       case 5: {
-        if (tag == 40) {
+        if (tag == 45) {
          parse_defaultCode:
           DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 1, 40, input, this->mutable_defaultcode())));
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
+                 1, 45, input, this->mutable_defaultcode())));
         } else if (tag == 42) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
                  input, this->mutable_defaultcode())));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(40)) goto parse_defaultCode;
+        if (input->ExpectTag(45)) goto parse_defaultCode;
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -1788,30 +1775,30 @@ failure:
 void Node::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:book.Node)
-  // required int32 startCode = 1;
+  // required fixed32 startCode = 1;
   if (has_startcode()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->startcode(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFixed32(1, this->startcode(), output);
   }
 
-  // required int32 endCode = 2;
+  // required fixed32 endCode = 2;
   if (has_endcode()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->endcode(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFixed32(2, this->endcode(), output);
   }
 
-  // required int32 previous = 3;
+  // required fixed32 previous = 3;
   if (has_previous()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->previous(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFixed32(3, this->previous(), output);
   }
 
-  // repeated int32 next = 4;
+  // repeated fixed32 next = 4;
   for (int i = 0; i < this->next_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(
+    ::google::protobuf::internal::WireFormatLite::WriteFixed32(
       4, this->next(i), output);
   }
 
-  // repeated int32 defaultCode = 5;
+  // repeated fixed32 defaultCode = 5;
   for (int i = 0; i < this->defaultcode_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(
+    ::google::protobuf::internal::WireFormatLite::WriteFixed32(
       5, this->defaultcode(i), output);
   }
 
@@ -1825,31 +1812,31 @@ void Node::SerializeWithCachedSizes(
 ::google::protobuf::uint8* Node::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:book.Node)
-  // required int32 startCode = 1;
+  // required fixed32 startCode = 1;
   if (has_startcode()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->startcode(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFixed32ToArray(1, this->startcode(), target);
   }
 
-  // required int32 endCode = 2;
+  // required fixed32 endCode = 2;
   if (has_endcode()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->endcode(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFixed32ToArray(2, this->endcode(), target);
   }
 
-  // required int32 previous = 3;
+  // required fixed32 previous = 3;
   if (has_previous()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->previous(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFixed32ToArray(3, this->previous(), target);
   }
 
-  // repeated int32 next = 4;
+  // repeated fixed32 next = 4;
   for (int i = 0; i < this->next_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteInt32ToArray(4, this->next(i), target);
+      WriteFixed32ToArray(4, this->next(i), target);
   }
 
-  // repeated int32 defaultCode = 5;
+  // repeated fixed32 defaultCode = 5;
   for (int i = 0; i < this->defaultcode_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteInt32ToArray(5, this->defaultcode(i), target);
+      WriteFixed32ToArray(5, this->defaultcode(i), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1864,24 +1851,18 @@ int Node::RequiredFieldsByteSizeFallback() const {
   int total_size = 0;
 
   if (has_startcode()) {
-    // required int32 startCode = 1;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->startcode());
+    // required fixed32 startCode = 1;
+    total_size += 1 + 4;
   }
 
   if (has_endcode()) {
-    // required int32 endCode = 2;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->endcode());
+    // required fixed32 endCode = 2;
+    total_size += 1 + 4;
   }
 
   if (has_previous()) {
-    // required int32 previous = 3;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->previous());
+    // required fixed32 previous = 3;
+    total_size += 1 + 4;
   }
 
   return total_size;
@@ -1890,41 +1871,29 @@ int Node::ByteSize() const {
   int total_size = 0;
 
   if (((_has_bits_[0] & 0x00000007) ^ 0x00000007) == 0) {  // All required fields are present.
-    // required int32 startCode = 1;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->startcode());
+    // required fixed32 startCode = 1;
+    total_size += 1 + 4;
 
-    // required int32 endCode = 2;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->endcode());
+    // required fixed32 endCode = 2;
+    total_size += 1 + 4;
 
-    // required int32 previous = 3;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->previous());
+    // required fixed32 previous = 3;
+    total_size += 1 + 4;
 
   } else {
     total_size += RequiredFieldsByteSizeFallback();
   }
-  // repeated int32 next = 4;
+  // repeated fixed32 next = 4;
   {
     int data_size = 0;
-    for (int i = 0; i < this->next_size(); i++) {
-      data_size += ::google::protobuf::internal::WireFormatLite::
-        Int32Size(this->next(i));
-    }
+    data_size = 4 * this->next_size();
     total_size += 1 * this->next_size() + data_size;
   }
 
-  // repeated int32 defaultCode = 5;
+  // repeated fixed32 defaultCode = 5;
   {
     int data_size = 0;
-    for (int i = 0; i < this->defaultcode_size(); i++) {
-      data_size += ::google::protobuf::internal::WireFormatLite::
-        Int32Size(this->defaultcode(i));
-    }
+    data_size = 4 * this->defaultcode_size();
     total_size += 1 * this->defaultcode_size() + data_size;
   }
 

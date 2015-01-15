@@ -10,8 +10,8 @@ message BasicDataTable{
 message IndexDataMapTable{
 	//在这个表里面的每一对映射值
 	message IndexDataMapPair{
-		required int32 index =1;//索引值
-		required int32 offset =2;//偏移量
+		required fixed32 index =1;//索引值
+		required fixed32 offset =2;//偏移量
 	}
 	required IndexDataMapPair indexDataMapPair=1;
 }
@@ -19,19 +19,19 @@ message IndexDataMapTable{
 //最顶层的总表 用来码制和索引之间的一个映射
 message ModeTable{
 	message CodeIndexMapPair{
-		required int32 code =1;
-		repeated int32 indexList=2;//可能存在多个映射
+		required fixed32 code =1;
+		repeated fixed32 indexList=2;//可能存在多个映射
 	}
 	repeated CodeIndexMapPair  codeIndexMapPair=1;//多个码制映射节点
 }
 
 //独立于数据层存在的上层节点，用于创建故事的逻辑性
 message Node{
-	required int32 startCode=1;//进入该节点默认播放的语音码
-	required int32 endCode=2;//退出该节点默认播放的语音码
-	required int32 previous=3;//上一个node节点的标识(这里不是码值)
-	repeated int32 next=4;//这里可能存在多个子节点，树状结构，表明状态机的下一个node节点标识
-	repeated int32 defaultCode=5;//存在多个默认语音,就是输入的码不是跳转到下一个，也不能跳转到上一个，就采用默认码值
+	required fixed32 startCode=1;//进入该节点默认播放的语音码
+	required fixed32 endCode=2;//退出该节点默认播放的语音码
+	required fixed32 previous=3;//上一个node节点的标识(这里不是码值)
+	repeated fixed32 next=4;//这里可能存在多个子节点，树状结构，表明状态机的下一个node节点标识
+	repeated fixed32 defaultCode=5;//存在多个默认语音,就是输入的码不是跳转到下一个，也不能跳转到上一个，就采用默认码值
 }
 
 

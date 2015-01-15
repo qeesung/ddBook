@@ -228,19 +228,19 @@ class IndexDataMapTable_IndexDataMapPair : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required int32 index = 1;
+  // required fixed32 index = 1;
   inline bool has_index() const;
   inline void clear_index();
   static const int kIndexFieldNumber = 1;
-  inline ::google::protobuf::int32 index() const;
-  inline void set_index(::google::protobuf::int32 value);
+  inline ::google::protobuf::uint32 index() const;
+  inline void set_index(::google::protobuf::uint32 value);
 
-  // required int32 offset = 2;
+  // required fixed32 offset = 2;
   inline bool has_offset() const;
   inline void clear_offset();
   static const int kOffsetFieldNumber = 2;
-  inline ::google::protobuf::int32 offset() const;
-  inline void set_offset(::google::protobuf::int32 value);
+  inline ::google::protobuf::uint32 offset() const;
+  inline void set_offset(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:book.IndexDataMapTable.IndexDataMapPair)
  private:
@@ -255,8 +255,8 @@ class IndexDataMapTable_IndexDataMapPair : public ::google::protobuf::Message {
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::int32 index_;
-  ::google::protobuf::int32 offset_;
+  ::google::protobuf::uint32 index_;
+  ::google::protobuf::uint32 offset_;
   friend void  protobuf_AddDesc_book_2eproto();
   friend void protobuf_AssignDesc_book_2eproto();
   friend void protobuf_ShutdownFile_book_2eproto();
@@ -423,23 +423,23 @@ class ModeTable_CodeIndexMapPair : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required int32 code = 1;
+  // required fixed32 code = 1;
   inline bool has_code() const;
   inline void clear_code();
   static const int kCodeFieldNumber = 1;
-  inline ::google::protobuf::int32 code() const;
-  inline void set_code(::google::protobuf::int32 value);
+  inline ::google::protobuf::uint32 code() const;
+  inline void set_code(::google::protobuf::uint32 value);
 
-  // repeated int32 indexList = 2;
+  // repeated fixed32 indexList = 2;
   inline int indexlist_size() const;
   inline void clear_indexlist();
   static const int kIndexListFieldNumber = 2;
-  inline ::google::protobuf::int32 indexlist(int index) const;
-  inline void set_indexlist(int index, ::google::protobuf::int32 value);
-  inline void add_indexlist(::google::protobuf::int32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+  inline ::google::protobuf::uint32 indexlist(int index) const;
+  inline void set_indexlist(int index, ::google::protobuf::uint32 value);
+  inline void add_indexlist(::google::protobuf::uint32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
       indexlist() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_indexlist();
 
   // @@protoc_insertion_point(class_scope:book.ModeTable.CodeIndexMapPair)
@@ -450,8 +450,8 @@ class ModeTable_CodeIndexMapPair : public ::google::protobuf::Message {
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > indexlist_;
-  ::google::protobuf::int32 code_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > indexlist_;
+  ::google::protobuf::uint32 code_;
   friend void  protobuf_AddDesc_book_2eproto();
   friend void protobuf_AssignDesc_book_2eproto();
   friend void protobuf_ShutdownFile_book_2eproto();
@@ -619,49 +619,49 @@ class Node : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required int32 startCode = 1;
+  // required fixed32 startCode = 1;
   inline bool has_startcode() const;
   inline void clear_startcode();
   static const int kStartCodeFieldNumber = 1;
-  inline ::google::protobuf::int32 startcode() const;
-  inline void set_startcode(::google::protobuf::int32 value);
+  inline ::google::protobuf::uint32 startcode() const;
+  inline void set_startcode(::google::protobuf::uint32 value);
 
-  // required int32 endCode = 2;
+  // required fixed32 endCode = 2;
   inline bool has_endcode() const;
   inline void clear_endcode();
   static const int kEndCodeFieldNumber = 2;
-  inline ::google::protobuf::int32 endcode() const;
-  inline void set_endcode(::google::protobuf::int32 value);
+  inline ::google::protobuf::uint32 endcode() const;
+  inline void set_endcode(::google::protobuf::uint32 value);
 
-  // required int32 previous = 3;
+  // required fixed32 previous = 3;
   inline bool has_previous() const;
   inline void clear_previous();
   static const int kPreviousFieldNumber = 3;
-  inline ::google::protobuf::int32 previous() const;
-  inline void set_previous(::google::protobuf::int32 value);
+  inline ::google::protobuf::uint32 previous() const;
+  inline void set_previous(::google::protobuf::uint32 value);
 
-  // repeated int32 next = 4;
+  // repeated fixed32 next = 4;
   inline int next_size() const;
   inline void clear_next();
   static const int kNextFieldNumber = 4;
-  inline ::google::protobuf::int32 next(int index) const;
-  inline void set_next(int index, ::google::protobuf::int32 value);
-  inline void add_next(::google::protobuf::int32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+  inline ::google::protobuf::uint32 next(int index) const;
+  inline void set_next(int index, ::google::protobuf::uint32 value);
+  inline void add_next(::google::protobuf::uint32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
       next() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_next();
 
-  // repeated int32 defaultCode = 5;
+  // repeated fixed32 defaultCode = 5;
   inline int defaultcode_size() const;
   inline void clear_defaultcode();
   static const int kDefaultCodeFieldNumber = 5;
-  inline ::google::protobuf::int32 defaultcode(int index) const;
-  inline void set_defaultcode(int index, ::google::protobuf::int32 value);
-  inline void add_defaultcode(::google::protobuf::int32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+  inline ::google::protobuf::uint32 defaultcode(int index) const;
+  inline void set_defaultcode(int index, ::google::protobuf::uint32 value);
+  inline void add_defaultcode(::google::protobuf::uint32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
       defaultcode() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_defaultcode();
 
   // @@protoc_insertion_point(class_scope:book.Node)
@@ -679,11 +679,11 @@ class Node : public ::google::protobuf::Message {
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::int32 startcode_;
-  ::google::protobuf::int32 endcode_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > next_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > defaultcode_;
-  ::google::protobuf::int32 previous_;
+  ::google::protobuf::uint32 startcode_;
+  ::google::protobuf::uint32 endcode_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > next_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > defaultcode_;
+  ::google::protobuf::uint32 previous_;
   friend void  protobuf_AddDesc_book_2eproto();
   friend void protobuf_AssignDesc_book_2eproto();
   friend void protobuf_ShutdownFile_book_2eproto();
@@ -990,7 +990,7 @@ BasicDataTable::mutable_audiodata() {
 
 // IndexDataMapTable_IndexDataMapPair
 
-// required int32 index = 1;
+// required fixed32 index = 1;
 inline bool IndexDataMapTable_IndexDataMapPair::has_index() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1001,20 +1001,20 @@ inline void IndexDataMapTable_IndexDataMapPair::clear_has_index() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void IndexDataMapTable_IndexDataMapPair::clear_index() {
-  index_ = 0;
+  index_ = 0u;
   clear_has_index();
 }
-inline ::google::protobuf::int32 IndexDataMapTable_IndexDataMapPair::index() const {
+inline ::google::protobuf::uint32 IndexDataMapTable_IndexDataMapPair::index() const {
   // @@protoc_insertion_point(field_get:book.IndexDataMapTable.IndexDataMapPair.index)
   return index_;
 }
-inline void IndexDataMapTable_IndexDataMapPair::set_index(::google::protobuf::int32 value) {
+inline void IndexDataMapTable_IndexDataMapPair::set_index(::google::protobuf::uint32 value) {
   set_has_index();
   index_ = value;
   // @@protoc_insertion_point(field_set:book.IndexDataMapTable.IndexDataMapPair.index)
 }
 
-// required int32 offset = 2;
+// required fixed32 offset = 2;
 inline bool IndexDataMapTable_IndexDataMapPair::has_offset() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1025,14 +1025,14 @@ inline void IndexDataMapTable_IndexDataMapPair::clear_has_offset() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void IndexDataMapTable_IndexDataMapPair::clear_offset() {
-  offset_ = 0;
+  offset_ = 0u;
   clear_has_offset();
 }
-inline ::google::protobuf::int32 IndexDataMapTable_IndexDataMapPair::offset() const {
+inline ::google::protobuf::uint32 IndexDataMapTable_IndexDataMapPair::offset() const {
   // @@protoc_insertion_point(field_get:book.IndexDataMapTable.IndexDataMapPair.offset)
   return offset_;
 }
-inline void IndexDataMapTable_IndexDataMapPair::set_offset(::google::protobuf::int32 value) {
+inline void IndexDataMapTable_IndexDataMapPair::set_offset(::google::protobuf::uint32 value) {
   set_has_offset();
   offset_ = value;
   // @@protoc_insertion_point(field_set:book.IndexDataMapTable.IndexDataMapPair.offset)
@@ -1089,7 +1089,7 @@ inline void IndexDataMapTable::set_allocated_indexdatamappair(::book::IndexDataM
 
 // ModeTable_CodeIndexMapPair
 
-// required int32 code = 1;
+// required fixed32 code = 1;
 inline bool ModeTable_CodeIndexMapPair::has_code() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1100,44 +1100,44 @@ inline void ModeTable_CodeIndexMapPair::clear_has_code() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void ModeTable_CodeIndexMapPair::clear_code() {
-  code_ = 0;
+  code_ = 0u;
   clear_has_code();
 }
-inline ::google::protobuf::int32 ModeTable_CodeIndexMapPair::code() const {
+inline ::google::protobuf::uint32 ModeTable_CodeIndexMapPair::code() const {
   // @@protoc_insertion_point(field_get:book.ModeTable.CodeIndexMapPair.code)
   return code_;
 }
-inline void ModeTable_CodeIndexMapPair::set_code(::google::protobuf::int32 value) {
+inline void ModeTable_CodeIndexMapPair::set_code(::google::protobuf::uint32 value) {
   set_has_code();
   code_ = value;
   // @@protoc_insertion_point(field_set:book.ModeTable.CodeIndexMapPair.code)
 }
 
-// repeated int32 indexList = 2;
+// repeated fixed32 indexList = 2;
 inline int ModeTable_CodeIndexMapPair::indexlist_size() const {
   return indexlist_.size();
 }
 inline void ModeTable_CodeIndexMapPair::clear_indexlist() {
   indexlist_.Clear();
 }
-inline ::google::protobuf::int32 ModeTable_CodeIndexMapPair::indexlist(int index) const {
+inline ::google::protobuf::uint32 ModeTable_CodeIndexMapPair::indexlist(int index) const {
   // @@protoc_insertion_point(field_get:book.ModeTable.CodeIndexMapPair.indexList)
   return indexlist_.Get(index);
 }
-inline void ModeTable_CodeIndexMapPair::set_indexlist(int index, ::google::protobuf::int32 value) {
+inline void ModeTable_CodeIndexMapPair::set_indexlist(int index, ::google::protobuf::uint32 value) {
   indexlist_.Set(index, value);
   // @@protoc_insertion_point(field_set:book.ModeTable.CodeIndexMapPair.indexList)
 }
-inline void ModeTable_CodeIndexMapPair::add_indexlist(::google::protobuf::int32 value) {
+inline void ModeTable_CodeIndexMapPair::add_indexlist(::google::protobuf::uint32 value) {
   indexlist_.Add(value);
   // @@protoc_insertion_point(field_add:book.ModeTable.CodeIndexMapPair.indexList)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
 ModeTable_CodeIndexMapPair::indexlist() const {
   // @@protoc_insertion_point(field_list:book.ModeTable.CodeIndexMapPair.indexList)
   return indexlist_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
 ModeTable_CodeIndexMapPair::mutable_indexlist() {
   // @@protoc_insertion_point(field_mutable_list:book.ModeTable.CodeIndexMapPair.indexList)
   return &indexlist_;
@@ -1181,7 +1181,7 @@ ModeTable::mutable_codeindexmappair() {
 
 // Node
 
-// required int32 startCode = 1;
+// required fixed32 startCode = 1;
 inline bool Node::has_startcode() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1192,20 +1192,20 @@ inline void Node::clear_has_startcode() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Node::clear_startcode() {
-  startcode_ = 0;
+  startcode_ = 0u;
   clear_has_startcode();
 }
-inline ::google::protobuf::int32 Node::startcode() const {
+inline ::google::protobuf::uint32 Node::startcode() const {
   // @@protoc_insertion_point(field_get:book.Node.startCode)
   return startcode_;
 }
-inline void Node::set_startcode(::google::protobuf::int32 value) {
+inline void Node::set_startcode(::google::protobuf::uint32 value) {
   set_has_startcode();
   startcode_ = value;
   // @@protoc_insertion_point(field_set:book.Node.startCode)
 }
 
-// required int32 endCode = 2;
+// required fixed32 endCode = 2;
 inline bool Node::has_endcode() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1216,20 +1216,20 @@ inline void Node::clear_has_endcode() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void Node::clear_endcode() {
-  endcode_ = 0;
+  endcode_ = 0u;
   clear_has_endcode();
 }
-inline ::google::protobuf::int32 Node::endcode() const {
+inline ::google::protobuf::uint32 Node::endcode() const {
   // @@protoc_insertion_point(field_get:book.Node.endCode)
   return endcode_;
 }
-inline void Node::set_endcode(::google::protobuf::int32 value) {
+inline void Node::set_endcode(::google::protobuf::uint32 value) {
   set_has_endcode();
   endcode_ = value;
   // @@protoc_insertion_point(field_set:book.Node.endCode)
 }
 
-// required int32 previous = 3;
+// required fixed32 previous = 3;
 inline bool Node::has_previous() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -1240,74 +1240,74 @@ inline void Node::clear_has_previous() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void Node::clear_previous() {
-  previous_ = 0;
+  previous_ = 0u;
   clear_has_previous();
 }
-inline ::google::protobuf::int32 Node::previous() const {
+inline ::google::protobuf::uint32 Node::previous() const {
   // @@protoc_insertion_point(field_get:book.Node.previous)
   return previous_;
 }
-inline void Node::set_previous(::google::protobuf::int32 value) {
+inline void Node::set_previous(::google::protobuf::uint32 value) {
   set_has_previous();
   previous_ = value;
   // @@protoc_insertion_point(field_set:book.Node.previous)
 }
 
-// repeated int32 next = 4;
+// repeated fixed32 next = 4;
 inline int Node::next_size() const {
   return next_.size();
 }
 inline void Node::clear_next() {
   next_.Clear();
 }
-inline ::google::protobuf::int32 Node::next(int index) const {
+inline ::google::protobuf::uint32 Node::next(int index) const {
   // @@protoc_insertion_point(field_get:book.Node.next)
   return next_.Get(index);
 }
-inline void Node::set_next(int index, ::google::protobuf::int32 value) {
+inline void Node::set_next(int index, ::google::protobuf::uint32 value) {
   next_.Set(index, value);
   // @@protoc_insertion_point(field_set:book.Node.next)
 }
-inline void Node::add_next(::google::protobuf::int32 value) {
+inline void Node::add_next(::google::protobuf::uint32 value) {
   next_.Add(value);
   // @@protoc_insertion_point(field_add:book.Node.next)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
 Node::next() const {
   // @@protoc_insertion_point(field_list:book.Node.next)
   return next_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
 Node::mutable_next() {
   // @@protoc_insertion_point(field_mutable_list:book.Node.next)
   return &next_;
 }
 
-// repeated int32 defaultCode = 5;
+// repeated fixed32 defaultCode = 5;
 inline int Node::defaultcode_size() const {
   return defaultcode_.size();
 }
 inline void Node::clear_defaultcode() {
   defaultcode_.Clear();
 }
-inline ::google::protobuf::int32 Node::defaultcode(int index) const {
+inline ::google::protobuf::uint32 Node::defaultcode(int index) const {
   // @@protoc_insertion_point(field_get:book.Node.defaultCode)
   return defaultcode_.Get(index);
 }
-inline void Node::set_defaultcode(int index, ::google::protobuf::int32 value) {
+inline void Node::set_defaultcode(int index, ::google::protobuf::uint32 value) {
   defaultcode_.Set(index, value);
   // @@protoc_insertion_point(field_set:book.Node.defaultCode)
 }
-inline void Node::add_defaultcode(::google::protobuf::int32 value) {
+inline void Node::add_defaultcode(::google::protobuf::uint32 value) {
   defaultcode_.Add(value);
   // @@protoc_insertion_point(field_add:book.Node.defaultCode)
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
 Node::defaultcode() const {
   // @@protoc_insertion_point(field_list:book.Node.defaultCode)
   return defaultcode_;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
 Node::mutable_defaultcode() {
   // @@protoc_insertion_point(field_mutable_list:book.Node.defaultCode)
   return &defaultcode_;
