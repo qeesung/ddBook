@@ -23,9 +23,9 @@ void audioPlay(const char * audioSource , const int offset , const int length)
 	pid_t pid;
 	int i;
 	/** 为了防止被阻塞，每次播放音乐之前都要将播放进程kill */
-	sprintf(buf ,"%d",audioPlayPid);
-	if(audioPlayPid != -1)
-		execl("/bin/kill" , "-s" , "9" ,buf,(char *)0);
+	//sprintf(buf ,"%d",audioPlayPid);
+	//if(audioPlayPid != -1)
+	//	execl("/bin/kill" , "-s" , "9" ,buf,(char *)0);
 	////////////////////////
 	//创建两个进程 一个负责写 一个负责读 //
 	////////////////////////
@@ -48,6 +48,7 @@ void audioPlay(const char * audioSource , const int offset , const int length)
 		{
 			write(fifo_fd , &audioSource[i] , sizeof(char));
 		}
+		_exit(0);
 	}
 	else
 	{//father read
