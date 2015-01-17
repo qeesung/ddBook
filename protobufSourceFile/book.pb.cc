@@ -16,7 +16,7 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
-namespace book {
+namespace ddBook {
 
 namespace {
 
@@ -41,10 +41,10 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* NodeTree_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   NodeTree_reflection_ = NULL;
-const ::google::protobuf::Descriptor* book_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* Book_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  book_reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* book_ModeType_descriptor_ = NULL;
+  Book_reflection_ = NULL;
+const ::google::protobuf::EnumDescriptor* Book_ModeType_descriptor_ = NULL;
 
 }  // namespace
 
@@ -166,24 +166,26 @@ void protobuf_AssignDesc_book_2eproto() {
       sizeof(NodeTree),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(NodeTree, _internal_metadata_),
       -1);
-  book_descriptor_ = file->message_type(5);
-  static const int book_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(book, nodetree_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(book, modetabellist_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(book, curmode_),
+  Book_descriptor_ = file->message_type(5);
+  static const int Book_offsets_[5] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Book, nodetree_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Book, modetabellist_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Book, curmode_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Book, basicdatatale_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Book, indexdatamaptable_),
   };
-  book_reflection_ =
+  Book_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      book_descriptor_,
-      book::default_instance_,
-      book_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(book, _has_bits_[0]),
+      Book_descriptor_,
+      Book::default_instance_,
+      Book_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Book, _has_bits_[0]),
       -1,
       -1,
-      sizeof(book),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(book, _internal_metadata_),
+      sizeof(Book),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Book, _internal_metadata_),
       -1);
-  book_ModeType_descriptor_ = book_descriptor_->enum_type(0);
+  Book_ModeType_descriptor_ = Book_descriptor_->enum_type(0);
 }
 
 namespace {
@@ -211,7 +213,7 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       NodeTree_descriptor_, &NodeTree::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      book_descriptor_, &book::default_instance());
+      Book_descriptor_, &Book::default_instance());
 }
 
 }  // namespace
@@ -231,8 +233,8 @@ void protobuf_ShutdownFile_book_2eproto() {
   delete Node_reflection_;
   delete NodeTree::default_instance_;
   delete NodeTree_reflection_;
-  delete book::default_instance_;
-  delete book_reflection_;
+  delete Book::default_instance_;
+  delete Book_reflection_;
 }
 
 void protobuf_AddDesc_book_2eproto() {
@@ -242,22 +244,25 @@ void protobuf_AddDesc_book_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\nbook.proto\022\004book\"#\n\016BasicDataTable\022\021\n\t"
-    "audioData\030\001 \003(\014\"\212\001\n\021IndexDataMapTable\022B\n"
-    "\020indexDataMapPair\030\001 \002(\0132(.book.IndexData"
-    "MapTable.IndexDataMapPair\0321\n\020IndexDataMa"
-    "pPair\022\r\n\005index\030\001 \002(\007\022\016\n\006offset\030\002 \002(\007\"|\n\t"
-    "ModeTable\022:\n\020codeIndexMapPair\030\001 \003(\0132 .bo"
-    "ok.ModeTable.CodeIndexMapPair\0323\n\020CodeInd"
-    "exMapPair\022\014\n\004code\030\001 \002(\007\022\021\n\tindexList\030\002 \003"
-    "(\007\"_\n\004Node\022\021\n\tstartCode\030\001 \002(\007\022\017\n\007endCode"
-    "\030\002 \002(\007\022\020\n\010previous\030\003 \002(\007\022\014\n\004next\030\004 \003(\007\022\023"
-    "\n\013defaultCode\030\005 \003(\007\"(\n\010NodeTree\022\034\n\010treeN"
-    "ode\030\001 \003(\0132\n.book.Node\"\251\001\n\004book\022 \n\010nodeTr"
-    "ee\030\001 \002(\0132\016.book.NodeTree\022&\n\rmodeTabelLis"
-    "t\030\002 \003(\0132\017.book.ModeTable\022+\n\007curMode\030\003 \002("
-    "\0162\023.book.book.ModeType:\005STUDY\"*\n\010ModeTyp"
-    "e\022\010\n\004GAME\020\000\022\t\n\005STUDY\020\001\022\t\n\005STORY\020\002", 633);
+    "\n\nbook.proto\022\006ddBook\"#\n\016BasicDataTable\022\021"
+    "\n\taudioData\030\001 \003(\014\"\214\001\n\021IndexDataMapTable\022"
+    "D\n\020indexDataMapPair\030\001 \003(\0132*.ddBook.Index"
+    "DataMapTable.IndexDataMapPair\0321\n\020IndexDa"
+    "taMapPair\022\r\n\005index\030\001 \002(\007\022\016\n\006offset\030\002 \002(\007"
+    "\"~\n\tModeTable\022<\n\020codeIndexMapPair\030\001 \003(\0132"
+    "\".ddBook.ModeTable.CodeIndexMapPair\0323\n\020C"
+    "odeIndexMapPair\022\014\n\004code\030\001 \002(\007\022\021\n\tindexLi"
+    "st\030\002 \003(\007\"_\n\004Node\022\021\n\tstartCode\030\001 \002(\007\022\017\n\007e"
+    "ndCode\030\002 \002(\007\022\020\n\010previous\030\003 \002(\007\022\014\n\004next\030\004"
+    " \003(\007\022\023\n\013defaultCode\030\005 \003(\007\"*\n\010NodeTree\022\036\n"
+    "\010treeNode\030\001 \003(\0132\014.ddBook.Node\"\224\002\n\004Book\022\""
+    "\n\010nodeTree\030\001 \002(\0132\020.ddBook.NodeTree\022(\n\rmo"
+    "deTabelList\030\002 \003(\0132\021.ddBook.ModeTable\022-\n\007"
+    "curMode\030\003 \002(\0162\025.ddBook.Book.ModeType:\005ST"
+    "UDY\022-\n\rbasicDataTale\030\004 \002(\0132\026.ddBook.Basi"
+    "cDataTable\0224\n\021indexDataMapTable\030\005 \002(\0132\031."
+    "ddBook.IndexDataMapTable\"*\n\010ModeType\022\010\n\004"
+    "GAME\020\000\022\t\n\005STUDY\020\001\022\t\n\005STORY\020\002", 748);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "book.proto", &protobuf_RegisterTypes);
   BasicDataTable::default_instance_ = new BasicDataTable();
@@ -267,7 +272,7 @@ void protobuf_AddDesc_book_2eproto() {
   ModeTable_CodeIndexMapPair::default_instance_ = new ModeTable_CodeIndexMapPair();
   Node::default_instance_ = new Node();
   NodeTree::default_instance_ = new NodeTree();
-  book::default_instance_ = new book();
+  Book::default_instance_ = new Book();
   BasicDataTable::default_instance_->InitAsDefaultInstance();
   IndexDataMapTable::default_instance_->InitAsDefaultInstance();
   IndexDataMapTable_IndexDataMapPair::default_instance_->InitAsDefaultInstance();
@@ -275,7 +280,7 @@ void protobuf_AddDesc_book_2eproto() {
   ModeTable_CodeIndexMapPair::default_instance_->InitAsDefaultInstance();
   Node::default_instance_->InitAsDefaultInstance();
   NodeTree::default_instance_->InitAsDefaultInstance();
-  book::default_instance_->InitAsDefaultInstance();
+  Book::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_book_2eproto);
 }
 
@@ -305,7 +310,7 @@ const int BasicDataTable::kAudioDataFieldNumber;
 BasicDataTable::BasicDataTable()
   : ::google::protobuf::Message() , _internal_metadata_(NULL)  {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:book.BasicDataTable)
+  // @@protoc_insertion_point(constructor:ddBook.BasicDataTable)
 }
 
 void BasicDataTable::InitAsDefaultInstance() {
@@ -316,7 +321,7 @@ BasicDataTable::BasicDataTable(const BasicDataTable& from)
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:book.BasicDataTable)
+  // @@protoc_insertion_point(copy_constructor:ddBook.BasicDataTable)
 }
 
 void BasicDataTable::SharedCtor() {
@@ -326,7 +331,7 @@ void BasicDataTable::SharedCtor() {
 }
 
 BasicDataTable::~BasicDataTable() {
-  // @@protoc_insertion_point(destructor:book.BasicDataTable)
+  // @@protoc_insertion_point(destructor:ddBook.BasicDataTable)
   SharedDtor();
 }
 
@@ -372,7 +377,7 @@ bool BasicDataTable::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:book.BasicDataTable)
+  // @@protoc_insertion_point(parse_start:ddBook.BasicDataTable)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -406,17 +411,17 @@ bool BasicDataTable::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:book.BasicDataTable)
+  // @@protoc_insertion_point(parse_success:ddBook.BasicDataTable)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:book.BasicDataTable)
+  // @@protoc_insertion_point(parse_failure:ddBook.BasicDataTable)
   return false;
 #undef DO_
 }
 
 void BasicDataTable::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:book.BasicDataTable)
+  // @@protoc_insertion_point(serialize_start:ddBook.BasicDataTable)
   // repeated bytes audioData = 1;
   for (int i = 0; i < this->audiodata_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteBytes(
@@ -427,12 +432,12 @@ void BasicDataTable::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:book.BasicDataTable)
+  // @@protoc_insertion_point(serialize_end:ddBook.BasicDataTable)
 }
 
 ::google::protobuf::uint8* BasicDataTable::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:book.BasicDataTable)
+  // @@protoc_insertion_point(serialize_to_array_start:ddBook.BasicDataTable)
   // repeated bytes audioData = 1;
   for (int i = 0; i < this->audiodata_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
@@ -443,7 +448,7 @@ void BasicDataTable::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:book.BasicDataTable)
+  // @@protoc_insertion_point(serialize_to_array_end:ddBook.BasicDataTable)
   return target;
 }
 
@@ -535,7 +540,7 @@ const int IndexDataMapTable_IndexDataMapPair::kOffsetFieldNumber;
 IndexDataMapTable_IndexDataMapPair::IndexDataMapTable_IndexDataMapPair()
   : ::google::protobuf::Message() , _internal_metadata_(NULL)  {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:book.IndexDataMapTable.IndexDataMapPair)
+  // @@protoc_insertion_point(constructor:ddBook.IndexDataMapTable.IndexDataMapPair)
 }
 
 void IndexDataMapTable_IndexDataMapPair::InitAsDefaultInstance() {
@@ -546,7 +551,7 @@ IndexDataMapTable_IndexDataMapPair::IndexDataMapTable_IndexDataMapPair(const Ind
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:book.IndexDataMapTable.IndexDataMapPair)
+  // @@protoc_insertion_point(copy_constructor:ddBook.IndexDataMapTable.IndexDataMapPair)
 }
 
 void IndexDataMapTable_IndexDataMapPair::SharedCtor() {
@@ -557,7 +562,7 @@ void IndexDataMapTable_IndexDataMapPair::SharedCtor() {
 }
 
 IndexDataMapTable_IndexDataMapPair::~IndexDataMapTable_IndexDataMapPair() {
-  // @@protoc_insertion_point(destructor:book.IndexDataMapTable.IndexDataMapPair)
+  // @@protoc_insertion_point(destructor:ddBook.IndexDataMapTable.IndexDataMapPair)
   SharedDtor();
 }
 
@@ -617,7 +622,7 @@ bool IndexDataMapTable_IndexDataMapPair::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:book.IndexDataMapTable.IndexDataMapPair)
+  // @@protoc_insertion_point(parse_start:ddBook.IndexDataMapTable.IndexDataMapPair)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -666,17 +671,17 @@ bool IndexDataMapTable_IndexDataMapPair::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:book.IndexDataMapTable.IndexDataMapPair)
+  // @@protoc_insertion_point(parse_success:ddBook.IndexDataMapTable.IndexDataMapPair)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:book.IndexDataMapTable.IndexDataMapPair)
+  // @@protoc_insertion_point(parse_failure:ddBook.IndexDataMapTable.IndexDataMapPair)
   return false;
 #undef DO_
 }
 
 void IndexDataMapTable_IndexDataMapPair::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:book.IndexDataMapTable.IndexDataMapPair)
+  // @@protoc_insertion_point(serialize_start:ddBook.IndexDataMapTable.IndexDataMapPair)
   // required fixed32 index = 1;
   if (has_index()) {
     ::google::protobuf::internal::WireFormatLite::WriteFixed32(1, this->index(), output);
@@ -691,12 +696,12 @@ void IndexDataMapTable_IndexDataMapPair::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:book.IndexDataMapTable.IndexDataMapPair)
+  // @@protoc_insertion_point(serialize_end:ddBook.IndexDataMapTable.IndexDataMapPair)
 }
 
 ::google::protobuf::uint8* IndexDataMapTable_IndexDataMapPair::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:book.IndexDataMapTable.IndexDataMapPair)
+  // @@protoc_insertion_point(serialize_to_array_start:ddBook.IndexDataMapTable.IndexDataMapPair)
   // required fixed32 index = 1;
   if (has_index()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFixed32ToArray(1, this->index(), target);
@@ -711,7 +716,7 @@ void IndexDataMapTable_IndexDataMapPair::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:book.IndexDataMapTable.IndexDataMapPair)
+  // @@protoc_insertion_point(serialize_to_array_end:ddBook.IndexDataMapTable.IndexDataMapPair)
   return target;
 }
 
@@ -829,11 +834,10 @@ const int IndexDataMapTable::kIndexDataMapPairFieldNumber;
 IndexDataMapTable::IndexDataMapTable()
   : ::google::protobuf::Message() , _internal_metadata_(NULL)  {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:book.IndexDataMapTable)
+  // @@protoc_insertion_point(constructor:ddBook.IndexDataMapTable)
 }
 
 void IndexDataMapTable::InitAsDefaultInstance() {
-  indexdatamappair_ = const_cast< ::book::IndexDataMapTable_IndexDataMapPair*>(&::book::IndexDataMapTable_IndexDataMapPair::default_instance());
 }
 
 IndexDataMapTable::IndexDataMapTable(const IndexDataMapTable& from)
@@ -841,23 +845,21 @@ IndexDataMapTable::IndexDataMapTable(const IndexDataMapTable& from)
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:book.IndexDataMapTable)
+  // @@protoc_insertion_point(copy_constructor:ddBook.IndexDataMapTable)
 }
 
 void IndexDataMapTable::SharedCtor() {
   _cached_size_ = 0;
-  indexdatamappair_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
 IndexDataMapTable::~IndexDataMapTable() {
-  // @@protoc_insertion_point(destructor:book.IndexDataMapTable)
+  // @@protoc_insertion_point(destructor:ddBook.IndexDataMapTable)
   SharedDtor();
 }
 
 void IndexDataMapTable::SharedDtor() {
   if (this != default_instance_) {
-    delete indexdatamappair_;
   }
 }
 
@@ -887,9 +889,7 @@ IndexDataMapTable* IndexDataMapTable::New(::google::protobuf::Arena* arena) cons
 }
 
 void IndexDataMapTable::Clear() {
-  if (has_indexdatamappair()) {
-    if (indexdatamappair_ != NULL) indexdatamappair_->::book::IndexDataMapTable_IndexDataMapPair::Clear();
-  }
+  indexdatamappair_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->Clear();
@@ -900,20 +900,22 @@ bool IndexDataMapTable::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:book.IndexDataMapTable)
+  // @@protoc_insertion_point(parse_start:ddBook.IndexDataMapTable)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .book.IndexDataMapTable.IndexDataMapPair indexDataMapPair = 1;
+      // repeated .ddBook.IndexDataMapTable.IndexDataMapPair indexDataMapPair = 1;
       case 1: {
         if (tag == 10) {
+         parse_indexDataMapPair:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_indexdatamappair()));
+                input, add_indexdatamappair()));
         } else {
           goto handle_unusual;
         }
+        if (input->ExpectTag(10)) goto parse_indexDataMapPair;
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -932,57 +934,59 @@ bool IndexDataMapTable::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:book.IndexDataMapTable)
+  // @@protoc_insertion_point(parse_success:ddBook.IndexDataMapTable)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:book.IndexDataMapTable)
+  // @@protoc_insertion_point(parse_failure:ddBook.IndexDataMapTable)
   return false;
 #undef DO_
 }
 
 void IndexDataMapTable::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:book.IndexDataMapTable)
-  // required .book.IndexDataMapTable.IndexDataMapPair indexDataMapPair = 1;
-  if (has_indexdatamappair()) {
+  // @@protoc_insertion_point(serialize_start:ddBook.IndexDataMapTable)
+  // repeated .ddBook.IndexDataMapTable.IndexDataMapPair indexDataMapPair = 1;
+  for (unsigned int i = 0, n = this->indexdatamappair_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, *this->indexdatamappair_, output);
+      1, this->indexdatamappair(i), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:book.IndexDataMapTable)
+  // @@protoc_insertion_point(serialize_end:ddBook.IndexDataMapTable)
 }
 
 ::google::protobuf::uint8* IndexDataMapTable::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:book.IndexDataMapTable)
-  // required .book.IndexDataMapTable.IndexDataMapPair indexDataMapPair = 1;
-  if (has_indexdatamappair()) {
+  // @@protoc_insertion_point(serialize_to_array_start:ddBook.IndexDataMapTable)
+  // repeated .ddBook.IndexDataMapTable.IndexDataMapPair indexDataMapPair = 1;
+  for (unsigned int i = 0, n = this->indexdatamappair_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        1, *this->indexdatamappair_, target);
+        1, this->indexdatamappair(i), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:book.IndexDataMapTable)
+  // @@protoc_insertion_point(serialize_to_array_end:ddBook.IndexDataMapTable)
   return target;
 }
 
 int IndexDataMapTable::ByteSize() const {
   int total_size = 0;
 
-  // required .book.IndexDataMapTable.IndexDataMapPair indexDataMapPair = 1;
-  if (has_indexdatamappair()) {
-    total_size += 1 +
+  // repeated .ddBook.IndexDataMapTable.IndexDataMapPair indexDataMapPair = 1;
+  total_size += 1 * this->indexdatamappair_size();
+  for (int i = 0; i < this->indexdatamappair_size(); i++) {
+    total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        *this->indexdatamappair_);
+        this->indexdatamappair(i));
   }
+
   if (_internal_metadata_.have_unknown_fields()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -1008,11 +1012,7 @@ void IndexDataMapTable::MergeFrom(const ::google::protobuf::Message& from) {
 
 void IndexDataMapTable::MergeFrom(const IndexDataMapTable& from) {
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_indexdatamappair()) {
-      mutable_indexdatamappair()->::book::IndexDataMapTable_IndexDataMapPair::MergeFrom(from.indexdatamappair());
-    }
-  }
+  indexdatamappair_.MergeFrom(from.indexdatamappair_);
   if (from._internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->MergeFrom(from.unknown_fields());
   }
@@ -1031,11 +1031,8 @@ void IndexDataMapTable::CopyFrom(const IndexDataMapTable& from) {
 }
 
 bool IndexDataMapTable::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
 
-  if (has_indexdatamappair()) {
-    if (!this->indexdatamappair_->IsInitialized()) return false;
-  }
+  if (!::google::protobuf::internal::AllAreInitialized(this->indexdatamappair())) return false;
   return true;
 }
 
@@ -1044,7 +1041,7 @@ void IndexDataMapTable::Swap(IndexDataMapTable* other) {
   InternalSwap(other);
 }
 void IndexDataMapTable::InternalSwap(IndexDataMapTable* other) {
-  std::swap(indexdatamappair_, other->indexdatamappair_);
+  indexdatamappair_.UnsafeArenaSwap(&other->indexdatamappair_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -1069,7 +1066,7 @@ const int ModeTable_CodeIndexMapPair::kIndexListFieldNumber;
 ModeTable_CodeIndexMapPair::ModeTable_CodeIndexMapPair()
   : ::google::protobuf::Message() , _internal_metadata_(NULL)  {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:book.ModeTable.CodeIndexMapPair)
+  // @@protoc_insertion_point(constructor:ddBook.ModeTable.CodeIndexMapPair)
 }
 
 void ModeTable_CodeIndexMapPair::InitAsDefaultInstance() {
@@ -1080,7 +1077,7 @@ ModeTable_CodeIndexMapPair::ModeTable_CodeIndexMapPair(const ModeTable_CodeIndex
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:book.ModeTable.CodeIndexMapPair)
+  // @@protoc_insertion_point(copy_constructor:ddBook.ModeTable.CodeIndexMapPair)
 }
 
 void ModeTable_CodeIndexMapPair::SharedCtor() {
@@ -1090,7 +1087,7 @@ void ModeTable_CodeIndexMapPair::SharedCtor() {
 }
 
 ModeTable_CodeIndexMapPair::~ModeTable_CodeIndexMapPair() {
-  // @@protoc_insertion_point(destructor:book.ModeTable.CodeIndexMapPair)
+  // @@protoc_insertion_point(destructor:ddBook.ModeTable.CodeIndexMapPair)
   SharedDtor();
 }
 
@@ -1137,7 +1134,7 @@ bool ModeTable_CodeIndexMapPair::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:book.ModeTable.CodeIndexMapPair)
+  // @@protoc_insertion_point(parse_start:ddBook.ModeTable.CodeIndexMapPair)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -1190,17 +1187,17 @@ bool ModeTable_CodeIndexMapPair::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:book.ModeTable.CodeIndexMapPair)
+  // @@protoc_insertion_point(parse_success:ddBook.ModeTable.CodeIndexMapPair)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:book.ModeTable.CodeIndexMapPair)
+  // @@protoc_insertion_point(parse_failure:ddBook.ModeTable.CodeIndexMapPair)
   return false;
 #undef DO_
 }
 
 void ModeTable_CodeIndexMapPair::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:book.ModeTable.CodeIndexMapPair)
+  // @@protoc_insertion_point(serialize_start:ddBook.ModeTable.CodeIndexMapPair)
   // required fixed32 code = 1;
   if (has_code()) {
     ::google::protobuf::internal::WireFormatLite::WriteFixed32(1, this->code(), output);
@@ -1216,12 +1213,12 @@ void ModeTable_CodeIndexMapPair::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:book.ModeTable.CodeIndexMapPair)
+  // @@protoc_insertion_point(serialize_end:ddBook.ModeTable.CodeIndexMapPair)
 }
 
 ::google::protobuf::uint8* ModeTable_CodeIndexMapPair::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:book.ModeTable.CodeIndexMapPair)
+  // @@protoc_insertion_point(serialize_to_array_start:ddBook.ModeTable.CodeIndexMapPair)
   // required fixed32 code = 1;
   if (has_code()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFixed32ToArray(1, this->code(), target);
@@ -1237,7 +1234,7 @@ void ModeTable_CodeIndexMapPair::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:book.ModeTable.CodeIndexMapPair)
+  // @@protoc_insertion_point(serialize_to_array_end:ddBook.ModeTable.CodeIndexMapPair)
   return target;
 }
 
@@ -1339,7 +1336,7 @@ const int ModeTable::kCodeIndexMapPairFieldNumber;
 ModeTable::ModeTable()
   : ::google::protobuf::Message() , _internal_metadata_(NULL)  {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:book.ModeTable)
+  // @@protoc_insertion_point(constructor:ddBook.ModeTable)
 }
 
 void ModeTable::InitAsDefaultInstance() {
@@ -1350,7 +1347,7 @@ ModeTable::ModeTable(const ModeTable& from)
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:book.ModeTable)
+  // @@protoc_insertion_point(copy_constructor:ddBook.ModeTable)
 }
 
 void ModeTable::SharedCtor() {
@@ -1359,7 +1356,7 @@ void ModeTable::SharedCtor() {
 }
 
 ModeTable::~ModeTable() {
-  // @@protoc_insertion_point(destructor:book.ModeTable)
+  // @@protoc_insertion_point(destructor:ddBook.ModeTable)
   SharedDtor();
 }
 
@@ -1405,13 +1402,13 @@ bool ModeTable::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:book.ModeTable)
+  // @@protoc_insertion_point(parse_start:ddBook.ModeTable)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .book.ModeTable.CodeIndexMapPair codeIndexMapPair = 1;
+      // repeated .ddBook.ModeTable.CodeIndexMapPair codeIndexMapPair = 1;
       case 1: {
         if (tag == 10) {
          parse_codeIndexMapPair:
@@ -1439,18 +1436,18 @@ bool ModeTable::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:book.ModeTable)
+  // @@protoc_insertion_point(parse_success:ddBook.ModeTable)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:book.ModeTable)
+  // @@protoc_insertion_point(parse_failure:ddBook.ModeTable)
   return false;
 #undef DO_
 }
 
 void ModeTable::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:book.ModeTable)
-  // repeated .book.ModeTable.CodeIndexMapPair codeIndexMapPair = 1;
+  // @@protoc_insertion_point(serialize_start:ddBook.ModeTable)
+  // repeated .ddBook.ModeTable.CodeIndexMapPair codeIndexMapPair = 1;
   for (unsigned int i = 0, n = this->codeindexmappair_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->codeindexmappair(i), output);
@@ -1460,13 +1457,13 @@ void ModeTable::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:book.ModeTable)
+  // @@protoc_insertion_point(serialize_end:ddBook.ModeTable)
 }
 
 ::google::protobuf::uint8* ModeTable::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:book.ModeTable)
-  // repeated .book.ModeTable.CodeIndexMapPair codeIndexMapPair = 1;
+  // @@protoc_insertion_point(serialize_to_array_start:ddBook.ModeTable)
+  // repeated .ddBook.ModeTable.CodeIndexMapPair codeIndexMapPair = 1;
   for (unsigned int i = 0, n = this->codeindexmappair_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -1477,14 +1474,14 @@ void ModeTable::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:book.ModeTable)
+  // @@protoc_insertion_point(serialize_to_array_end:ddBook.ModeTable)
   return target;
 }
 
 int ModeTable::ByteSize() const {
   int total_size = 0;
 
-  // repeated .book.ModeTable.CodeIndexMapPair codeIndexMapPair = 1;
+  // repeated .ddBook.ModeTable.CodeIndexMapPair codeIndexMapPair = 1;
   total_size += 1 * this->codeindexmappair_size();
   for (int i = 0; i < this->codeindexmappair_size(); i++) {
     total_size +=
@@ -1574,7 +1571,7 @@ const int Node::kDefaultCodeFieldNumber;
 Node::Node()
   : ::google::protobuf::Message() , _internal_metadata_(NULL)  {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:book.Node)
+  // @@protoc_insertion_point(constructor:ddBook.Node)
 }
 
 void Node::InitAsDefaultInstance() {
@@ -1585,7 +1582,7 @@ Node::Node(const Node& from)
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:book.Node)
+  // @@protoc_insertion_point(copy_constructor:ddBook.Node)
 }
 
 void Node::SharedCtor() {
@@ -1597,7 +1594,7 @@ void Node::SharedCtor() {
 }
 
 Node::~Node() {
-  // @@protoc_insertion_point(destructor:book.Node)
+  // @@protoc_insertion_point(destructor:ddBook.Node)
   SharedDtor();
 }
 
@@ -1662,7 +1659,7 @@ bool Node::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:book.Node)
+  // @@protoc_insertion_point(parse_start:ddBook.Node)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -1764,17 +1761,17 @@ bool Node::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:book.Node)
+  // @@protoc_insertion_point(parse_success:ddBook.Node)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:book.Node)
+  // @@protoc_insertion_point(parse_failure:ddBook.Node)
   return false;
 #undef DO_
 }
 
 void Node::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:book.Node)
+  // @@protoc_insertion_point(serialize_start:ddBook.Node)
   // required fixed32 startCode = 1;
   if (has_startcode()) {
     ::google::protobuf::internal::WireFormatLite::WriteFixed32(1, this->startcode(), output);
@@ -1806,12 +1803,12 @@ void Node::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:book.Node)
+  // @@protoc_insertion_point(serialize_end:ddBook.Node)
 }
 
 ::google::protobuf::uint8* Node::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:book.Node)
+  // @@protoc_insertion_point(serialize_to_array_start:ddBook.Node)
   // required fixed32 startCode = 1;
   if (has_startcode()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFixed32ToArray(1, this->startcode(), target);
@@ -1843,7 +1840,7 @@ void Node::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:book.Node)
+  // @@protoc_insertion_point(serialize_to_array_end:ddBook.Node)
   return target;
 }
 
@@ -1991,7 +1988,7 @@ const int NodeTree::kTreeNodeFieldNumber;
 NodeTree::NodeTree()
   : ::google::protobuf::Message() , _internal_metadata_(NULL)  {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:book.NodeTree)
+  // @@protoc_insertion_point(constructor:ddBook.NodeTree)
 }
 
 void NodeTree::InitAsDefaultInstance() {
@@ -2002,7 +1999,7 @@ NodeTree::NodeTree(const NodeTree& from)
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:book.NodeTree)
+  // @@protoc_insertion_point(copy_constructor:ddBook.NodeTree)
 }
 
 void NodeTree::SharedCtor() {
@@ -2011,7 +2008,7 @@ void NodeTree::SharedCtor() {
 }
 
 NodeTree::~NodeTree() {
-  // @@protoc_insertion_point(destructor:book.NodeTree)
+  // @@protoc_insertion_point(destructor:ddBook.NodeTree)
   SharedDtor();
 }
 
@@ -2057,13 +2054,13 @@ bool NodeTree::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:book.NodeTree)
+  // @@protoc_insertion_point(parse_start:ddBook.NodeTree)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .book.Node treeNode = 1;
+      // repeated .ddBook.Node treeNode = 1;
       case 1: {
         if (tag == 10) {
          parse_treeNode:
@@ -2091,18 +2088,18 @@ bool NodeTree::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:book.NodeTree)
+  // @@protoc_insertion_point(parse_success:ddBook.NodeTree)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:book.NodeTree)
+  // @@protoc_insertion_point(parse_failure:ddBook.NodeTree)
   return false;
 #undef DO_
 }
 
 void NodeTree::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:book.NodeTree)
-  // repeated .book.Node treeNode = 1;
+  // @@protoc_insertion_point(serialize_start:ddBook.NodeTree)
+  // repeated .ddBook.Node treeNode = 1;
   for (unsigned int i = 0, n = this->treenode_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->treenode(i), output);
@@ -2112,13 +2109,13 @@ void NodeTree::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:book.NodeTree)
+  // @@protoc_insertion_point(serialize_end:ddBook.NodeTree)
 }
 
 ::google::protobuf::uint8* NodeTree::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:book.NodeTree)
-  // repeated .book.Node treeNode = 1;
+  // @@protoc_insertion_point(serialize_to_array_start:ddBook.NodeTree)
+  // repeated .ddBook.Node treeNode = 1;
   for (unsigned int i = 0, n = this->treenode_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -2129,14 +2126,14 @@ void NodeTree::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:book.NodeTree)
+  // @@protoc_insertion_point(serialize_to_array_end:ddBook.NodeTree)
   return target;
 }
 
 int NodeTree::ByteSize() const {
   int total_size = 0;
 
-  // repeated .book.Node treeNode = 1;
+  // repeated .ddBook.Node treeNode = 1;
   total_size += 1 * this->treenode_size();
   for (int i = 0; i < this->treenode_size(); i++) {
     total_size +=
@@ -2215,11 +2212,11 @@ void NodeTree::InternalSwap(NodeTree* other) {
 
 // ===================================================================
 
-const ::google::protobuf::EnumDescriptor* book_ModeType_descriptor() {
+const ::google::protobuf::EnumDescriptor* Book_ModeType_descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return book_ModeType_descriptor_;
+  return Book_ModeType_descriptor_;
 }
-bool book_ModeType_IsValid(int value) {
+bool Book_ModeType_IsValid(int value) {
   switch(value) {
     case 0:
     case 1:
@@ -2231,86 +2228,100 @@ bool book_ModeType_IsValid(int value) {
 }
 
 #ifndef _MSC_VER
-const book_ModeType book::GAME;
-const book_ModeType book::STUDY;
-const book_ModeType book::STORY;
-const book_ModeType book::ModeType_MIN;
-const book_ModeType book::ModeType_MAX;
-const int book::ModeType_ARRAYSIZE;
+const Book_ModeType Book::GAME;
+const Book_ModeType Book::STUDY;
+const Book_ModeType Book::STORY;
+const Book_ModeType Book::ModeType_MIN;
+const Book_ModeType Book::ModeType_MAX;
+const int Book::ModeType_ARRAYSIZE;
 #endif  // _MSC_VER
 #ifndef _MSC_VER
-const int book::kNodeTreeFieldNumber;
-const int book::kModeTabelListFieldNumber;
-const int book::kCurModeFieldNumber;
+const int Book::kNodeTreeFieldNumber;
+const int Book::kModeTabelListFieldNumber;
+const int Book::kCurModeFieldNumber;
+const int Book::kBasicDataTaleFieldNumber;
+const int Book::kIndexDataMapTableFieldNumber;
 #endif  // !_MSC_VER
 
-book::book()
+Book::Book()
   : ::google::protobuf::Message() , _internal_metadata_(NULL)  {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:book.book)
+  // @@protoc_insertion_point(constructor:ddBook.Book)
 }
 
-void book::InitAsDefaultInstance() {
-  nodetree_ = const_cast< ::book::NodeTree*>(&::book::NodeTree::default_instance());
+void Book::InitAsDefaultInstance() {
+  nodetree_ = const_cast< ::ddBook::NodeTree*>(&::ddBook::NodeTree::default_instance());
+  basicdatatale_ = const_cast< ::ddBook::BasicDataTable*>(&::ddBook::BasicDataTable::default_instance());
+  indexdatamaptable_ = const_cast< ::ddBook::IndexDataMapTable*>(&::ddBook::IndexDataMapTable::default_instance());
 }
 
-book::book(const book& from)
+Book::Book(const Book& from)
   : ::google::protobuf::Message(),
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:book.book)
+  // @@protoc_insertion_point(copy_constructor:ddBook.Book)
 }
 
-void book::SharedCtor() {
+void Book::SharedCtor() {
   _cached_size_ = 0;
   nodetree_ = NULL;
   curmode_ = 1;
+  basicdatatale_ = NULL;
+  indexdatamaptable_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
-book::~book() {
-  // @@protoc_insertion_point(destructor:book.book)
+Book::~Book() {
+  // @@protoc_insertion_point(destructor:ddBook.Book)
   SharedDtor();
 }
 
-void book::SharedDtor() {
+void Book::SharedDtor() {
   if (this != default_instance_) {
     delete nodetree_;
+    delete basicdatatale_;
+    delete indexdatamaptable_;
   }
 }
 
-void book::SetCachedSize(int size) const {
+void Book::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* book::descriptor() {
+const ::google::protobuf::Descriptor* Book::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return book_descriptor_;
+  return Book_descriptor_;
 }
 
-const book& book::default_instance() {
+const Book& Book::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_book_2eproto();
   return *default_instance_;
 }
 
-book* book::default_instance_ = NULL;
+Book* Book::default_instance_ = NULL;
 
-book* book::New(::google::protobuf::Arena* arena) const {
-  book* n = new book;
+Book* Book::New(::google::protobuf::Arena* arena) const {
+  Book* n = new Book;
   if (arena != NULL) {
     arena->Own(n);
   }
   return n;
 }
 
-void book::Clear() {
-  if (_has_bits_[0 / 32] & 5) {
+void Book::Clear() {
+  if (_has_bits_[0 / 32] & 29) {
     if (has_nodetree()) {
-      if (nodetree_ != NULL) nodetree_->::book::NodeTree::Clear();
+      if (nodetree_ != NULL) nodetree_->::ddBook::NodeTree::Clear();
     }
     curmode_ = 1;
+    if (has_basicdatatale()) {
+      if (basicdatatale_ != NULL) basicdatatale_->::ddBook::BasicDataTable::Clear();
+    }
+    if (has_indexdatamaptable()) {
+      if (indexdatamaptable_ != NULL) indexdatamaptable_->::ddBook::IndexDataMapTable::Clear();
+    }
   }
   modetabellist_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -2319,17 +2330,17 @@ void book::Clear() {
   }
 }
 
-bool book::MergePartialFromCodedStream(
+bool Book::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:book.book)
+  // @@protoc_insertion_point(parse_start:ddBook.Book)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required .book.NodeTree nodeTree = 1;
+      // required .ddBook.NodeTree nodeTree = 1;
       case 1: {
         if (tag == 10) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
@@ -2341,7 +2352,7 @@ bool book::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .book.ModeTable modeTabelList = 2;
+      // repeated .ddBook.ModeTable modeTabelList = 2;
       case 2: {
         if (tag == 18) {
          parse_modeTabelList:
@@ -2355,7 +2366,7 @@ bool book::MergePartialFromCodedStream(
         break;
       }
 
-      // required .book.book.ModeType curMode = 3 [default = STUDY];
+      // required .ddBook.Book.ModeType curMode = 3 [default = STUDY];
       case 3: {
         if (tag == 24) {
          parse_curMode:
@@ -2363,11 +2374,37 @@ bool book::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (::book::book_ModeType_IsValid(value)) {
-            set_curmode(static_cast< ::book::book_ModeType >(value));
+          if (::ddBook::Book_ModeType_IsValid(value)) {
+            set_curmode(static_cast< ::ddBook::Book_ModeType >(value));
           } else {
             mutable_unknown_fields()->AddVarint(3, value);
           }
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(34)) goto parse_basicDataTale;
+        break;
+      }
+
+      // required .ddBook.BasicDataTable basicDataTale = 4;
+      case 4: {
+        if (tag == 34) {
+         parse_basicDataTale:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_basicdatatale()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(42)) goto parse_indexDataMapTable;
+        break;
+      }
+
+      // required .ddBook.IndexDataMapTable indexDataMapTable = 5;
+      case 5: {
+        if (tag == 42) {
+         parse_indexDataMapTable:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_indexdatamaptable()));
         } else {
           goto handle_unusual;
         }
@@ -2389,108 +2426,158 @@ bool book::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:book.book)
+  // @@protoc_insertion_point(parse_success:ddBook.Book)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:book.book)
+  // @@protoc_insertion_point(parse_failure:ddBook.Book)
   return false;
 #undef DO_
 }
 
-void book::SerializeWithCachedSizes(
+void Book::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:book.book)
-  // required .book.NodeTree nodeTree = 1;
+  // @@protoc_insertion_point(serialize_start:ddBook.Book)
+  // required .ddBook.NodeTree nodeTree = 1;
   if (has_nodetree()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, *this->nodetree_, output);
   }
 
-  // repeated .book.ModeTable modeTabelList = 2;
+  // repeated .ddBook.ModeTable modeTabelList = 2;
   for (unsigned int i = 0, n = this->modetabellist_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2, this->modetabellist(i), output);
   }
 
-  // required .book.book.ModeType curMode = 3 [default = STUDY];
+  // required .ddBook.Book.ModeType curMode = 3 [default = STUDY];
   if (has_curmode()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       3, this->curmode(), output);
+  }
+
+  // required .ddBook.BasicDataTable basicDataTale = 4;
+  if (has_basicdatatale()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      4, *this->basicdatatale_, output);
+  }
+
+  // required .ddBook.IndexDataMapTable indexDataMapTable = 5;
+  if (has_indexdatamaptable()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      5, *this->indexdatamaptable_, output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:book.book)
+  // @@protoc_insertion_point(serialize_end:ddBook.Book)
 }
 
-::google::protobuf::uint8* book::SerializeWithCachedSizesToArray(
+::google::protobuf::uint8* Book::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:book.book)
-  // required .book.NodeTree nodeTree = 1;
+  // @@protoc_insertion_point(serialize_to_array_start:ddBook.Book)
+  // required .ddBook.NodeTree nodeTree = 1;
   if (has_nodetree()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         1, *this->nodetree_, target);
   }
 
-  // repeated .book.ModeTable modeTabelList = 2;
+  // repeated .ddBook.ModeTable modeTabelList = 2;
   for (unsigned int i = 0, n = this->modetabellist_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         2, this->modetabellist(i), target);
   }
 
-  // required .book.book.ModeType curMode = 3 [default = STUDY];
+  // required .ddBook.Book.ModeType curMode = 3 [default = STUDY];
   if (has_curmode()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       3, this->curmode(), target);
+  }
+
+  // required .ddBook.BasicDataTable basicDataTale = 4;
+  if (has_basicdatatale()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        4, *this->basicdatatale_, target);
+  }
+
+  // required .ddBook.IndexDataMapTable indexDataMapTable = 5;
+  if (has_indexdatamaptable()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        5, *this->indexdatamaptable_, target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:book.book)
+  // @@protoc_insertion_point(serialize_to_array_end:ddBook.Book)
   return target;
 }
 
-int book::RequiredFieldsByteSizeFallback() const {
+int Book::RequiredFieldsByteSizeFallback() const {
   int total_size = 0;
 
   if (has_nodetree()) {
-    // required .book.NodeTree nodeTree = 1;
+    // required .ddBook.NodeTree nodeTree = 1;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->nodetree_);
   }
 
   if (has_curmode()) {
-    // required .book.book.ModeType curMode = 3 [default = STUDY];
+    // required .ddBook.Book.ModeType curMode = 3 [default = STUDY];
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->curmode());
+  }
+
+  if (has_basicdatatale()) {
+    // required .ddBook.BasicDataTable basicDataTale = 4;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->basicdatatale_);
+  }
+
+  if (has_indexdatamaptable()) {
+    // required .ddBook.IndexDataMapTable indexDataMapTable = 5;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->indexdatamaptable_);
   }
 
   return total_size;
 }
-int book::ByteSize() const {
+int Book::ByteSize() const {
   int total_size = 0;
 
-  if (((_has_bits_[0] & 0x00000005) ^ 0x00000005) == 0) {  // All required fields are present.
-    // required .book.NodeTree nodeTree = 1;
+  if (((_has_bits_[0] & 0x0000001d) ^ 0x0000001d) == 0) {  // All required fields are present.
+    // required .ddBook.NodeTree nodeTree = 1;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->nodetree_);
 
-    // required .book.book.ModeType curMode = 3 [default = STUDY];
+    // required .ddBook.Book.ModeType curMode = 3 [default = STUDY];
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->curmode());
+
+    // required .ddBook.BasicDataTable basicDataTale = 4;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->basicdatatale_);
+
+    // required .ddBook.IndexDataMapTable indexDataMapTable = 5;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->indexdatamaptable_);
 
   } else {
     total_size += RequiredFieldsByteSizeFallback();
   }
-  // repeated .book.ModeTable modeTabelList = 2;
+  // repeated .ddBook.ModeTable modeTabelList = 2;
   total_size += 1 * this->modetabellist_size();
   for (int i = 0; i < this->modetabellist_size(); i++) {
     total_size +=
@@ -2509,10 +2596,10 @@ int book::ByteSize() const {
   return total_size;
 }
 
-void book::MergeFrom(const ::google::protobuf::Message& from) {
+void Book::MergeFrom(const ::google::protobuf::Message& from) {
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const book* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const book*>(
+  const Book* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const Book*>(
       &from);
   if (source == NULL) {
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
@@ -2521,15 +2608,21 @@ void book::MergeFrom(const ::google::protobuf::Message& from) {
   }
 }
 
-void book::MergeFrom(const book& from) {
+void Book::MergeFrom(const Book& from) {
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   modetabellist_.MergeFrom(from.modetabellist_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_nodetree()) {
-      mutable_nodetree()->::book::NodeTree::MergeFrom(from.nodetree());
+      mutable_nodetree()->::ddBook::NodeTree::MergeFrom(from.nodetree());
     }
     if (from.has_curmode()) {
       set_curmode(from.curmode());
+    }
+    if (from.has_basicdatatale()) {
+      mutable_basicdatatale()->::ddBook::BasicDataTable::MergeFrom(from.basicdatatale());
+    }
+    if (from.has_indexdatamaptable()) {
+      mutable_indexdatamaptable()->::ddBook::IndexDataMapTable::MergeFrom(from.indexdatamaptable());
     }
   }
   if (from._internal_metadata_.have_unknown_fields()) {
@@ -2537,52 +2630,57 @@ void book::MergeFrom(const book& from) {
   }
 }
 
-void book::CopyFrom(const ::google::protobuf::Message& from) {
+void Book::CopyFrom(const ::google::protobuf::Message& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void book::CopyFrom(const book& from) {
+void Book::CopyFrom(const Book& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool book::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000005) != 0x00000005) return false;
+bool Book::IsInitialized() const {
+  if ((_has_bits_[0] & 0x0000001d) != 0x0000001d) return false;
 
   if (has_nodetree()) {
     if (!this->nodetree_->IsInitialized()) return false;
   }
   if (!::google::protobuf::internal::AllAreInitialized(this->modetabellist())) return false;
+  if (has_indexdatamaptable()) {
+    if (!this->indexdatamaptable_->IsInitialized()) return false;
+  }
   return true;
 }
 
-void book::Swap(book* other) {
+void Book::Swap(Book* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void book::InternalSwap(book* other) {
+void Book::InternalSwap(Book* other) {
   std::swap(nodetree_, other->nodetree_);
   modetabellist_.UnsafeArenaSwap(&other->modetabellist_);
   std::swap(curmode_, other->curmode_);
+  std::swap(basicdatatale_, other->basicdatatale_);
+  std::swap(indexdatamaptable_, other->indexdatamaptable_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
-::google::protobuf::Metadata book::GetMetadata() const {
+::google::protobuf::Metadata Book::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = book_descriptor_;
-  metadata.reflection = book_reflection_;
+  metadata.descriptor = Book_descriptor_;
+  metadata.reflection = Book_reflection_;
   return metadata;
 }
 
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace book
+}  // namespace ddBook
 
 // @@protoc_insertion_point(global_scope)

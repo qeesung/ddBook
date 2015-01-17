@@ -30,7 +30,7 @@
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
-namespace book {
+namespace ddBook {
 
 // Internal implementation detail -- do not call these.
 void protobuf_AddDesc_book_2eproto();
@@ -44,27 +44,27 @@ class ModeTable;
 class ModeTable_CodeIndexMapPair;
 class Node;
 class NodeTree;
-class book;
+class Book;
 
-enum book_ModeType {
-  book_ModeType_GAME = 0,
-  book_ModeType_STUDY = 1,
-  book_ModeType_STORY = 2
+enum Book_ModeType {
+  Book_ModeType_GAME = 0,
+  Book_ModeType_STUDY = 1,
+  Book_ModeType_STORY = 2
 };
-bool book_ModeType_IsValid(int value);
-const book_ModeType book_ModeType_ModeType_MIN = book_ModeType_GAME;
-const book_ModeType book_ModeType_ModeType_MAX = book_ModeType_STORY;
-const int book_ModeType_ModeType_ARRAYSIZE = book_ModeType_ModeType_MAX + 1;
+bool Book_ModeType_IsValid(int value);
+const Book_ModeType Book_ModeType_ModeType_MIN = Book_ModeType_GAME;
+const Book_ModeType Book_ModeType_ModeType_MAX = Book_ModeType_STORY;
+const int Book_ModeType_ModeType_ARRAYSIZE = Book_ModeType_ModeType_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* book_ModeType_descriptor();
-inline const ::std::string& book_ModeType_Name(book_ModeType value) {
+const ::google::protobuf::EnumDescriptor* Book_ModeType_descriptor();
+inline const ::std::string& Book_ModeType_Name(Book_ModeType value) {
   return ::google::protobuf::internal::NameOfEnum(
-    book_ModeType_descriptor(), value);
+    Book_ModeType_descriptor(), value);
 }
-inline bool book_ModeType_Parse(
-    const ::std::string& name, book_ModeType* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<book_ModeType>(
-    book_ModeType_descriptor(), name, value);
+inline bool Book_ModeType_Parse(
+    const ::std::string& name, Book_ModeType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Book_ModeType>(
+    Book_ModeType_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -148,7 +148,7 @@ class BasicDataTable : public ::google::protobuf::Message {
   inline const ::google::protobuf::RepeatedPtrField< ::std::string>& audiodata() const;
   inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_audiodata();
 
-  // @@protoc_insertion_point(class_scope:book.BasicDataTable)
+  // @@protoc_insertion_point(class_scope:ddBook.BasicDataTable)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -242,7 +242,7 @@ class IndexDataMapTable_IndexDataMapPair : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 offset() const;
   inline void set_offset(::google::protobuf::uint32 value);
 
-  // @@protoc_insertion_point(class_scope:book.IndexDataMapTable.IndexDataMapPair)
+  // @@protoc_insertion_point(class_scope:ddBook.IndexDataMapTable.IndexDataMapPair)
  private:
   inline void set_has_index();
   inline void clear_has_index();
@@ -332,24 +332,25 @@ class IndexDataMapTable : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required .book.IndexDataMapTable.IndexDataMapPair indexDataMapPair = 1;
-  inline bool has_indexdatamappair() const;
+  // repeated .ddBook.IndexDataMapTable.IndexDataMapPair indexDataMapPair = 1;
+  inline int indexdatamappair_size() const;
   inline void clear_indexdatamappair();
   static const int kIndexDataMapPairFieldNumber = 1;
-  inline const ::book::IndexDataMapTable_IndexDataMapPair& indexdatamappair() const;
-  inline ::book::IndexDataMapTable_IndexDataMapPair* mutable_indexdatamappair();
-  inline ::book::IndexDataMapTable_IndexDataMapPair* release_indexdatamappair();
-  inline void set_allocated_indexdatamappair(::book::IndexDataMapTable_IndexDataMapPair* indexdatamappair);
+  inline const ::ddBook::IndexDataMapTable_IndexDataMapPair& indexdatamappair(int index) const;
+  inline ::ddBook::IndexDataMapTable_IndexDataMapPair* mutable_indexdatamappair(int index);
+  inline ::ddBook::IndexDataMapTable_IndexDataMapPair* add_indexdatamappair();
+  inline const ::google::protobuf::RepeatedPtrField< ::ddBook::IndexDataMapTable_IndexDataMapPair >&
+      indexdatamappair() const;
+  inline ::google::protobuf::RepeatedPtrField< ::ddBook::IndexDataMapTable_IndexDataMapPair >*
+      mutable_indexdatamappair();
 
-  // @@protoc_insertion_point(class_scope:book.IndexDataMapTable)
+  // @@protoc_insertion_point(class_scope:ddBook.IndexDataMapTable)
  private:
-  inline void set_has_indexdatamappair();
-  inline void clear_has_indexdatamappair();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::book::IndexDataMapTable_IndexDataMapPair* indexdatamappair_;
+  ::google::protobuf::RepeatedPtrField< ::ddBook::IndexDataMapTable_IndexDataMapPair > indexdatamappair_;
   friend void  protobuf_AddDesc_book_2eproto();
   friend void protobuf_AssignDesc_book_2eproto();
   friend void protobuf_ShutdownFile_book_2eproto();
@@ -442,7 +443,7 @@ class ModeTable_CodeIndexMapPair : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_indexlist();
 
-  // @@protoc_insertion_point(class_scope:book.ModeTable.CodeIndexMapPair)
+  // @@protoc_insertion_point(class_scope:ddBook.ModeTable.CodeIndexMapPair)
  private:
   inline void set_has_code();
   inline void clear_has_code();
@@ -527,25 +528,25 @@ class ModeTable : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated .book.ModeTable.CodeIndexMapPair codeIndexMapPair = 1;
+  // repeated .ddBook.ModeTable.CodeIndexMapPair codeIndexMapPair = 1;
   inline int codeindexmappair_size() const;
   inline void clear_codeindexmappair();
   static const int kCodeIndexMapPairFieldNumber = 1;
-  inline const ::book::ModeTable_CodeIndexMapPair& codeindexmappair(int index) const;
-  inline ::book::ModeTable_CodeIndexMapPair* mutable_codeindexmappair(int index);
-  inline ::book::ModeTable_CodeIndexMapPair* add_codeindexmappair();
-  inline const ::google::protobuf::RepeatedPtrField< ::book::ModeTable_CodeIndexMapPair >&
+  inline const ::ddBook::ModeTable_CodeIndexMapPair& codeindexmappair(int index) const;
+  inline ::ddBook::ModeTable_CodeIndexMapPair* mutable_codeindexmappair(int index);
+  inline ::ddBook::ModeTable_CodeIndexMapPair* add_codeindexmappair();
+  inline const ::google::protobuf::RepeatedPtrField< ::ddBook::ModeTable_CodeIndexMapPair >&
       codeindexmappair() const;
-  inline ::google::protobuf::RepeatedPtrField< ::book::ModeTable_CodeIndexMapPair >*
+  inline ::google::protobuf::RepeatedPtrField< ::ddBook::ModeTable_CodeIndexMapPair >*
       mutable_codeindexmappair();
 
-  // @@protoc_insertion_point(class_scope:book.ModeTable)
+  // @@protoc_insertion_point(class_scope:ddBook.ModeTable)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::book::ModeTable_CodeIndexMapPair > codeindexmappair_;
+  ::google::protobuf::RepeatedPtrField< ::ddBook::ModeTable_CodeIndexMapPair > codeindexmappair_;
   friend void  protobuf_AddDesc_book_2eproto();
   friend void protobuf_AssignDesc_book_2eproto();
   friend void protobuf_ShutdownFile_book_2eproto();
@@ -664,7 +665,7 @@ class Node : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_defaultcode();
 
-  // @@protoc_insertion_point(class_scope:book.Node)
+  // @@protoc_insertion_point(class_scope:ddBook.Node)
  private:
   inline void set_has_startcode();
   inline void clear_has_startcode();
@@ -757,25 +758,25 @@ class NodeTree : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated .book.Node treeNode = 1;
+  // repeated .ddBook.Node treeNode = 1;
   inline int treenode_size() const;
   inline void clear_treenode();
   static const int kTreeNodeFieldNumber = 1;
-  inline const ::book::Node& treenode(int index) const;
-  inline ::book::Node* mutable_treenode(int index);
-  inline ::book::Node* add_treenode();
-  inline const ::google::protobuf::RepeatedPtrField< ::book::Node >&
+  inline const ::ddBook::Node& treenode(int index) const;
+  inline ::ddBook::Node* mutable_treenode(int index);
+  inline ::ddBook::Node* add_treenode();
+  inline const ::google::protobuf::RepeatedPtrField< ::ddBook::Node >&
       treenode() const;
-  inline ::google::protobuf::RepeatedPtrField< ::book::Node >*
+  inline ::google::protobuf::RepeatedPtrField< ::ddBook::Node >*
       mutable_treenode();
 
-  // @@protoc_insertion_point(class_scope:book.NodeTree)
+  // @@protoc_insertion_point(class_scope:ddBook.NodeTree)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::RepeatedPtrField< ::book::Node > treenode_;
+  ::google::protobuf::RepeatedPtrField< ::ddBook::Node > treenode_;
   friend void  protobuf_AddDesc_book_2eproto();
   friend void protobuf_AssignDesc_book_2eproto();
   friend void protobuf_ShutdownFile_book_2eproto();
@@ -785,14 +786,14 @@ class NodeTree : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
-class book : public ::google::protobuf::Message {
+class Book : public ::google::protobuf::Message {
  public:
-  book();
-  virtual ~book();
+  Book();
+  virtual ~Book();
 
-  book(const book& from);
+  Book(const Book& from);
 
-  inline book& operator=(const book& from) {
+  inline Book& operator=(const Book& from) {
     CopyFrom(from);
     return *this;
   }
@@ -806,19 +807,19 @@ class book : public ::google::protobuf::Message {
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const book& default_instance();
+  static const Book& default_instance();
 
-  void Swap(book* other);
+  void Swap(Book* other);
 
   // implements Message ----------------------------------------------
 
-  inline book* New() const { return New(NULL); }
+  inline Book* New() const { return New(NULL); }
 
-  book* New(::google::protobuf::Arena* arena) const;
+  Book* New(::google::protobuf::Arena* arena) const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const book& from);
-  void MergeFrom(const book& from);
+  void CopyFrom(const Book& from);
+  void MergeFrom(const Book& from);
   void Clear();
   bool IsInitialized() const;
 
@@ -833,7 +834,7 @@ class book : public ::google::protobuf::Message {
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  void InternalSwap(book* other);
+  void InternalSwap(Book* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -847,67 +848,89 @@ class book : public ::google::protobuf::Message {
 
   // nested types ----------------------------------------------------
 
-  typedef book_ModeType ModeType;
-  static const ModeType GAME = book_ModeType_GAME;
-  static const ModeType STUDY = book_ModeType_STUDY;
-  static const ModeType STORY = book_ModeType_STORY;
+  typedef Book_ModeType ModeType;
+  static const ModeType GAME = Book_ModeType_GAME;
+  static const ModeType STUDY = Book_ModeType_STUDY;
+  static const ModeType STORY = Book_ModeType_STORY;
   static inline bool ModeType_IsValid(int value) {
-    return book_ModeType_IsValid(value);
+    return Book_ModeType_IsValid(value);
   }
   static const ModeType ModeType_MIN =
-    book_ModeType_ModeType_MIN;
+    Book_ModeType_ModeType_MIN;
   static const ModeType ModeType_MAX =
-    book_ModeType_ModeType_MAX;
+    Book_ModeType_ModeType_MAX;
   static const int ModeType_ARRAYSIZE =
-    book_ModeType_ModeType_ARRAYSIZE;
+    Book_ModeType_ModeType_ARRAYSIZE;
   static inline const ::google::protobuf::EnumDescriptor*
   ModeType_descriptor() {
-    return book_ModeType_descriptor();
+    return Book_ModeType_descriptor();
   }
   static inline const ::std::string& ModeType_Name(ModeType value) {
-    return book_ModeType_Name(value);
+    return Book_ModeType_Name(value);
   }
   static inline bool ModeType_Parse(const ::std::string& name,
       ModeType* value) {
-    return book_ModeType_Parse(name, value);
+    return Book_ModeType_Parse(name, value);
   }
 
   // accessors -------------------------------------------------------
 
-  // required .book.NodeTree nodeTree = 1;
+  // required .ddBook.NodeTree nodeTree = 1;
   inline bool has_nodetree() const;
   inline void clear_nodetree();
   static const int kNodeTreeFieldNumber = 1;
-  inline const ::book::NodeTree& nodetree() const;
-  inline ::book::NodeTree* mutable_nodetree();
-  inline ::book::NodeTree* release_nodetree();
-  inline void set_allocated_nodetree(::book::NodeTree* nodetree);
+  inline const ::ddBook::NodeTree& nodetree() const;
+  inline ::ddBook::NodeTree* mutable_nodetree();
+  inline ::ddBook::NodeTree* release_nodetree();
+  inline void set_allocated_nodetree(::ddBook::NodeTree* nodetree);
 
-  // repeated .book.ModeTable modeTabelList = 2;
+  // repeated .ddBook.ModeTable modeTabelList = 2;
   inline int modetabellist_size() const;
   inline void clear_modetabellist();
   static const int kModeTabelListFieldNumber = 2;
-  inline const ::book::ModeTable& modetabellist(int index) const;
-  inline ::book::ModeTable* mutable_modetabellist(int index);
-  inline ::book::ModeTable* add_modetabellist();
-  inline const ::google::protobuf::RepeatedPtrField< ::book::ModeTable >&
+  inline const ::ddBook::ModeTable& modetabellist(int index) const;
+  inline ::ddBook::ModeTable* mutable_modetabellist(int index);
+  inline ::ddBook::ModeTable* add_modetabellist();
+  inline const ::google::protobuf::RepeatedPtrField< ::ddBook::ModeTable >&
       modetabellist() const;
-  inline ::google::protobuf::RepeatedPtrField< ::book::ModeTable >*
+  inline ::google::protobuf::RepeatedPtrField< ::ddBook::ModeTable >*
       mutable_modetabellist();
 
-  // required .book.book.ModeType curMode = 3 [default = STUDY];
+  // required .ddBook.Book.ModeType curMode = 3 [default = STUDY];
   inline bool has_curmode() const;
   inline void clear_curmode();
   static const int kCurModeFieldNumber = 3;
-  inline ::book::book_ModeType curmode() const;
-  inline void set_curmode(::book::book_ModeType value);
+  inline ::ddBook::Book_ModeType curmode() const;
+  inline void set_curmode(::ddBook::Book_ModeType value);
 
-  // @@protoc_insertion_point(class_scope:book.book)
+  // required .ddBook.BasicDataTable basicDataTale = 4;
+  inline bool has_basicdatatale() const;
+  inline void clear_basicdatatale();
+  static const int kBasicDataTaleFieldNumber = 4;
+  inline const ::ddBook::BasicDataTable& basicdatatale() const;
+  inline ::ddBook::BasicDataTable* mutable_basicdatatale();
+  inline ::ddBook::BasicDataTable* release_basicdatatale();
+  inline void set_allocated_basicdatatale(::ddBook::BasicDataTable* basicdatatale);
+
+  // required .ddBook.IndexDataMapTable indexDataMapTable = 5;
+  inline bool has_indexdatamaptable() const;
+  inline void clear_indexdatamaptable();
+  static const int kIndexDataMapTableFieldNumber = 5;
+  inline const ::ddBook::IndexDataMapTable& indexdatamaptable() const;
+  inline ::ddBook::IndexDataMapTable* mutable_indexdatamaptable();
+  inline ::ddBook::IndexDataMapTable* release_indexdatamaptable();
+  inline void set_allocated_indexdatamaptable(::ddBook::IndexDataMapTable* indexdatamaptable);
+
+  // @@protoc_insertion_point(class_scope:ddBook.Book)
  private:
   inline void set_has_nodetree();
   inline void clear_has_nodetree();
   inline void set_has_curmode();
   inline void clear_has_curmode();
+  inline void set_has_basicdatatale();
+  inline void clear_has_basicdatatale();
+  inline void set_has_indexdatamaptable();
+  inline void clear_has_indexdatamaptable();
 
   // helper for ByteSize()
   int RequiredFieldsByteSizeFallback() const;
@@ -915,15 +938,17 @@ class book : public ::google::protobuf::Message {
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::book::NodeTree* nodetree_;
-  ::google::protobuf::RepeatedPtrField< ::book::ModeTable > modetabellist_;
+  ::ddBook::NodeTree* nodetree_;
+  ::google::protobuf::RepeatedPtrField< ::ddBook::ModeTable > modetabellist_;
+  ::ddBook::BasicDataTable* basicdatatale_;
+  ::ddBook::IndexDataMapTable* indexdatamaptable_;
   int curmode_;
   friend void  protobuf_AddDesc_book_2eproto();
   friend void protobuf_AssignDesc_book_2eproto();
   friend void protobuf_ShutdownFile_book_2eproto();
 
   void InitAsDefaultInstance();
-  static book* default_instance_;
+  static Book* default_instance_;
 };
 // ===================================================================
 
@@ -940,49 +965,49 @@ inline void BasicDataTable::clear_audiodata() {
   audiodata_.Clear();
 }
 inline const ::std::string& BasicDataTable::audiodata(int index) const {
-  // @@protoc_insertion_point(field_get:book.BasicDataTable.audioData)
+  // @@protoc_insertion_point(field_get:ddBook.BasicDataTable.audioData)
   return audiodata_.Get(index);
 }
 inline ::std::string* BasicDataTable::mutable_audiodata(int index) {
-  // @@protoc_insertion_point(field_mutable:book.BasicDataTable.audioData)
+  // @@protoc_insertion_point(field_mutable:ddBook.BasicDataTable.audioData)
   return audiodata_.Mutable(index);
 }
 inline void BasicDataTable::set_audiodata(int index, const ::std::string& value) {
-  // @@protoc_insertion_point(field_set:book.BasicDataTable.audioData)
+  // @@protoc_insertion_point(field_set:ddBook.BasicDataTable.audioData)
   audiodata_.Mutable(index)->assign(value);
 }
 inline void BasicDataTable::set_audiodata(int index, const char* value) {
   audiodata_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:book.BasicDataTable.audioData)
+  // @@protoc_insertion_point(field_set_char:ddBook.BasicDataTable.audioData)
 }
 inline void BasicDataTable::set_audiodata(int index, const void* value, size_t size) {
   audiodata_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:book.BasicDataTable.audioData)
+  // @@protoc_insertion_point(field_set_pointer:ddBook.BasicDataTable.audioData)
 }
 inline ::std::string* BasicDataTable::add_audiodata() {
   return audiodata_.Add();
 }
 inline void BasicDataTable::add_audiodata(const ::std::string& value) {
   audiodata_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:book.BasicDataTable.audioData)
+  // @@protoc_insertion_point(field_add:ddBook.BasicDataTable.audioData)
 }
 inline void BasicDataTable::add_audiodata(const char* value) {
   audiodata_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:book.BasicDataTable.audioData)
+  // @@protoc_insertion_point(field_add_char:ddBook.BasicDataTable.audioData)
 }
 inline void BasicDataTable::add_audiodata(const void* value, size_t size) {
   audiodata_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:book.BasicDataTable.audioData)
+  // @@protoc_insertion_point(field_add_pointer:ddBook.BasicDataTable.audioData)
 }
 inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
 BasicDataTable::audiodata() const {
-  // @@protoc_insertion_point(field_list:book.BasicDataTable.audioData)
+  // @@protoc_insertion_point(field_list:ddBook.BasicDataTable.audioData)
   return audiodata_;
 }
 inline ::google::protobuf::RepeatedPtrField< ::std::string>*
 BasicDataTable::mutable_audiodata() {
-  // @@protoc_insertion_point(field_mutable_list:book.BasicDataTable.audioData)
+  // @@protoc_insertion_point(field_mutable_list:ddBook.BasicDataTable.audioData)
   return &audiodata_;
 }
 
@@ -1005,13 +1030,13 @@ inline void IndexDataMapTable_IndexDataMapPair::clear_index() {
   clear_has_index();
 }
 inline ::google::protobuf::uint32 IndexDataMapTable_IndexDataMapPair::index() const {
-  // @@protoc_insertion_point(field_get:book.IndexDataMapTable.IndexDataMapPair.index)
+  // @@protoc_insertion_point(field_get:ddBook.IndexDataMapTable.IndexDataMapPair.index)
   return index_;
 }
 inline void IndexDataMapTable_IndexDataMapPair::set_index(::google::protobuf::uint32 value) {
   set_has_index();
   index_ = value;
-  // @@protoc_insertion_point(field_set:book.IndexDataMapTable.IndexDataMapPair.index)
+  // @@protoc_insertion_point(field_set:ddBook.IndexDataMapTable.IndexDataMapPair.index)
 }
 
 // required fixed32 offset = 2;
@@ -1029,60 +1054,47 @@ inline void IndexDataMapTable_IndexDataMapPair::clear_offset() {
   clear_has_offset();
 }
 inline ::google::protobuf::uint32 IndexDataMapTable_IndexDataMapPair::offset() const {
-  // @@protoc_insertion_point(field_get:book.IndexDataMapTable.IndexDataMapPair.offset)
+  // @@protoc_insertion_point(field_get:ddBook.IndexDataMapTable.IndexDataMapPair.offset)
   return offset_;
 }
 inline void IndexDataMapTable_IndexDataMapPair::set_offset(::google::protobuf::uint32 value) {
   set_has_offset();
   offset_ = value;
-  // @@protoc_insertion_point(field_set:book.IndexDataMapTable.IndexDataMapPair.offset)
+  // @@protoc_insertion_point(field_set:ddBook.IndexDataMapTable.IndexDataMapPair.offset)
 }
 
 // -------------------------------------------------------------------
 
 // IndexDataMapTable
 
-// required .book.IndexDataMapTable.IndexDataMapPair indexDataMapPair = 1;
-inline bool IndexDataMapTable::has_indexdatamappair() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void IndexDataMapTable::set_has_indexdatamappair() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void IndexDataMapTable::clear_has_indexdatamappair() {
-  _has_bits_[0] &= ~0x00000001u;
+// repeated .ddBook.IndexDataMapTable.IndexDataMapPair indexDataMapPair = 1;
+inline int IndexDataMapTable::indexdatamappair_size() const {
+  return indexdatamappair_.size();
 }
 inline void IndexDataMapTable::clear_indexdatamappair() {
-  if (indexdatamappair_ != NULL) indexdatamappair_->::book::IndexDataMapTable_IndexDataMapPair::Clear();
-  clear_has_indexdatamappair();
+  indexdatamappair_.Clear();
 }
-inline const ::book::IndexDataMapTable_IndexDataMapPair& IndexDataMapTable::indexdatamappair() const {
-  // @@protoc_insertion_point(field_get:book.IndexDataMapTable.indexDataMapPair)
-  return indexdatamappair_ != NULL ? *indexdatamappair_ : *default_instance_->indexdatamappair_;
+inline const ::ddBook::IndexDataMapTable_IndexDataMapPair& IndexDataMapTable::indexdatamappair(int index) const {
+  // @@protoc_insertion_point(field_get:ddBook.IndexDataMapTable.indexDataMapPair)
+  return indexdatamappair_.Get(index);
 }
-inline ::book::IndexDataMapTable_IndexDataMapPair* IndexDataMapTable::mutable_indexdatamappair() {
-  set_has_indexdatamappair();
-  if (indexdatamappair_ == NULL) {
-    indexdatamappair_ = new ::book::IndexDataMapTable_IndexDataMapPair;
-  }
-  // @@protoc_insertion_point(field_mutable:book.IndexDataMapTable.indexDataMapPair)
+inline ::ddBook::IndexDataMapTable_IndexDataMapPair* IndexDataMapTable::mutable_indexdatamappair(int index) {
+  // @@protoc_insertion_point(field_mutable:ddBook.IndexDataMapTable.indexDataMapPair)
+  return indexdatamappair_.Mutable(index);
+}
+inline ::ddBook::IndexDataMapTable_IndexDataMapPair* IndexDataMapTable::add_indexdatamappair() {
+  // @@protoc_insertion_point(field_add:ddBook.IndexDataMapTable.indexDataMapPair)
+  return indexdatamappair_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::ddBook::IndexDataMapTable_IndexDataMapPair >&
+IndexDataMapTable::indexdatamappair() const {
+  // @@protoc_insertion_point(field_list:ddBook.IndexDataMapTable.indexDataMapPair)
   return indexdatamappair_;
 }
-inline ::book::IndexDataMapTable_IndexDataMapPair* IndexDataMapTable::release_indexdatamappair() {
-  clear_has_indexdatamappair();
-  ::book::IndexDataMapTable_IndexDataMapPair* temp = indexdatamappair_;
-  indexdatamappair_ = NULL;
-  return temp;
-}
-inline void IndexDataMapTable::set_allocated_indexdatamappair(::book::IndexDataMapTable_IndexDataMapPair* indexdatamappair) {
-  delete indexdatamappair_;
-  indexdatamappair_ = indexdatamappair;
-  if (indexdatamappair) {
-    set_has_indexdatamappair();
-  } else {
-    clear_has_indexdatamappair();
-  }
-  // @@protoc_insertion_point(field_set_allocated:book.IndexDataMapTable.indexDataMapPair)
+inline ::google::protobuf::RepeatedPtrField< ::ddBook::IndexDataMapTable_IndexDataMapPair >*
+IndexDataMapTable::mutable_indexdatamappair() {
+  // @@protoc_insertion_point(field_mutable_list:ddBook.IndexDataMapTable.indexDataMapPair)
+  return &indexdatamappair_;
 }
 
 // -------------------------------------------------------------------
@@ -1104,13 +1116,13 @@ inline void ModeTable_CodeIndexMapPair::clear_code() {
   clear_has_code();
 }
 inline ::google::protobuf::uint32 ModeTable_CodeIndexMapPair::code() const {
-  // @@protoc_insertion_point(field_get:book.ModeTable.CodeIndexMapPair.code)
+  // @@protoc_insertion_point(field_get:ddBook.ModeTable.CodeIndexMapPair.code)
   return code_;
 }
 inline void ModeTable_CodeIndexMapPair::set_code(::google::protobuf::uint32 value) {
   set_has_code();
   code_ = value;
-  // @@protoc_insertion_point(field_set:book.ModeTable.CodeIndexMapPair.code)
+  // @@protoc_insertion_point(field_set:ddBook.ModeTable.CodeIndexMapPair.code)
 }
 
 // repeated fixed32 indexList = 2;
@@ -1121,25 +1133,25 @@ inline void ModeTable_CodeIndexMapPair::clear_indexlist() {
   indexlist_.Clear();
 }
 inline ::google::protobuf::uint32 ModeTable_CodeIndexMapPair::indexlist(int index) const {
-  // @@protoc_insertion_point(field_get:book.ModeTable.CodeIndexMapPair.indexList)
+  // @@protoc_insertion_point(field_get:ddBook.ModeTable.CodeIndexMapPair.indexList)
   return indexlist_.Get(index);
 }
 inline void ModeTable_CodeIndexMapPair::set_indexlist(int index, ::google::protobuf::uint32 value) {
   indexlist_.Set(index, value);
-  // @@protoc_insertion_point(field_set:book.ModeTable.CodeIndexMapPair.indexList)
+  // @@protoc_insertion_point(field_set:ddBook.ModeTable.CodeIndexMapPair.indexList)
 }
 inline void ModeTable_CodeIndexMapPair::add_indexlist(::google::protobuf::uint32 value) {
   indexlist_.Add(value);
-  // @@protoc_insertion_point(field_add:book.ModeTable.CodeIndexMapPair.indexList)
+  // @@protoc_insertion_point(field_add:ddBook.ModeTable.CodeIndexMapPair.indexList)
 }
 inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
 ModeTable_CodeIndexMapPair::indexlist() const {
-  // @@protoc_insertion_point(field_list:book.ModeTable.CodeIndexMapPair.indexList)
+  // @@protoc_insertion_point(field_list:ddBook.ModeTable.CodeIndexMapPair.indexList)
   return indexlist_;
 }
 inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
 ModeTable_CodeIndexMapPair::mutable_indexlist() {
-  // @@protoc_insertion_point(field_mutable_list:book.ModeTable.CodeIndexMapPair.indexList)
+  // @@protoc_insertion_point(field_mutable_list:ddBook.ModeTable.CodeIndexMapPair.indexList)
   return &indexlist_;
 }
 
@@ -1147,33 +1159,33 @@ ModeTable_CodeIndexMapPair::mutable_indexlist() {
 
 // ModeTable
 
-// repeated .book.ModeTable.CodeIndexMapPair codeIndexMapPair = 1;
+// repeated .ddBook.ModeTable.CodeIndexMapPair codeIndexMapPair = 1;
 inline int ModeTable::codeindexmappair_size() const {
   return codeindexmappair_.size();
 }
 inline void ModeTable::clear_codeindexmappair() {
   codeindexmappair_.Clear();
 }
-inline const ::book::ModeTable_CodeIndexMapPair& ModeTable::codeindexmappair(int index) const {
-  // @@protoc_insertion_point(field_get:book.ModeTable.codeIndexMapPair)
+inline const ::ddBook::ModeTable_CodeIndexMapPair& ModeTable::codeindexmappair(int index) const {
+  // @@protoc_insertion_point(field_get:ddBook.ModeTable.codeIndexMapPair)
   return codeindexmappair_.Get(index);
 }
-inline ::book::ModeTable_CodeIndexMapPair* ModeTable::mutable_codeindexmappair(int index) {
-  // @@protoc_insertion_point(field_mutable:book.ModeTable.codeIndexMapPair)
+inline ::ddBook::ModeTable_CodeIndexMapPair* ModeTable::mutable_codeindexmappair(int index) {
+  // @@protoc_insertion_point(field_mutable:ddBook.ModeTable.codeIndexMapPair)
   return codeindexmappair_.Mutable(index);
 }
-inline ::book::ModeTable_CodeIndexMapPair* ModeTable::add_codeindexmappair() {
-  // @@protoc_insertion_point(field_add:book.ModeTable.codeIndexMapPair)
+inline ::ddBook::ModeTable_CodeIndexMapPair* ModeTable::add_codeindexmappair() {
+  // @@protoc_insertion_point(field_add:ddBook.ModeTable.codeIndexMapPair)
   return codeindexmappair_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::book::ModeTable_CodeIndexMapPair >&
+inline const ::google::protobuf::RepeatedPtrField< ::ddBook::ModeTable_CodeIndexMapPair >&
 ModeTable::codeindexmappair() const {
-  // @@protoc_insertion_point(field_list:book.ModeTable.codeIndexMapPair)
+  // @@protoc_insertion_point(field_list:ddBook.ModeTable.codeIndexMapPair)
   return codeindexmappair_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::book::ModeTable_CodeIndexMapPair >*
+inline ::google::protobuf::RepeatedPtrField< ::ddBook::ModeTable_CodeIndexMapPair >*
 ModeTable::mutable_codeindexmappair() {
-  // @@protoc_insertion_point(field_mutable_list:book.ModeTable.codeIndexMapPair)
+  // @@protoc_insertion_point(field_mutable_list:ddBook.ModeTable.codeIndexMapPair)
   return &codeindexmappair_;
 }
 
@@ -1196,13 +1208,13 @@ inline void Node::clear_startcode() {
   clear_has_startcode();
 }
 inline ::google::protobuf::uint32 Node::startcode() const {
-  // @@protoc_insertion_point(field_get:book.Node.startCode)
+  // @@protoc_insertion_point(field_get:ddBook.Node.startCode)
   return startcode_;
 }
 inline void Node::set_startcode(::google::protobuf::uint32 value) {
   set_has_startcode();
   startcode_ = value;
-  // @@protoc_insertion_point(field_set:book.Node.startCode)
+  // @@protoc_insertion_point(field_set:ddBook.Node.startCode)
 }
 
 // required fixed32 endCode = 2;
@@ -1220,13 +1232,13 @@ inline void Node::clear_endcode() {
   clear_has_endcode();
 }
 inline ::google::protobuf::uint32 Node::endcode() const {
-  // @@protoc_insertion_point(field_get:book.Node.endCode)
+  // @@protoc_insertion_point(field_get:ddBook.Node.endCode)
   return endcode_;
 }
 inline void Node::set_endcode(::google::protobuf::uint32 value) {
   set_has_endcode();
   endcode_ = value;
-  // @@protoc_insertion_point(field_set:book.Node.endCode)
+  // @@protoc_insertion_point(field_set:ddBook.Node.endCode)
 }
 
 // required fixed32 previous = 3;
@@ -1244,13 +1256,13 @@ inline void Node::clear_previous() {
   clear_has_previous();
 }
 inline ::google::protobuf::uint32 Node::previous() const {
-  // @@protoc_insertion_point(field_get:book.Node.previous)
+  // @@protoc_insertion_point(field_get:ddBook.Node.previous)
   return previous_;
 }
 inline void Node::set_previous(::google::protobuf::uint32 value) {
   set_has_previous();
   previous_ = value;
-  // @@protoc_insertion_point(field_set:book.Node.previous)
+  // @@protoc_insertion_point(field_set:ddBook.Node.previous)
 }
 
 // repeated fixed32 next = 4;
@@ -1261,25 +1273,25 @@ inline void Node::clear_next() {
   next_.Clear();
 }
 inline ::google::protobuf::uint32 Node::next(int index) const {
-  // @@protoc_insertion_point(field_get:book.Node.next)
+  // @@protoc_insertion_point(field_get:ddBook.Node.next)
   return next_.Get(index);
 }
 inline void Node::set_next(int index, ::google::protobuf::uint32 value) {
   next_.Set(index, value);
-  // @@protoc_insertion_point(field_set:book.Node.next)
+  // @@protoc_insertion_point(field_set:ddBook.Node.next)
 }
 inline void Node::add_next(::google::protobuf::uint32 value) {
   next_.Add(value);
-  // @@protoc_insertion_point(field_add:book.Node.next)
+  // @@protoc_insertion_point(field_add:ddBook.Node.next)
 }
 inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
 Node::next() const {
-  // @@protoc_insertion_point(field_list:book.Node.next)
+  // @@protoc_insertion_point(field_list:ddBook.Node.next)
   return next_;
 }
 inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
 Node::mutable_next() {
-  // @@protoc_insertion_point(field_mutable_list:book.Node.next)
+  // @@protoc_insertion_point(field_mutable_list:ddBook.Node.next)
   return &next_;
 }
 
@@ -1291,25 +1303,25 @@ inline void Node::clear_defaultcode() {
   defaultcode_.Clear();
 }
 inline ::google::protobuf::uint32 Node::defaultcode(int index) const {
-  // @@protoc_insertion_point(field_get:book.Node.defaultCode)
+  // @@protoc_insertion_point(field_get:ddBook.Node.defaultCode)
   return defaultcode_.Get(index);
 }
 inline void Node::set_defaultcode(int index, ::google::protobuf::uint32 value) {
   defaultcode_.Set(index, value);
-  // @@protoc_insertion_point(field_set:book.Node.defaultCode)
+  // @@protoc_insertion_point(field_set:ddBook.Node.defaultCode)
 }
 inline void Node::add_defaultcode(::google::protobuf::uint32 value) {
   defaultcode_.Add(value);
-  // @@protoc_insertion_point(field_add:book.Node.defaultCode)
+  // @@protoc_insertion_point(field_add:ddBook.Node.defaultCode)
 }
 inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
 Node::defaultcode() const {
-  // @@protoc_insertion_point(field_list:book.Node.defaultCode)
+  // @@protoc_insertion_point(field_list:ddBook.Node.defaultCode)
   return defaultcode_;
 }
 inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
 Node::mutable_defaultcode() {
-  // @@protoc_insertion_point(field_mutable_list:book.Node.defaultCode)
+  // @@protoc_insertion_point(field_mutable_list:ddBook.Node.defaultCode)
   return &defaultcode_;
 }
 
@@ -1317,73 +1329,73 @@ Node::mutable_defaultcode() {
 
 // NodeTree
 
-// repeated .book.Node treeNode = 1;
+// repeated .ddBook.Node treeNode = 1;
 inline int NodeTree::treenode_size() const {
   return treenode_.size();
 }
 inline void NodeTree::clear_treenode() {
   treenode_.Clear();
 }
-inline const ::book::Node& NodeTree::treenode(int index) const {
-  // @@protoc_insertion_point(field_get:book.NodeTree.treeNode)
+inline const ::ddBook::Node& NodeTree::treenode(int index) const {
+  // @@protoc_insertion_point(field_get:ddBook.NodeTree.treeNode)
   return treenode_.Get(index);
 }
-inline ::book::Node* NodeTree::mutable_treenode(int index) {
-  // @@protoc_insertion_point(field_mutable:book.NodeTree.treeNode)
+inline ::ddBook::Node* NodeTree::mutable_treenode(int index) {
+  // @@protoc_insertion_point(field_mutable:ddBook.NodeTree.treeNode)
   return treenode_.Mutable(index);
 }
-inline ::book::Node* NodeTree::add_treenode() {
-  // @@protoc_insertion_point(field_add:book.NodeTree.treeNode)
+inline ::ddBook::Node* NodeTree::add_treenode() {
+  // @@protoc_insertion_point(field_add:ddBook.NodeTree.treeNode)
   return treenode_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::book::Node >&
+inline const ::google::protobuf::RepeatedPtrField< ::ddBook::Node >&
 NodeTree::treenode() const {
-  // @@protoc_insertion_point(field_list:book.NodeTree.treeNode)
+  // @@protoc_insertion_point(field_list:ddBook.NodeTree.treeNode)
   return treenode_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::book::Node >*
+inline ::google::protobuf::RepeatedPtrField< ::ddBook::Node >*
 NodeTree::mutable_treenode() {
-  // @@protoc_insertion_point(field_mutable_list:book.NodeTree.treeNode)
+  // @@protoc_insertion_point(field_mutable_list:ddBook.NodeTree.treeNode)
   return &treenode_;
 }
 
 // -------------------------------------------------------------------
 
-// book
+// Book
 
-// required .book.NodeTree nodeTree = 1;
-inline bool book::has_nodetree() const {
+// required .ddBook.NodeTree nodeTree = 1;
+inline bool Book::has_nodetree() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void book::set_has_nodetree() {
+inline void Book::set_has_nodetree() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void book::clear_has_nodetree() {
+inline void Book::clear_has_nodetree() {
   _has_bits_[0] &= ~0x00000001u;
 }
-inline void book::clear_nodetree() {
-  if (nodetree_ != NULL) nodetree_->::book::NodeTree::Clear();
+inline void Book::clear_nodetree() {
+  if (nodetree_ != NULL) nodetree_->::ddBook::NodeTree::Clear();
   clear_has_nodetree();
 }
-inline const ::book::NodeTree& book::nodetree() const {
-  // @@protoc_insertion_point(field_get:book.book.nodeTree)
+inline const ::ddBook::NodeTree& Book::nodetree() const {
+  // @@protoc_insertion_point(field_get:ddBook.Book.nodeTree)
   return nodetree_ != NULL ? *nodetree_ : *default_instance_->nodetree_;
 }
-inline ::book::NodeTree* book::mutable_nodetree() {
+inline ::ddBook::NodeTree* Book::mutable_nodetree() {
   set_has_nodetree();
   if (nodetree_ == NULL) {
-    nodetree_ = new ::book::NodeTree;
+    nodetree_ = new ::ddBook::NodeTree;
   }
-  // @@protoc_insertion_point(field_mutable:book.book.nodeTree)
+  // @@protoc_insertion_point(field_mutable:ddBook.Book.nodeTree)
   return nodetree_;
 }
-inline ::book::NodeTree* book::release_nodetree() {
+inline ::ddBook::NodeTree* Book::release_nodetree() {
   clear_has_nodetree();
-  ::book::NodeTree* temp = nodetree_;
+  ::ddBook::NodeTree* temp = nodetree_;
   nodetree_ = NULL;
   return temp;
 }
-inline void book::set_allocated_nodetree(::book::NodeTree* nodetree) {
+inline void Book::set_allocated_nodetree(::ddBook::NodeTree* nodetree) {
   delete nodetree_;
   nodetree_ = nodetree;
   if (nodetree) {
@@ -1391,77 +1403,163 @@ inline void book::set_allocated_nodetree(::book::NodeTree* nodetree) {
   } else {
     clear_has_nodetree();
   }
-  // @@protoc_insertion_point(field_set_allocated:book.book.nodeTree)
+  // @@protoc_insertion_point(field_set_allocated:ddBook.Book.nodeTree)
 }
 
-// repeated .book.ModeTable modeTabelList = 2;
-inline int book::modetabellist_size() const {
+// repeated .ddBook.ModeTable modeTabelList = 2;
+inline int Book::modetabellist_size() const {
   return modetabellist_.size();
 }
-inline void book::clear_modetabellist() {
+inline void Book::clear_modetabellist() {
   modetabellist_.Clear();
 }
-inline const ::book::ModeTable& book::modetabellist(int index) const {
-  // @@protoc_insertion_point(field_get:book.book.modeTabelList)
+inline const ::ddBook::ModeTable& Book::modetabellist(int index) const {
+  // @@protoc_insertion_point(field_get:ddBook.Book.modeTabelList)
   return modetabellist_.Get(index);
 }
-inline ::book::ModeTable* book::mutable_modetabellist(int index) {
-  // @@protoc_insertion_point(field_mutable:book.book.modeTabelList)
+inline ::ddBook::ModeTable* Book::mutable_modetabellist(int index) {
+  // @@protoc_insertion_point(field_mutable:ddBook.Book.modeTabelList)
   return modetabellist_.Mutable(index);
 }
-inline ::book::ModeTable* book::add_modetabellist() {
-  // @@protoc_insertion_point(field_add:book.book.modeTabelList)
+inline ::ddBook::ModeTable* Book::add_modetabellist() {
+  // @@protoc_insertion_point(field_add:ddBook.Book.modeTabelList)
   return modetabellist_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::book::ModeTable >&
-book::modetabellist() const {
-  // @@protoc_insertion_point(field_list:book.book.modeTabelList)
+inline const ::google::protobuf::RepeatedPtrField< ::ddBook::ModeTable >&
+Book::modetabellist() const {
+  // @@protoc_insertion_point(field_list:ddBook.Book.modeTabelList)
   return modetabellist_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::book::ModeTable >*
-book::mutable_modetabellist() {
-  // @@protoc_insertion_point(field_mutable_list:book.book.modeTabelList)
+inline ::google::protobuf::RepeatedPtrField< ::ddBook::ModeTable >*
+Book::mutable_modetabellist() {
+  // @@protoc_insertion_point(field_mutable_list:ddBook.Book.modeTabelList)
   return &modetabellist_;
 }
 
-// required .book.book.ModeType curMode = 3 [default = STUDY];
-inline bool book::has_curmode() const {
+// required .ddBook.Book.ModeType curMode = 3 [default = STUDY];
+inline bool Book::has_curmode() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void book::set_has_curmode() {
+inline void Book::set_has_curmode() {
   _has_bits_[0] |= 0x00000004u;
 }
-inline void book::clear_has_curmode() {
+inline void Book::clear_has_curmode() {
   _has_bits_[0] &= ~0x00000004u;
 }
-inline void book::clear_curmode() {
+inline void Book::clear_curmode() {
   curmode_ = 1;
   clear_has_curmode();
 }
-inline ::book::book_ModeType book::curmode() const {
-  // @@protoc_insertion_point(field_get:book.book.curMode)
-  return static_cast< ::book::book_ModeType >(curmode_);
+inline ::ddBook::Book_ModeType Book::curmode() const {
+  // @@protoc_insertion_point(field_get:ddBook.Book.curMode)
+  return static_cast< ::ddBook::Book_ModeType >(curmode_);
 }
-inline void book::set_curmode(::book::book_ModeType value) {
-  assert(::book::book_ModeType_IsValid(value));
+inline void Book::set_curmode(::ddBook::Book_ModeType value) {
+  assert(::ddBook::Book_ModeType_IsValid(value));
   set_has_curmode();
   curmode_ = value;
-  // @@protoc_insertion_point(field_set:book.book.curMode)
+  // @@protoc_insertion_point(field_set:ddBook.Book.curMode)
+}
+
+// required .ddBook.BasicDataTable basicDataTale = 4;
+inline bool Book::has_basicdatatale() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void Book::set_has_basicdatatale() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void Book::clear_has_basicdatatale() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void Book::clear_basicdatatale() {
+  if (basicdatatale_ != NULL) basicdatatale_->::ddBook::BasicDataTable::Clear();
+  clear_has_basicdatatale();
+}
+inline const ::ddBook::BasicDataTable& Book::basicdatatale() const {
+  // @@protoc_insertion_point(field_get:ddBook.Book.basicDataTale)
+  return basicdatatale_ != NULL ? *basicdatatale_ : *default_instance_->basicdatatale_;
+}
+inline ::ddBook::BasicDataTable* Book::mutable_basicdatatale() {
+  set_has_basicdatatale();
+  if (basicdatatale_ == NULL) {
+    basicdatatale_ = new ::ddBook::BasicDataTable;
+  }
+  // @@protoc_insertion_point(field_mutable:ddBook.Book.basicDataTale)
+  return basicdatatale_;
+}
+inline ::ddBook::BasicDataTable* Book::release_basicdatatale() {
+  clear_has_basicdatatale();
+  ::ddBook::BasicDataTable* temp = basicdatatale_;
+  basicdatatale_ = NULL;
+  return temp;
+}
+inline void Book::set_allocated_basicdatatale(::ddBook::BasicDataTable* basicdatatale) {
+  delete basicdatatale_;
+  basicdatatale_ = basicdatatale;
+  if (basicdatatale) {
+    set_has_basicdatatale();
+  } else {
+    clear_has_basicdatatale();
+  }
+  // @@protoc_insertion_point(field_set_allocated:ddBook.Book.basicDataTale)
+}
+
+// required .ddBook.IndexDataMapTable indexDataMapTable = 5;
+inline bool Book::has_indexdatamaptable() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void Book::set_has_indexdatamaptable() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void Book::clear_has_indexdatamaptable() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void Book::clear_indexdatamaptable() {
+  if (indexdatamaptable_ != NULL) indexdatamaptable_->::ddBook::IndexDataMapTable::Clear();
+  clear_has_indexdatamaptable();
+}
+inline const ::ddBook::IndexDataMapTable& Book::indexdatamaptable() const {
+  // @@protoc_insertion_point(field_get:ddBook.Book.indexDataMapTable)
+  return indexdatamaptable_ != NULL ? *indexdatamaptable_ : *default_instance_->indexdatamaptable_;
+}
+inline ::ddBook::IndexDataMapTable* Book::mutable_indexdatamaptable() {
+  set_has_indexdatamaptable();
+  if (indexdatamaptable_ == NULL) {
+    indexdatamaptable_ = new ::ddBook::IndexDataMapTable;
+  }
+  // @@protoc_insertion_point(field_mutable:ddBook.Book.indexDataMapTable)
+  return indexdatamaptable_;
+}
+inline ::ddBook::IndexDataMapTable* Book::release_indexdatamaptable() {
+  clear_has_indexdatamaptable();
+  ::ddBook::IndexDataMapTable* temp = indexdatamaptable_;
+  indexdatamaptable_ = NULL;
+  return temp;
+}
+inline void Book::set_allocated_indexdatamaptable(::ddBook::IndexDataMapTable* indexdatamaptable) {
+  delete indexdatamaptable_;
+  indexdatamaptable_ = indexdatamaptable;
+  if (indexdatamaptable) {
+    set_has_indexdatamaptable();
+  } else {
+    clear_has_indexdatamaptable();
+  }
+  // @@protoc_insertion_point(field_set_allocated:ddBook.Book.indexDataMapTable)
 }
 
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace book
+}  // namespace ddBook
 
 #ifndef SWIG
 namespace google {
 namespace protobuf {
 
-template <> struct is_proto_enum< ::book::book_ModeType> : ::google::protobuf::internal::true_type {};
+template <> struct is_proto_enum< ::ddBook::Book_ModeType> : ::google::protobuf::internal::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::book::book_ModeType>() {
-  return ::book::book_ModeType_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::ddBook::Book_ModeType>() {
+  return ::ddBook::Book_ModeType_descriptor();
 }
 
 }  // namespace protobuf
