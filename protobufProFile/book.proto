@@ -1,5 +1,5 @@
 syntax="proto2";
-package book;
+package ddBook;
 
 //构建最底层的数据表
 message BasicDataTable{
@@ -13,7 +13,7 @@ message IndexDataMapTable{
 		required fixed32 index =1;//索引值
 		required fixed32 offset =2;//偏移量
 	}
-	required IndexDataMapPair indexDataMapPair=1;
+	repeated IndexDataMapPair indexDataMapPair=1;
 }
 
 //最顶层的总表 用来码制和索引之间的一个映射
@@ -47,7 +47,7 @@ message NodeTree{
  * 2.若干张模式表，以表明在那种模式下面
  * 3.当前模式状态，一本书在一个时刻只可能又一个模式，故将其放在Book message这一层下面
  */
-message book{
+message Book{
 	required NodeTree nodeTree=1;//节点树
 	repeated ModeTable modeTabelList=2;//可能存在多个模式
 	enum ModeType{
@@ -56,4 +56,6 @@ message book{
 		STORY =2;
 	}
 	required ModeType curMode=3 [default=STUDY];//默认为学习模式
+	required BasicDataTable basicDataTale=4;//数据表
+	required IndexDataMapTable indexDataMapTable=5;//索引表
 }
