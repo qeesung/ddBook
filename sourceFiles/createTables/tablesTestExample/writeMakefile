@@ -1,0 +1,23 @@
+vpath %.c ~/ddBook/protobufSourceFile
+vpath %.h ~/ddBook/protobufSourceFile
+
+CPATH=($CPATH):../../../protobufSourceFile/
+TARGET=write
+CC=g++
+INC=-I../../../protobufSourceFile -I../../audioPlay/
+SRCS=write.cc\
+	../../../protobufSourceFile/book.pb.cc 
+OBJS=$(SRCS:.cc=.o)
+LIBS=-lprotobuf
+
+ 
+$(TARGET):$(OBJS)
+	$(CC) -o $@ $^ $(LIBS)
+
+%.o:%.cc
+	$(CC) $(INC)  $(LIBS) -o $@ -c $<
+
+.PHONY:clean
+
+clean:
+	rm -f $(OBJS)
