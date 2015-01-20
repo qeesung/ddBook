@@ -7,7 +7,7 @@ CC=g++
 INC=-I../../../protobufSourceFile -I../../audioPlay/ -I../createBasicTable
 SRCS=write.cc\
 	../../../protobufSourceFile/book.pb.cc \
-	../createBasicTable/createBasicTable.cc
+	../createBasicDataTable/createBasicDataTable.cc
 OBJS=$(SRCS:.cc=.o)
 LIBS=-lprotobuf
 
