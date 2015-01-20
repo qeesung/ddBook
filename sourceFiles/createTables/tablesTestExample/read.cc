@@ -51,7 +51,10 @@ int main(int argc, char const *argv[])
 		index =0;
 		printNodeInfo(book , curNodePos);
 		cout<<"Enter Code>"<<flush;
-		cin>>code;
+		if(cin>>code)
+			;
+		else
+			break;
 		if(code == -1)
 			break;
 		// 取得index
