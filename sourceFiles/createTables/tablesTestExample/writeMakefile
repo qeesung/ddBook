@@ -4,10 +4,14 @@ vpath %.h ~/ddBook/protobufSourceFile
 CPATH=($CPATH):../../../protobufSourceFile/
 TARGET=write
 CC=g++
-INC=-I../../../protobufSourceFile -I../../audioPlay/ -I../createBasicTable
+INC=-I../../../protobufSourceFile\
+    -I../../audioPlay/\
+    -I../createBasicDataTable\
+    -I../createIndexDataTable
 SRCS=write.cc\
 	../../../protobufSourceFile/book.pb.cc \
-	../createBasicDataTable/createBasicDataTable.cc
+	../createBasicDataTable/createBasicDataTable.cc\
+	../createIndexDataTable/createIndexDataTable.cc
 OBJS=$(SRCS:.cc=.o)
 LIBS=-lprotobuf
 

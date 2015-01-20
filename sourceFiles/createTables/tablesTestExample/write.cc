@@ -3,7 +3,8 @@
 #include <vector>
 #include "book.pb.h"
 #include "audioPlay.h"
-#include "createBasicTable.h"
+#include "createBasicDataTable.h"
+#include "createIndexDataTable.h"
 
 extern "C"
 {
@@ -83,9 +84,10 @@ void createIndexDataMapTable(ddBook::IndexDataMapTable * indexDataMapTable ,\
 {
 	for (int i = 0; i < arrayLength; ++i)
 	{
-		ddBook::IndexDataMapTable_IndexDataMapPair * pair = indexDataMapTable->add_indexdatamappair();
-		pair->set_index(i);
-		pair->set_offset(indexArray[i]);
+		// ddBook::IndexDataMapTable_IndexDataMapPair * pair = indexDataMapTable->add_indexdatamappair();
+		// pair->set_index(i);
+		// pair->set_offset(indexArray[i]);
+		appendIndexDataItem(indexDataMapTable , indexArray[i] , i);
 	}
 }
 
