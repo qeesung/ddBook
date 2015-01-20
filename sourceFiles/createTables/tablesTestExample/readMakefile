@@ -23,4 +23,4 @@ audioPlay.o:../../audioPlay/audioPlay.c
 .PHONY:clean
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) audioPlay.o
