@@ -7,11 +7,15 @@ CC=g++
 INC=-I../../../protobufSourceFile\
     -I../../audioPlay/\
     -I../createBasicDataTable\
-    -I../createIndexDataTable
+    -I../createIndexDataTable\
+    -I../createModeTable\
+    -I../../createNodeTree/createNode
 SRCS=write.cc\
 	../../../protobufSourceFile/book.pb.cc \
 	../createBasicDataTable/createBasicDataTable.cc\
-	../createIndexDataTable/createIndexDataTable.cc
+	../createIndexDataTable/createIndexDataTable.cc\
+	../createModeTable/createModeTable.cc\
+	../../createNodeTree/createNode/createNode.cc
 OBJS=$(SRCS:.cc=.o)
 LIBS=-lprotobuf
 

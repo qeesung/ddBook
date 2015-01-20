@@ -5,6 +5,8 @@
 #include "audioPlay.h"
 #include "createBasicDataTable.h"
 #include "createIndexDataTable.h"
+#include "createModeTable.h"
+#include "createNode.h"
 
 extern "C"
 {
@@ -25,24 +27,27 @@ void createNodeTree(ddBook::NodeTree* nodeTree)
 	ddBook::Node * node1 = nodeTree->add_treenode();
 	ddBook::Node * node2 = nodeTree->add_treenode();
 	ddBook::Node * node3 = nodeTree->add_treenode();
-	node1->set_startcode(200);
-	node1->set_endcode(201);
-	node1->set_previous(-1);
-	node1->add_next(2);
-	node1->add_defaultcode(100);
+	setNodeInfo(node1 , 200,201,-1,2,100);
+	// node1->set_startcode(200);
+	// node1->set_endcode(201);
+	// node1->set_previous(-1);
+	// node1->add_next(2);
+	// node1->add_defaultcode(100);
 
-	node2->set_startcode(300);
-	node2->set_endcode(301);
-	node2->set_previous(2);
-	node2->add_next(-1);
-	node2->add_defaultcode(100);
+	setNodeInfo(node2 , 300,301,2,-1,100);
+	// node2->set_startcode(300);
+	// node2->set_endcode(301);
+	// node2->set_previous(2);
+	// node2->add_next(-1);
+	// node2->add_defaultcode(100);
 	
-	node3->set_startcode(400);
+	setNodeInfo(node3 , 400,401,0,1,100);
+/*	node3->set_startcode(400);
 	node3->set_endcode(401);
 	node3->set_previous(0);
 	node3->add_next(1);
 	node3->add_defaultcode(100);
-}
+*/}
 
 
 void createModeTable(ddBook::ModeTable *modeTable)
