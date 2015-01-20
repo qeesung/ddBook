@@ -3,6 +3,8 @@
 #include <vector>
 #include "book.pb.h"
 #include "audioPlay.h"
+#include "createBasicTable.h"
+
 extern "C"
 {
 	#include <stdio.h>
@@ -93,19 +95,20 @@ void createBasicDataTable(ddBook::BasicDataTable * basicDataTale , const vector<
 	char buf[bufSize];
 	for (int i = 0; i < v1.size(); ++i)
 	{
-		int fd;
-		if((fd = open(v1[i].c_str() , O_RDONLY))==-1)
-		{
-			perror("Open audio file failed");
-			return ;
-		}
-		int size;
-		if((size=read(fd , buf , bufSize))==-1)
-		{
-			perror("read the audio file failed");
-			return;
-		}
-		basicDataTale->add_audiodata(buf,size);
+		// int fd;
+		// if((fd = open(v1[i].c_str() , O_RDONLY))==-1)
+		// {
+		// 	perror("Open audio file failed");
+		// 	return ;
+		// }
+		// int size;
+		// if((size=read(fd , buf , bufSize))==-1)
+		// {
+		// 	perror("read the audio file failed");
+		// 	return;
+		// }
+		// basicDataTale->add_audiodata(buf,size);
+		appendBasicData(basicDataTale , v1[i]);
 	}
 }
 
