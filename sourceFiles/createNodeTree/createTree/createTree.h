@@ -12,7 +12,9 @@
  * @param node       父亲节点
  * @param childIndex 孩子节点的索引值
  */
-void addChild(ddBook::Node * node , const unsigned int & childIndex);
+void addChild(ddBook::Node * node ,\
+              const unsigned int & childIndex,\
+              const unsigned int & transCode);
 
 
 /**

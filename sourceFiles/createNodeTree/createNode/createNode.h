@@ -21,6 +21,7 @@ void setNodeInfo(ddBook::Node * node,\
 	             const unsigned int & endCode,\
 	             const unsigned int & previous,\
 	             const std::vector<unsigned int>  & nextList=std::vector<unsigned int>(),\
+	             const std::vector<unsigned int>  & transList=std::vector<unsigned int>(),\
 	             const std::vector<unsigned int>  & defaultList=std::vector<unsigned int>());
 
 void setNodeInfo(ddBook::Node * node,\
@@ -28,5 +29,6 @@ void setNodeInfo(ddBook::Node * node,\
 	             const unsigned int & endCode,\
 	             const unsigned int & previous,\
 	             const unsigned int & next,\
+	             const unsigned int & transCode,\
 	             const unsigned int & defaultCode);
 #endif

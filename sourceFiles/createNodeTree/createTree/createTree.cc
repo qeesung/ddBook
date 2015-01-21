@@ -1,6 +1,8 @@
 #include "createTree.h"
 
-void addChild(ddBook::Node * node , const unsigned int & childIndex)
+void addChild(ddBook::Node * node ,\
+              const unsigned int & childIndex,\
+              const unsigned int & transCode)
 {
 	if(node == NULL)
 	{
@@ -8,6 +10,7 @@ void addChild(ddBook::Node * node , const unsigned int & childIndex)
 		return;
 	}
 	node->add_next(childIndex);
+	node->add_transcode(transCode);
 }
 
 void addDefaultAudio(ddBook::Node * node , const unsigned int & defaultCode)
@@ -29,6 +32,11 @@ void addTreeNode(ddBook::NodeTree* nodeTree , const ddBook::Node & node)
 		for (int i = 0; i < node.next_size(); ++i)
 		{
 			newNode->add_next(node.next(i));
+		}
+
+		for (int i = 0; i < node.transcode_size(); ++i)
+		{
+			newNode->add_transcode(node.transcode(i));
 		}
 
 		for (int i = 0; i < node.defaultcode_size(); ++i)
