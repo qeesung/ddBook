@@ -1,0 +1,36 @@
+TARGET=read
+CC=g++
+INC=-I../createTables/createBasicDataTable\
+    -I../createTables/createIndexDataTable\
+    -I../createTables/createModeTable\
+    -I../createNodeTree/createNode\
+    -I../createNodeTree/createTree\
+    -I../../protobufSourceFile\
+    -I../audioPlay/\
+    -I../transferMechanism
+
+SRCS=read.cc\
+	 ../transferMechanism/transferMechanism.cc\
+	 ../../protobufSourceFile/book.pb.cc\
+	 ../createTables/createBasicDataTable/createBasicDataTable.cc\
+	 ../createTables/createIndexDataTable/createIndexDataTable.cc\
+	 ../createTables/createModeTable/createModeTable.cc\
+	 ../createNodeTree/createNode/createNode.cc\
+	 ../createNodeTree/createTree/createTree.cc
+
+OBJS=$(SRCS:.cc=.o)
+LIBS=-lprotobuf
+
+$(TARGET):$(OBJS) audioPlay.o
+	$(CC) -o $@ $^ $(LIBS)
+
+%.o:%.cc
+	$(CC) $(INC) $(LIBS) -o $@ -c $<
+
+audioPlay.o:../audioPlay/audioPlay.c
+	gcc -c $< -o $@ 
+	
+.PHONY:clean
+
+clean:
+	rm -f $(OBJS) audioPlay.o
