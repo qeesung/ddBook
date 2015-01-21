@@ -133,11 +133,12 @@ void protobuf_AssignDesc_book_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ModeTable_CodeIndexMapPair, _internal_metadata_),
       -1);
   Node_descriptor_ = file->message_type(3);
-  static const int Node_offsets_[5] = {
+  static const int Node_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, startcode_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, endcode_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, previous_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, next_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, transcode_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, defaultcode_),
   };
   Node_reflection_ =
@@ -252,17 +253,18 @@ void protobuf_AddDesc_book_2eproto() {
     "\"~\n\tModeTable\022<\n\020codeIndexMapPair\030\001 \003(\0132"
     "\".ddBook.ModeTable.CodeIndexMapPair\0323\n\020C"
     "odeIndexMapPair\022\014\n\004code\030\001 \002(\007\022\021\n\tindexLi"
-    "st\030\002 \003(\007\"_\n\004Node\022\021\n\tstartCode\030\001 \002(\007\022\017\n\007e"
+    "st\030\002 \003(\007\"r\n\004Node\022\021\n\tstartCode\030\001 \002(\007\022\017\n\007e"
     "ndCode\030\002 \002(\007\022\020\n\010previous\030\003 \002(\007\022\014\n\004next\030\004"
-    " \003(\007\022\023\n\013defaultCode\030\005 \003(\007\"*\n\010NodeTree\022\036\n"
-    "\010treeNode\030\001 \003(\0132\014.ddBook.Node\"\224\002\n\004Book\022\""
-    "\n\010nodeTree\030\001 \002(\0132\020.ddBook.NodeTree\022(\n\rmo"
-    "deTabelList\030\002 \003(\0132\021.ddBook.ModeTable\022-\n\007"
-    "curMode\030\003 \002(\0162\025.ddBook.Book.ModeType:\005ST"
-    "UDY\022-\n\rbasicDataTale\030\004 \002(\0132\026.ddBook.Basi"
-    "cDataTable\0224\n\021indexDataMapTable\030\005 \002(\0132\031."
-    "ddBook.IndexDataMapTable\"*\n\010ModeType\022\010\n\004"
-    "GAME\020\000\022\t\n\005STUDY\020\001\022\t\n\005STORY\020\002", 748);
+    " \003(\007\022\021\n\ttransCode\030\006 \003(\007\022\023\n\013defaultCode\030\005"
+    " \003(\007\"*\n\010NodeTree\022\036\n\010treeNode\030\001 \003(\0132\014.ddB"
+    "ook.Node\"\224\002\n\004Book\022\"\n\010nodeTree\030\001 \002(\0132\020.dd"
+    "Book.NodeTree\022(\n\rmodeTabelList\030\002 \003(\0132\021.d"
+    "dBook.ModeTable\022-\n\007curMode\030\003 \002(\0162\025.ddBoo"
+    "k.Book.ModeType:\005STUDY\022-\n\rbasicDataTale\030"
+    "\004 \002(\0132\026.ddBook.BasicDataTable\0224\n\021indexDa"
+    "taMapTable\030\005 \002(\0132\031.ddBook.IndexDataMapTa"
+    "ble\"*\n\010ModeType\022\010\n\004GAME\020\000\022\t\n\005STUDY\020\001\022\t\n\005"
+    "STORY\020\002", 767);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "book.proto", &protobuf_RegisterTypes);
   BasicDataTable::default_instance_ = new BasicDataTable();
@@ -1565,6 +1567,7 @@ const int Node::kStartCodeFieldNumber;
 const int Node::kEndCodeFieldNumber;
 const int Node::kPreviousFieldNumber;
 const int Node::kNextFieldNumber;
+const int Node::kTransCodeFieldNumber;
 const int Node::kDefaultCodeFieldNumber;
 #endif  // !_MSC_VER
 
@@ -1648,6 +1651,7 @@ void Node::Clear() {
 #undef ZR_
 
   next_.Clear();
+  transcode_.Clear();
   defaultcode_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1743,6 +1747,25 @@ bool Node::MergePartialFromCodedStream(
           goto handle_unusual;
         }
         if (input->ExpectTag(45)) goto parse_defaultCode;
+        if (input->ExpectTag(53)) goto parse_transCode;
+        break;
+      }
+
+      // repeated fixed32 transCode = 6;
+      case 6: {
+        if (tag == 53) {
+         parse_transCode:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
+                 1, 53, input, this->mutable_transcode())));
+        } else if (tag == 50) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
+                 input, this->mutable_transcode())));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(53)) goto parse_transCode;
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -1799,6 +1822,12 @@ void Node::SerializeWithCachedSizes(
       5, this->defaultcode(i), output);
   }
 
+  // repeated fixed32 transCode = 6;
+  for (int i = 0; i < this->transcode_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteFixed32(
+      6, this->transcode(i), output);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -1834,6 +1863,12 @@ void Node::SerializeWithCachedSizes(
   for (int i = 0; i < this->defaultcode_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteFixed32ToArray(5, this->defaultcode(i), target);
+  }
+
+  // repeated fixed32 transCode = 6;
+  for (int i = 0; i < this->transcode_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteFixed32ToArray(6, this->transcode(i), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1887,6 +1922,13 @@ int Node::ByteSize() const {
     total_size += 1 * this->next_size() + data_size;
   }
 
+  // repeated fixed32 transCode = 6;
+  {
+    int data_size = 0;
+    data_size = 4 * this->transcode_size();
+    total_size += 1 * this->transcode_size() + data_size;
+  }
+
   // repeated fixed32 defaultCode = 5;
   {
     int data_size = 0;
@@ -1920,6 +1962,7 @@ void Node::MergeFrom(const ::google::protobuf::Message& from) {
 void Node::MergeFrom(const Node& from) {
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   next_.MergeFrom(from.next_);
+  transcode_.MergeFrom(from.transcode_);
   defaultcode_.MergeFrom(from.defaultcode_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_startcode()) {
@@ -1964,6 +2007,7 @@ void Node::InternalSwap(Node* other) {
   std::swap(endcode_, other->endcode_);
   std::swap(previous_, other->previous_);
   next_.UnsafeArenaSwap(&other->next_);
+  transcode_.UnsafeArenaSwap(&other->transcode_);
   defaultcode_.UnsafeArenaSwap(&other->defaultcode_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);

@@ -653,6 +653,18 @@ class Node : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_next();
 
+  // repeated fixed32 transCode = 6;
+  inline int transcode_size() const;
+  inline void clear_transcode();
+  static const int kTransCodeFieldNumber = 6;
+  inline ::google::protobuf::uint32 transcode(int index) const;
+  inline void set_transcode(int index, ::google::protobuf::uint32 value);
+  inline void add_transcode(::google::protobuf::uint32 value);
+  inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      transcode() const;
+  inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_transcode();
+
   // repeated fixed32 defaultCode = 5;
   inline int defaultcode_size() const;
   inline void clear_defaultcode();
@@ -683,6 +695,7 @@ class Node : public ::google::protobuf::Message {
   ::google::protobuf::uint32 startcode_;
   ::google::protobuf::uint32 endcode_;
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > next_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > transcode_;
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > defaultcode_;
   ::google::protobuf::uint32 previous_;
   friend void  protobuf_AddDesc_book_2eproto();
@@ -1293,6 +1306,36 @@ inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
 Node::mutable_next() {
   // @@protoc_insertion_point(field_mutable_list:ddBook.Node.next)
   return &next_;
+}
+
+// repeated fixed32 transCode = 6;
+inline int Node::transcode_size() const {
+  return transcode_.size();
+}
+inline void Node::clear_transcode() {
+  transcode_.Clear();
+}
+inline ::google::protobuf::uint32 Node::transcode(int index) const {
+  // @@protoc_insertion_point(field_get:ddBook.Node.transCode)
+  return transcode_.Get(index);
+}
+inline void Node::set_transcode(int index, ::google::protobuf::uint32 value) {
+  transcode_.Set(index, value);
+  // @@protoc_insertion_point(field_set:ddBook.Node.transCode)
+}
+inline void Node::add_transcode(::google::protobuf::uint32 value) {
+  transcode_.Add(value);
+  // @@protoc_insertion_point(field_add:ddBook.Node.transCode)
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+Node::transcode() const {
+  // @@protoc_insertion_point(field_list:ddBook.Node.transCode)
+  return transcode_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+Node::mutable_transcode() {
+  // @@protoc_insertion_point(field_mutable_list:ddBook.Node.transCode)
+  return &transcode_;
 }
 
 // repeated fixed32 defaultCode = 5;

@@ -31,6 +31,7 @@ message Node{
 	required fixed32 endCode=2;//退出该节点默认播放的语音码
 	required fixed32 previous=3;//上一个node节点的标识(这里不是码值)
 	repeated fixed32 next=4;//这里可能存在多个子节点，树状结构，表明状态机的下一个node节点标识
+	repeated fixed32 transCode=6;//插入一个next code就一定会插入宇哥transcode，两个直接相互联系
 	repeated fixed32 defaultCode=5;//存在多个默认语音,就是输入的码不是跳转到下一个，也不能跳转到上一个，就采用默认码值
 }
 
