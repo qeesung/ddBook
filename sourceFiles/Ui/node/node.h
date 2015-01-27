@@ -39,6 +39,19 @@ public:
 	QPainterPath shape() const;//在boudingRect里面的绘制出来的图形
 	void paint(QPainter * painter , const QStyleOptionGraphicsItem * option , QWidget * widget);//真正的绘制函数
 	QRectF outlineRect() const;//依据文字的长短大小来返回相应的大小矩形
+
+
+	/** 设置及获得node属性 */
+	void setStartAudio(const QString & audioFilename){startAudio = audioFilename;}
+	QString getStartAudio() const{return startAudio;}
+
+	void setEndAudio(const QString & audioFilename){endAudio = audioFilename;}
+	QString getEndAudio() const{return endAudio;}
+
+	void addDefaultAudio(const QString & audioFilename){defaultAudioList.push_back(audioFilename);}
+	void removeDefaultAudio(const QString & audioFilename){defaultAudioList.removeOne(audioFilename);}
+	QStringList getDefaultAudioList() const{return defaultAudioList;}
+
 protected:
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event);
 	QVariant itemChange(GraphicsItemChange change , const QVariant & value);
@@ -50,6 +63,11 @@ private:
 	QColor textColor;
 	QColor outlineColor;
 	QColor backgroundColor;
+
+	/** node基本属性 */
+	QString startAudio;
+	QString endAudio;
+	QStringList defaultAudioList;
 
 };
 
