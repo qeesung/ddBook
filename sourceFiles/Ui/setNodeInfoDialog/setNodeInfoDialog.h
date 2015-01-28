@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'setNodeInfoDialog.ui'
 **
-** Created: Tue Jan 27 22:46:28 2015
+** Created: Wed Jan 28 14:13:23 2015
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -15,6 +15,7 @@
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QDialog>
+#include <QtGui/QGridLayout>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
@@ -29,7 +30,11 @@ QT_BEGIN_NAMESPACE
 class Ui_setNodeInfoDialog
 {
 public:
+    QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout_7;
+    QHBoxLayout *horizontalLayout_5;
+    QLabel *label_4;
+    QLineEdit *nodeNameLineEdit;
     QVBoxLayout *verticalLayout_6;
     QVBoxLayout *verticalLayout_5;
     QVBoxLayout *verticalLayout_4;
@@ -60,8 +65,25 @@ public:
         if (setNodeInfoDialog->objectName().isEmpty())
             setNodeInfoDialog->setObjectName(QString::fromUtf8("setNodeInfoDialog"));
         setNodeInfoDialog->resize(379, 388);
-        verticalLayout_7 = new QVBoxLayout(setNodeInfoDialog);
+        gridLayout = new QGridLayout(setNodeInfoDialog);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        verticalLayout_7 = new QVBoxLayout();
         verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        label_4 = new QLabel(setNodeInfoDialog);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        horizontalLayout_5->addWidget(label_4);
+
+        nodeNameLineEdit = new QLineEdit(setNodeInfoDialog);
+        nodeNameLineEdit->setObjectName(QString::fromUtf8("nodeNameLineEdit"));
+
+        horizontalLayout_5->addWidget(nodeNameLineEdit);
+
+
+        verticalLayout_7->addLayout(horizontalLayout_5);
+
         verticalLayout_6 = new QVBoxLayout();
         verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
         verticalLayout_5 = new QVBoxLayout();
@@ -188,6 +210,9 @@ public:
         verticalLayout_7->addLayout(verticalLayout_6);
 
 
+        gridLayout->addLayout(verticalLayout_7, 0, 0, 1, 1);
+
+
         retranslateUi(setNodeInfoDialog);
 
         QMetaObject::connectSlotsByName(setNodeInfoDialog);
@@ -196,6 +221,7 @@ public:
     void retranslateUi(QDialog *setNodeInfoDialog)
     {
         setNodeInfoDialog->setWindowTitle(QApplication::translate("setNodeInfoDialog", "Dialog", 0, QApplication::UnicodeUTF8));
+        label_4->setText(QApplication::translate("setNodeInfoDialog", "Node name:", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("setNodeInfoDialog", "Start Audio:", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("setNodeInfoDialog", "End Audio:", 0, QApplication::UnicodeUTF8));
         startAudioPushButton->setText(QApplication::translate("setNodeInfoDialog", "...", 0, QApplication::UnicodeUTF8));

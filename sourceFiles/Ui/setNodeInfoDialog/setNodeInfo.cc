@@ -1,10 +1,12 @@
 #include "setNodeInfo.h"
 #include <QFileDialog>
 
-SetNodeInfo::SetNodeInfo(QWidget * parent):QDialog(parent)
+SetNodeInfo::SetNodeInfo(const QString & nodeName,QWidget * parent):QDialog(parent)
 {
 	setupUi(this);
 
+	nodeNameLineEdit->setText(nodeName);
+	nodeNameLineEdit->selectAll();//选中全部的Node名字
 	defaultAudioListWidget->setSelectionMode(QAbstractItemView::MultiSelection);
 	connect(startAudioPushButton , SIGNAL(clicked()),\
 		    this , SLOT(startAudioView()));

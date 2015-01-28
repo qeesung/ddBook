@@ -8,7 +8,7 @@ class SetNodeInfo : public QDialog , public Ui::setNodeInfoDialog
 {
 	Q_OBJECT
 public:
-	SetNodeInfo(QWidget * parent=0);
+	SetNodeInfo(const QString & nodeName,QWidget * parent=0);
 	~SetNodeInfo(){}
 private slots:
 	void startAudioView();
