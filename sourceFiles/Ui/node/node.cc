@@ -1,4 +1,5 @@
 #include "node.h"
+#include "setNodeInfo.h"
 #include <QInputDialog>
 #include <QGraphicsSceneMouseEvent>
 #include <QLineEdit>
@@ -98,9 +99,14 @@ QVariant Node::itemChange(GraphicsItemChange change ,const QVariant & value)
 
 void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event)
 {
-	QString newText = QInputDialog::getText(event->widget() , tr("Edit Text") , tr("Enter new Text:"),QLineEdit::Normal , text);
-	if(!newText.isEmpty())
-		setText(newText);
+	SetNodeInfo * setDialog = new SetNodeInfo(this);
+	if(setDialog->exec()==QDialog::Accepted)
+	{
+		setStartAudio(setDialog->getStartAudio());
+		setEndAudio(setDialog->getEndAudio());
+		setDefaultAudioList(setDialog->getDefaultAudioList());
+		setText(setDialog->getNodeName());
+	}
 }
 
 int Node::roundness(double size) const

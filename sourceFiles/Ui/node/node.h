@@ -48,6 +48,7 @@ public:
 	void setEndAudio(const QString & audioFilename){endAudio = audioFilename;}
 	QString getEndAudio() const{return endAudio;}
 
+	void setDefaultAudioList(const QStringList & defaultList){defaultAudioList = defaultList;}
 	void addDefaultAudio(const QString & audioFilename){defaultAudioList.push_back(audioFilename);}
 	void removeDefaultAudio(const QString & audioFilename){defaultAudioList.removeOne(audioFilename);}
 	QStringList getDefaultAudioList() const{return defaultAudioList;}
