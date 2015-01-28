@@ -171,8 +171,8 @@ void Link::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * /*event*/)
 QRectF Link::boundingRect() const
 {
 	QLineF curLine = line();
-	if(qAbs(curLine.p1().x()-curLine.p2().x()) <30 || qAbs(curLine.p1().y() - curLine.p2().y()) < 30)
-		return QGraphicsLineItem::boundingRect().adjusted(-20,-20,+20,+20);
+	if(qAbs(curLine.p1().x()-curLine.p2().x()) <100 || qAbs(curLine.p1().y() - curLine.p2().y()) < 100)
+		return QGraphicsLineItem::boundingRect().adjusted(-40,-20,+40,+20);
 	else
 		return QGraphicsLineItem::boundingRect();
 }
