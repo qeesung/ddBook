@@ -1,13 +1,27 @@
 #include "setNodeInfo.h"
 #include <QFileDialog>
 
-SetNodeInfo::SetNodeInfo(const QString & nodeName,QWidget * parent):QDialog(parent)
+SetNodeInfo::SetNodeInfo(const Node * node,QWidget * parent):QDialog(parent)
 {
 	setupUi(this);
 
-	nodeNameLineEdit->setText(nodeName);
+	/** 在启动dialog时候自动载入节点信息 */
+	nodeNameLineEdit->setText(node->getText());
 	nodeNameLineEdit->selectAll();//选中全部的Node名字
+
+	startAudioLineEdit->setText(node->getStartAudio());
+	endAudioLineEdit->setText(node->getEndAudio());
+	QStringList filenames = node->getDefaultAudioList();
+	foreach(QString filename , filenames)
+	{
+		QListWidgetItem * tempItem = new QListWidgetItem(filename);
+		defaultAudioListWidget->addItem(tempItem);
+	}
+	//将listWidget设置为多选选项
 	defaultAudioListWidget->setSelectionMode(QAbstractItemView::MultiSelection);
+	//ok按钮为默认的按钮
+	okPushButton->setDefault(true);
+
 	connect(startAudioPushButton , SIGNAL(clicked()),\
 		    this , SLOT(startAudioView()));
 	connect(endAudioPushButton , SIGNAL(clicked()),\

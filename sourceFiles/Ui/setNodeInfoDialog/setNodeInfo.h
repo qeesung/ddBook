@@ -2,13 +2,13 @@
 #define SETNODEINFO_H
 #include "setNodeInfoDialog.h"
 #include <QDialog>
-// #include "node.h"
+#include "node.h"
 
 class SetNodeInfo : public QDialog , public Ui::setNodeInfoDialog
 {
 	Q_OBJECT
 public:
-	SetNodeInfo(const QString & nodeName,QWidget * parent=0);
+	SetNodeInfo(const Node * node,QWidget * parent=0);
 	~SetNodeInfo(){}
 
 	QString getNodeName() const{return nodeNameLineEdit->text();}
@@ -21,7 +21,7 @@ public:
 		for (int i = 0; i < itemCount; ++i)
 		{
 			QListWidgetItem * temp = defaultAudioListWidget->item(i);
-			defaultList<<temp->text()<<endl;
+			defaultList<<temp->text();
 		}
 		return defaultList;
 	}
