@@ -1,0 +1,43 @@
+<RCC>
+<qresource>
+	<file>images/about.png</file>
+	<file>images/aboutqt.png</file>
+	<file>images/addchildnode.png</file>
+	<file>images/bringtofront.png</file>
+	<file>images/cascade.png</file>
+	<file>images/closeall.png</file>
+	<file>images/close.png</file>
+	<file>images/closeproject.png</file>
+	<file>images/copy.png</file>
+	<file>images/createlink.png</file>
+	<file>images/linkmode.png</file>
+	<file>images/createnode.png</file>
+	<file>images/cut.png</file>
+	<file>images/deal.sh</file>
+	<file>images/debugfromCurNode.png</file>
+	<file>images/delete.png</file>
+	<file>images/exit.png</file>
+	<file>images/horizontalalign.png</file>
+	<file>images/infoproperties.png</file>
+	<file>images/linktochild.png</file>
+	<file>images/linktofather.png</file>
+	<file>images/new.png</file>
+	<file>images/newproject.png</file>
+	<file>images/next.png</file>
+	<file>images/open.png</file>
+	<file>images/openproject.png</file>
+	<file>images/paste.png</file>
+	<file>images/previous.png</file>
+	<file>images/save.png</file>
+	<file>images/saveas.png</file>
+	<file>images/sendtoback.png</file>
+	<file>images/startdebug.png</file>
+	<file>images/stopdebug.png</file>
+	<file>images/nodesurfaceproperties.png</file>
+	<file>images/linksurfaceproperties.png</file>
+	<file>images/tile.png</file>
+	<file>images/transcode.png</file>
+	<file>images/tutorial.png</file>
+	<file>images/verticalalign.png</file>
+</qresource>
+</RCC>
