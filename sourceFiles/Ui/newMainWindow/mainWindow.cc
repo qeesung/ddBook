@@ -19,6 +19,8 @@
  	createMenus();
  	createToolBars();
  	createStatusBar();
+
+    setWindowIcon(QIcon(":/images/about.png"));
  }
 
  void MainWindow::createActions()
@@ -124,12 +126,12 @@
     connect(closeAction , SIGNAL(triggered()), mdiArea , SLOT(closeActiveSubWindow()));
 
     closeAllAction = new QAction(tr("Close &All"), this);
-    closeAllAction->setIcon(QIcon(":images/closeAll.png"));
+    closeAllAction->setIcon(QIcon(":images/closeall.png"));
     closeAllAction->setStatusTip(tr("Close all windows"));
     connect(closeAllAction , SIGNAL(triggered()), mdiArea , SLOT(closeAllSubWindows()));
 
     tileAction = new QAction(tr("&Tile"), this);
-    tileAction->setIcon(QIcon(":images/Tile.png"));
+    tileAction->setIcon(QIcon(":images/tile.png"));
     tileAction->setStatusTip(tr("Show sub window in Tile Mode"));
     connect(tileAction , SIGNAL(triggered()), mdiArea , SLOT(tileSubWindows()));
 
