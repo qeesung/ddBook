@@ -1,0 +1,151 @@
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+/** 定义主窗口 */
+#include <QMdiArea>
+#include <QMainWindow>
+class QAction;
+class QActionGroup;
+
+class MainWindow : public QMainWindow
+{
+	Q_OBJECT
+public:
+	MainWindow();
+private slots:
+	/////////////////////
+	// actions对应的信号和槽 //
+	/////////////////////
+	void newModeFile();
+	void openModeFiles();
+	void saveFile();
+	void saveAsFile();
+
+	void copy();
+	void cut();
+	void paste();
+	void deleteobjs();
+	void bringToFront();
+	void sendToBack();
+
+	void createProject();
+	void closeProject();
+	void openProject();
+
+	void createNode();
+	void alignHorizontal();
+	void alignVertical();
+	void addChildNode();
+	void nodeSurfacceProperties();
+	void infoProperties();
+
+	void createLink();
+	void linkToChildNode();
+	void linkToFatherNode();
+	void linkMode();
+	void transCode();
+	void linkSurfacceProperties();
+
+	void startToDebug();
+	void startToDebugFromCurNode();
+	void stopDebug();
+
+	void about();
+	void tutorial();
+
+	//////////////
+	//其他的一些私有槽 //	
+	//////////////
+	/**
+	 * 更新Actions的enabled状态
+	 */
+	void updateActions();
+private:
+	 ///////////////////
+	 // 创建对应的actions //
+	 ///////////////////
+
+	/** file actions */
+	QAction * newFileAction;
+	QAction * openFileAction;
+	QAction * saveFileAction;
+	QAction * saveAsFileAction;
+	QAction * exitAction;
+
+	/** 编辑actions */
+	QAction * cutAction;
+	QAction * copyAction;
+	QAction * pasteAction;
+	QAction * deleteAction;
+	QAction * bringToFrontAction;//将选中的节点移到最顶层
+	QAction * sendToBackAction;//将选中节点移到底层
+
+	/** 工程actions */
+	QAction * createProjectAction;
+	QAction * closeProjectAction;
+	QAction * openProjectAction;
+
+	/** 窗口actions */
+	QAction * closeAction;
+	QAction * closeAllAction;
+	QAction * tileAction;
+	QAction * cascadeAction;//窗口的排列方式
+	QAction * nextAction;
+	QAction * previousAction;
+	QActionGroup * windowActionGroup;
+
+	/** 节点actions */
+	QAction * createNodeAction;
+	QAction * hAlignAction;//节点的对齐
+	QAction * vAlignAction;
+	QAction * addChildNodeAction;//添加子节点，添加的时候也自动将其链接起来
+	QAction * nodeSurfaccePropertiesAction;//外观设置的action
+	QAction * infoPropertiesAction;//节点信息设置的action
+
+	/** 链接actions */
+	QAction * createLinkAction;//只是单纯的建立链接
+	QAction * linkToChildNodeAction;
+	QAction * linkToFatherNodeAction;
+	QAction * linkModeAction;//链接模式，在此模式下面节点不可拖动，但是可以在节点之间进行拖动连线
+	QAction * transCodeAction;//设置转移码的
+	QAction * linkSurfaccePropertiesAction;//设置链接外观
+
+	/** 调试模式actions */
+	QAction * startDebugAction;
+	QAction * startDebugFromCurNodeAction;//从当前的选中节点来开始调试
+	QAction * stopDebugAction;
+
+	/** 帮助actions */
+	QAction * aboutAction;
+	QAction * aboutQtAction;
+	QAction * tutorialAction;
+
+	/////////////////////////////
+	//私有函数，创建菜单，工具栏，以及actions //
+	/////////////////////////////
+	/**
+	 * 创建actions
+	 */
+	void createActions();
+	/**
+	 * 创建菜单
+	 */
+	void createMenus();
+	/**
+	 * 创建工具栏
+	 */
+	void createToolBars();
+	/**
+	 * 创建状态栏
+	 */
+	void createStatusBar();
+
+
+	///////////////
+	//一些必要的窗口部件 //
+	///////////////
+	QMdiArea * mdiArea;//实现多窗口
+
+};
+
+#endif
