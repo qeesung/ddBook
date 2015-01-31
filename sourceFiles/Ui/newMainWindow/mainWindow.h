@@ -4,8 +4,10 @@
 /** 定义主窗口 */
 #include <QMdiArea>
 #include <QMainWindow>
+#include "GraphicsView.h"
 class QAction;
 class QActionGroup;
+class GraphicsView;//子类化QGraphicsView，添加了文件保存创建等等相关信息
 
 class MainWindow : public QMainWindow
 {
@@ -139,7 +141,16 @@ private:
 	 * 创建状态栏
 	 */
 	void createStatusBar();
-
+	/**
+	 * 在mdiArea里面添加一个view
+	 * @param view 新建的view
+	 */
+	void addView(GraphicsView * view)
+	/**
+	 * 返回当前的活动窗口
+	 * @return 返回的窗口
+	 */
+	GraphicsView * activeView();
 
 	///////////////
 	//一些必要的窗口部件 //
