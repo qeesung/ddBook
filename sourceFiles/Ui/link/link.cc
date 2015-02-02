@@ -161,7 +161,7 @@ QPointF Link::getCircleCenter() const
 
 void Link::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * /*event*/)
 {
-	EnterTransCodeDialog * transCodeDialog = new EnterTransCodeDialog;
+	EnterTransCodeDialog * transCodeDialog = new EnterTransCodeDialog(this);
 	if(transCodeDialog -> exec() == QDialog::Accepted)
 	{
 		setTransCode(transCodeDialog->getTransCode());

@@ -2,6 +2,7 @@
 #define ENTERTRANSCODEDIALOG_H
 
 #include <QDialog>
+#include "link.h"
 class QLabel;
 class QLineEdit;
 class QPushButton;
@@ -10,7 +11,7 @@ class EnterTransCodeDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	EnterTransCodeDialog(QWidget * parent=0);
+	EnterTransCodeDialog(Link * link , QWidget * parent=0);
 	int getTransCode() const;
 private slots:
 	void contentChanged(const QString & str);
