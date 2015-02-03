@@ -1,4 +1,5 @@
 #include "mainWindow.h"
+#include <QDebug>
 #include <QtGui>
 
 /**
@@ -312,7 +313,7 @@
 	 ///////////////////
  	// windows menu //
 	 ///////////////////
- 	QMenu * windowsMenu = menuBar()->addMenu(tr("&Windows"));
+ 	windowsMenu = menuBar()->addMenu(tr("&Windows"));
  	windowsMenu->addAction(closeAction);
  	windowsMenu->addAction(closeAllAction);
  	windowsMenu->addSeparator();
@@ -409,35 +410,231 @@
 	QStatusBar * status = statusBar();
  }
 
-void MainWindow::newModeFile(){}
-void MainWindow::openModeFiles(){}
-void MainWindow::saveFile(){}
-void MainWindow::saveAsFile(){}
 
-void MainWindow::copy(){}
-void MainWindow::cut(){}
-void MainWindow::paste(){}
-void MainWindow::deleteobjs(){}
-void MainWindow::bringToFront(){}
-void MainWindow::sendToBack(){}
+/**
+ * 新建模式文件
+ */
+void MainWindow::newModeFile()
+{
+    /** 这里创建的ModeFile就是创建一个场景scene */
+    // QGraphicsScene * scene = new QGraphicsScene;
+    GraphicsView * view = new GraphicsView;
+    // view->setScene(scene);
+    //添加view到mdiArea里面去
+    addView(view);
+}
+
+/**
+ * 打开一个模式文件
+ */
+void MainWindow::openModeFiles()
+{
+    GraphicsView * view = GraphicsView::open(this);
+    if(view)
+    {
+        addView(view);
+    }
+}
+
+
+/**
+ * 添加view到主窗口中
+ * @param view 欲添加的view
+ */
+void MainWindow::addView(GraphicsView * view)
+{
+    // connect(view , SIGNAL(copyAvailable(bool)),\
+    //         cutAction , SLOT(setEnabled(bool)));
+    // connect(view ,SIGNAL(copyAvailable(bool)),\
+    //         copyAction , SLOT(setEnabled(bool)));
+    QMdiSubWindow * subWindow = mdiArea->addSubWindow(view);
+    windowsMenu->addAction(view->windowMenuAction());
+    windowActionGroup->addAction(view->windowMenuAction());
+    subWindow->show();
+}
+/**
+ * 保存一个模式文件
+ */
+void MainWindow::saveFile()
+{   
+    if(activeView())
+        activeView()->save();
+}
+
+void MainWindow::saveAsFile()
+{
+    if(activeView())
+        activeView()->saveAs();
+}
+
+
+/**
+ * 返回当前的活动窗口
+ * @return 返回的窗口
+ */
+GraphicsView * MainWindow::activeView()
+{
+    QMdiSubWindow * subWindow = mdiArea->activeSubWindow();
+    if(subWindow)
+        return qobject_cast<GraphicsView *>(subWindow->widget());
+    return 0;
+}
+
+void MainWindow::copy()
+{
+    if(activeView())
+        activeView()->copy();
+}
+
+void MainWindow::cut()
+{
+    if(activeView())
+        activeView()->cut();
+}
+void MainWindow::paste()
+{
+    if(activeView())
+        activeView()->paste();
+}
+
+void MainWindow::deleteobjs()
+{
+    if(activeView())
+        activeView()->deleteobjs();
+}
+
+
+void MainWindow::bringToFront()
+{
+    if(activeView())
+        activeView()->bringToFront();
+}
+
+void MainWindow::sendToBack()
+{
+    if(activeView())
+        activeView()->sendToBack();
+}
 
 void MainWindow::createProject(){}
 void MainWindow::closeProject(){}
 void MainWindow::openProject(){}
 
-void MainWindow::createNode(){}
-void MainWindow::alignHorizontal(){}
-void MainWindow::alignVertical(){}
-void MainWindow::addChildNode(){}
-void MainWindow::nodeSurfacceProperties(){}
-void MainWindow::infoProperties(){}
+void MainWindow::createNode()
+{
+    if(activeView())
+    {
+        if(activeView()->getMouserPos().isNull())
+            activeView()->createNode();//默认位置
+        else
+            activeView()->createNode(activeView()->getMouserPos());
+    }
+}
+void MainWindow::alignHorizontal()
+{
+    if(activeView())
+    {
+        QList<QGraphicsItem * > items = activeView()->scene()->selectedItems();
+        QList<Node * > nodes;
+        foreach(QGraphicsItem * item , items)
+        {
+            Node * node = dynamic_cast<Node *>(item);
+            if(node)
+                nodes.push_back(node);
+        }
+        activeView()->alignHorizontal(nodes);
+    }
+}
+void MainWindow::alignVertical()
+{
+    if(activeView())
+    {
+        QList<QGraphicsItem * > items = activeView()->scene()->selectedItems();
+        QList<Node * > nodes;
+        foreach(QGraphicsItem * item , items)
+        {
+            Node * node = dynamic_cast<Node *>(item);
+            if(node)
+                nodes.push_back(node);
+        }
+        activeView()->alignVertical(nodes);
+    }
+    
+}
+void MainWindow::addChildNode()
+{
+    if(activeView())
+    {
+        Node * fatherNode = activeView()->selectedNode();
+        if(fatherNode)
+            activeView()->addChildNode(fatherNode);
+    }
+}
+void MainWindow::nodeSurfacceProperties()
+{
+    if(activeView())
+    {
+        Node * node = activeView()->selectedNode();
+        if(node)
+            activeView()->nodeSurfacceProperties(node);
+    }
+}
+void MainWindow::infoProperties()
+{
+    if(activeView())
+    {
+        Node * node = activeView()->selectedNode();
+        if(node)
+            activeView()->infoProperties(node);
+    }
+}
 
-void MainWindow::createLink(){}
-void MainWindow::linkToChildNode(){}
-void MainWindow::linkToFatherNode(){}
-void MainWindow::linkMode(){}
-void MainWindow::transCode(){}
-void MainWindow::linkSurfacceProperties(){}
+void MainWindow::createLink()
+{
+    if(activeView())
+        activeView()->createLink();
+}
+void MainWindow::linkToChildNode()
+{
+    if(activeView())
+    {
+        Node * fatherNode = activeView()->selectedNode();
+        if(fatherNode)
+            activeView()->linkToChildNode(fatherNode);
+    }
+}
+void MainWindow::linkToFatherNode()
+{
+    if(activeView())
+    {
+        Node * childNode = activeView()->selectedNode();
+        if(childNode)
+            activeView()->linkToFatherNode(childNode);
+    }
+}
+void MainWindow::linkMode()
+{
+    if(activeView())
+        activeView()->linkMode();
+}
+void MainWindow::transCode()
+{
+    if(activeView())
+    {
+        Link * link = activeView()->selectedLink();
+        if(link)
+            activeView()->transCode(link);
+    }
+}
+void MainWindow::linkSurfacceProperties()
+{
+    if(activeView())
+    {
+        Link * link = activeView()->selectedLink();
+        if(link)
+            activeView()->linkSurfacceProperties(link);
+    }
+}
 
 void MainWindow::startToDebug(){}
 void MainWindow::startToDebugFromCurNode(){}
@@ -447,3 +644,13 @@ void MainWindow::about(){}
 void MainWindow::tutorial(){}
 
 void MainWindow::updateActions(){}
+
+
+void MainWindow::closeEvent(QCloseEvent * event)
+{
+    mdiArea->closeAllSubWindows();
+    if(!mdiArea->subWindowList().isEmpty())
+        event->ignore();
+    else
+        event->accept();
+}

@@ -5,15 +5,23 @@
 #include <QMdiArea>
 #include <QMainWindow>
 #include "GraphicsView.h"
+#include "node.h"
+#include "link.h"
+#include "entertranscodedialog.h"
 class QAction;
 class QActionGroup;
 class GraphicsView;//子类化QGraphicsView，添加了文件保存创建等等相关信息
+class QMdiArea;
+class QMenu;
+
 
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
 	MainWindow();
+protected:
+	void closeEvent(QCloseEvent * event);
 private slots:
 	/////////////////////
 	// actions对应的信号和槽 //
@@ -88,6 +96,7 @@ private:
 	QAction * openProjectAction;
 
 	/** 窗口actions */
+	QMenu * windowsMenu;
 	QAction * closeAction;
 	QAction * closeAllAction;
 	QAction * tileAction;
@@ -145,7 +154,7 @@ private:
 	 * 在mdiArea里面添加一个view
 	 * @param view 新建的view
 	 */
-	void addView(GraphicsView * view)
+	void addView(GraphicsView * view);
 	/**
 	 * 返回当前的活动窗口
 	 * @return 返回的窗口
