@@ -209,6 +209,8 @@ bool GraphicsView::writeFile(const QString & filename)
 			{
 				newNode->add_defaultaudio(qPrintable(defaultAudio));
 			}
+			//写入节点ID
+			newNode->set_nodeid(qPrintable(nodeItem->getNodeID()));
 			
 		}
 		else //就是Link
@@ -218,8 +220,8 @@ bool GraphicsView::writeFile(const QString & filename)
 			{
 				modeTable::Link * newLink = mtFile.add_linklist();
 				newLink->set_transcode(linkItem->getTransCode());
-				newLink->set_fromnodename(qPrintable(linkItem->getFromNode()->getText()));
-				newLink->set_tonodename(qPrintable(linkItem->getToNode()->getText()));
+				newLink->set_fromnodeid(qPrintable(linkItem->getFromNode()->getNodeID()));
+				newLink->set_tonodeid(qPrintable(linkItem->getToNode()->getNodeID()));
 			}
 		}
 	}
@@ -288,6 +290,7 @@ bool GraphicsView::readFile(const QString & filename)
 			defaultList.push_back(node.defaultaudio(i).c_str());
 		}
 		newNode->setDefaultAudioList(defaultList);
+		newNode->setNodeID(node.nodeid().c_str());
 		scene()->addItem(newNode);
 		nodes.push_back(newNode);
 	}
@@ -296,15 +299,15 @@ bool GraphicsView::readFile(const QString & filename)
 	{
 		modeTable::Link link = mtFile.linklist(i);
 		/** 构建线段的工作 */
-		QString fromNodeName = link.fromnodename().c_str(); 
-		QString toNodeName = link.tonodename().c_str();
+		QString fromNodeID = link.fromnodeid().c_str(); 
+		QString toNodeID = link.tonodeid().c_str();
 		Node * fromNode=0;
 		Node * toNode=0;
 		foreach(Node * node , nodes)
 		{
-			if(node->getText() == fromNodeName)
+			if(node->getNodeID() == fromNodeID)
 				fromNode = node;
-			else if(node->getText() == toNodeName)
+			else if(node->getNodeID() == toNodeID)
 				toNode = node;
 			if(fromNode && toNode)
 				break;
