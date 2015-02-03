@@ -1,0 +1,40 @@
+syntax="proto2";
+package modeTable;
+
+/**
+ * 这个文件用来保存各项模式表的零时信息
+ */
+
+
+/** 节点的存储格式 */
+message Node{
+	/** 位置信息 */
+	required double xPos=1;//x坐标
+	required double yPos=2;//y坐标
+
+	/** 外观信息 */
+	required string nodeName=3;//节点名字
+	required string textColor=4;//文本颜色
+	required string outlineColor=5;//外线颜色
+	required string backgroundColor=6;//背景颜色
+
+	/** 节点信息 */
+	optional string startAudio=7;//起始音频
+	optional string endAudio=8;//结束音频
+	repeated string defaultAudio=9;//多个默认音频
+}	
+
+/** 链接存储格式 */
+message Link{
+	required int32 transCode=1;//转移码
+
+	required string fromNodeName=4;//起始节点名字
+	required string toNodeName=5;//结束节点名字
+}
+
+
+/** mt file的存储格式 */
+message MTFile{
+	repeated Node nodeList=1;//包含多个节点
+	repeated Link LinkList=2;//包含多个链接
+}
