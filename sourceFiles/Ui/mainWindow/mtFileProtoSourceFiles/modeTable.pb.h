@@ -208,6 +208,18 @@ class Node : public ::google::protobuf::Message {
   inline const ::google::protobuf::RepeatedPtrField< ::std::string>& defaultaudio() const;
   inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_defaultaudio();
 
+  // required string nodeID = 10;
+  inline bool has_nodeid() const;
+  inline void clear_nodeid();
+  static const int kNodeIDFieldNumber = 10;
+  inline const ::std::string& nodeid() const;
+  inline void set_nodeid(const ::std::string& value);
+  inline void set_nodeid(const char* value);
+  inline void set_nodeid(const char* value, size_t size);
+  inline ::std::string* mutable_nodeid();
+  inline ::std::string* release_nodeid();
+  inline void set_allocated_nodeid(::std::string* nodeid);
+
   // @@protoc_insertion_point(class_scope:modeTable.Node)
  private:
   inline void set_has_xpos();
@@ -226,6 +238,8 @@ class Node : public ::google::protobuf::Message {
   inline void clear_has_startaudio();
   inline void set_has_endaudio();
   inline void clear_has_endaudio();
+  inline void set_has_nodeid();
+  inline void clear_has_nodeid();
 
   // helper for ByteSize()
   int RequiredFieldsByteSizeFallback() const;
@@ -242,6 +256,7 @@ class Node : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr startaudio_;
   ::google::protobuf::internal::ArenaStringPtr endaudio_;
   ::google::protobuf::RepeatedPtrField< ::std::string> defaultaudio_;
+  ::google::protobuf::internal::ArenaStringPtr nodeid_;
   friend void  protobuf_AddDesc_modeTable_2eproto();
   friend void protobuf_AssignDesc_modeTable_2eproto();
   friend void protobuf_ShutdownFile_modeTable_2eproto();
@@ -322,38 +337,38 @@ class Link : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 transcode() const;
   inline void set_transcode(::google::protobuf::int32 value);
 
-  // required string fromNodeName = 4;
-  inline bool has_fromnodename() const;
-  inline void clear_fromnodename();
-  static const int kFromNodeNameFieldNumber = 4;
-  inline const ::std::string& fromnodename() const;
-  inline void set_fromnodename(const ::std::string& value);
-  inline void set_fromnodename(const char* value);
-  inline void set_fromnodename(const char* value, size_t size);
-  inline ::std::string* mutable_fromnodename();
-  inline ::std::string* release_fromnodename();
-  inline void set_allocated_fromnodename(::std::string* fromnodename);
+  // required string fromNodeID = 4;
+  inline bool has_fromnodeid() const;
+  inline void clear_fromnodeid();
+  static const int kFromNodeIDFieldNumber = 4;
+  inline const ::std::string& fromnodeid() const;
+  inline void set_fromnodeid(const ::std::string& value);
+  inline void set_fromnodeid(const char* value);
+  inline void set_fromnodeid(const char* value, size_t size);
+  inline ::std::string* mutable_fromnodeid();
+  inline ::std::string* release_fromnodeid();
+  inline void set_allocated_fromnodeid(::std::string* fromnodeid);
 
-  // required string toNodeName = 5;
-  inline bool has_tonodename() const;
-  inline void clear_tonodename();
-  static const int kToNodeNameFieldNumber = 5;
-  inline const ::std::string& tonodename() const;
-  inline void set_tonodename(const ::std::string& value);
-  inline void set_tonodename(const char* value);
-  inline void set_tonodename(const char* value, size_t size);
-  inline ::std::string* mutable_tonodename();
-  inline ::std::string* release_tonodename();
-  inline void set_allocated_tonodename(::std::string* tonodename);
+  // required string toNodeID = 5;
+  inline bool has_tonodeid() const;
+  inline void clear_tonodeid();
+  static const int kToNodeIDFieldNumber = 5;
+  inline const ::std::string& tonodeid() const;
+  inline void set_tonodeid(const ::std::string& value);
+  inline void set_tonodeid(const char* value);
+  inline void set_tonodeid(const char* value, size_t size);
+  inline ::std::string* mutable_tonodeid();
+  inline ::std::string* release_tonodeid();
+  inline void set_allocated_tonodeid(::std::string* tonodeid);
 
   // @@protoc_insertion_point(class_scope:modeTable.Link)
  private:
   inline void set_has_transcode();
   inline void clear_has_transcode();
-  inline void set_has_fromnodename();
-  inline void clear_has_fromnodename();
-  inline void set_has_tonodename();
-  inline void clear_has_tonodename();
+  inline void set_has_fromnodeid();
+  inline void clear_has_fromnodeid();
+  inline void set_has_tonodeid();
+  inline void clear_has_tonodeid();
 
   // helper for ByteSize()
   int RequiredFieldsByteSizeFallback() const;
@@ -361,8 +376,8 @@ class Link : public ::google::protobuf::Message {
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::internal::ArenaStringPtr fromnodename_;
-  ::google::protobuf::internal::ArenaStringPtr tonodename_;
+  ::google::protobuf::internal::ArenaStringPtr fromnodeid_;
+  ::google::protobuf::internal::ArenaStringPtr tonodeid_;
   ::google::protobuf::int32 transcode_;
   friend void  protobuf_AddDesc_modeTable_2eproto();
   friend void protobuf_AssignDesc_modeTable_2eproto();
@@ -903,6 +918,59 @@ Node::mutable_defaultaudio() {
   return &defaultaudio_;
 }
 
+// required string nodeID = 10;
+inline bool Node::has_nodeid() const {
+  return (_has_bits_[0] & 0x00000200u) != 0;
+}
+inline void Node::set_has_nodeid() {
+  _has_bits_[0] |= 0x00000200u;
+}
+inline void Node::clear_has_nodeid() {
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline void Node::clear_nodeid() {
+  nodeid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_nodeid();
+}
+inline const ::std::string& Node::nodeid() const {
+  // @@protoc_insertion_point(field_get:modeTable.Node.nodeID)
+  return nodeid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Node::set_nodeid(const ::std::string& value) {
+  set_has_nodeid();
+  nodeid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:modeTable.Node.nodeID)
+}
+inline void Node::set_nodeid(const char* value) {
+  set_has_nodeid();
+  nodeid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:modeTable.Node.nodeID)
+}
+inline void Node::set_nodeid(const char* value, size_t size) {
+  set_has_nodeid();
+  nodeid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:modeTable.Node.nodeID)
+}
+inline ::std::string* Node::mutable_nodeid() {
+  set_has_nodeid();
+  // @@protoc_insertion_point(field_mutable:modeTable.Node.nodeID)
+  return nodeid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Node::release_nodeid() {
+  clear_has_nodeid();
+  return nodeid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Node::set_allocated_nodeid(::std::string* nodeid) {
+  if (nodeid != NULL) {
+    set_has_nodeid();
+  } else {
+    clear_has_nodeid();
+  }
+  nodeid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), nodeid);
+  // @@protoc_insertion_point(field_set_allocated:modeTable.Node.nodeID)
+}
+
 // -------------------------------------------------------------------
 
 // Link
@@ -931,110 +999,110 @@ inline void Link::set_transcode(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:modeTable.Link.transCode)
 }
 
-// required string fromNodeName = 4;
-inline bool Link::has_fromnodename() const {
+// required string fromNodeID = 4;
+inline bool Link::has_fromnodeid() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void Link::set_has_fromnodename() {
+inline void Link::set_has_fromnodeid() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void Link::clear_has_fromnodename() {
+inline void Link::clear_has_fromnodeid() {
   _has_bits_[0] &= ~0x00000002u;
 }
-inline void Link::clear_fromnodename() {
-  fromnodename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_fromnodename();
+inline void Link::clear_fromnodeid() {
+  fromnodeid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_fromnodeid();
 }
-inline const ::std::string& Link::fromnodename() const {
-  // @@protoc_insertion_point(field_get:modeTable.Link.fromNodeName)
-  return fromnodename_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline const ::std::string& Link::fromnodeid() const {
+  // @@protoc_insertion_point(field_get:modeTable.Link.fromNodeID)
+  return fromnodeid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void Link::set_fromnodename(const ::std::string& value) {
-  set_has_fromnodename();
-  fromnodename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:modeTable.Link.fromNodeName)
+inline void Link::set_fromnodeid(const ::std::string& value) {
+  set_has_fromnodeid();
+  fromnodeid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:modeTable.Link.fromNodeID)
 }
-inline void Link::set_fromnodename(const char* value) {
-  set_has_fromnodename();
-  fromnodename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:modeTable.Link.fromNodeName)
+inline void Link::set_fromnodeid(const char* value) {
+  set_has_fromnodeid();
+  fromnodeid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:modeTable.Link.fromNodeID)
 }
-inline void Link::set_fromnodename(const char* value, size_t size) {
-  set_has_fromnodename();
-  fromnodename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+inline void Link::set_fromnodeid(const char* value, size_t size) {
+  set_has_fromnodeid();
+  fromnodeid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:modeTable.Link.fromNodeName)
+  // @@protoc_insertion_point(field_set_pointer:modeTable.Link.fromNodeID)
 }
-inline ::std::string* Link::mutable_fromnodename() {
-  set_has_fromnodename();
-  // @@protoc_insertion_point(field_mutable:modeTable.Link.fromNodeName)
-  return fromnodename_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline ::std::string* Link::mutable_fromnodeid() {
+  set_has_fromnodeid();
+  // @@protoc_insertion_point(field_mutable:modeTable.Link.fromNodeID)
+  return fromnodeid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* Link::release_fromnodename() {
-  clear_has_fromnodename();
-  return fromnodename_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline ::std::string* Link::release_fromnodeid() {
+  clear_has_fromnodeid();
+  return fromnodeid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void Link::set_allocated_fromnodename(::std::string* fromnodename) {
-  if (fromnodename != NULL) {
-    set_has_fromnodename();
+inline void Link::set_allocated_fromnodeid(::std::string* fromnodeid) {
+  if (fromnodeid != NULL) {
+    set_has_fromnodeid();
   } else {
-    clear_has_fromnodename();
+    clear_has_fromnodeid();
   }
-  fromnodename_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), fromnodename);
-  // @@protoc_insertion_point(field_set_allocated:modeTable.Link.fromNodeName)
+  fromnodeid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), fromnodeid);
+  // @@protoc_insertion_point(field_set_allocated:modeTable.Link.fromNodeID)
 }
 
-// required string toNodeName = 5;
-inline bool Link::has_tonodename() const {
+// required string toNodeID = 5;
+inline bool Link::has_tonodeid() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void Link::set_has_tonodename() {
+inline void Link::set_has_tonodeid() {
   _has_bits_[0] |= 0x00000004u;
 }
-inline void Link::clear_has_tonodename() {
+inline void Link::clear_has_tonodeid() {
   _has_bits_[0] &= ~0x00000004u;
 }
-inline void Link::clear_tonodename() {
-  tonodename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  clear_has_tonodename();
+inline void Link::clear_tonodeid() {
+  tonodeid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_tonodeid();
 }
-inline const ::std::string& Link::tonodename() const {
-  // @@protoc_insertion_point(field_get:modeTable.Link.toNodeName)
-  return tonodename_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline const ::std::string& Link::tonodeid() const {
+  // @@protoc_insertion_point(field_get:modeTable.Link.toNodeID)
+  return tonodeid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void Link::set_tonodename(const ::std::string& value) {
-  set_has_tonodename();
-  tonodename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:modeTable.Link.toNodeName)
+inline void Link::set_tonodeid(const ::std::string& value) {
+  set_has_tonodeid();
+  tonodeid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:modeTable.Link.toNodeID)
 }
-inline void Link::set_tonodename(const char* value) {
-  set_has_tonodename();
-  tonodename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:modeTable.Link.toNodeName)
+inline void Link::set_tonodeid(const char* value) {
+  set_has_tonodeid();
+  tonodeid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:modeTable.Link.toNodeID)
 }
-inline void Link::set_tonodename(const char* value, size_t size) {
-  set_has_tonodename();
-  tonodename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+inline void Link::set_tonodeid(const char* value, size_t size) {
+  set_has_tonodeid();
+  tonodeid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:modeTable.Link.toNodeName)
+  // @@protoc_insertion_point(field_set_pointer:modeTable.Link.toNodeID)
 }
-inline ::std::string* Link::mutable_tonodename() {
-  set_has_tonodename();
-  // @@protoc_insertion_point(field_mutable:modeTable.Link.toNodeName)
-  return tonodename_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline ::std::string* Link::mutable_tonodeid() {
+  set_has_tonodeid();
+  // @@protoc_insertion_point(field_mutable:modeTable.Link.toNodeID)
+  return tonodeid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* Link::release_tonodename() {
-  clear_has_tonodename();
-  return tonodename_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline ::std::string* Link::release_tonodeid() {
+  clear_has_tonodeid();
+  return tonodeid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void Link::set_allocated_tonodename(::std::string* tonodename) {
-  if (tonodename != NULL) {
-    set_has_tonodename();
+inline void Link::set_allocated_tonodeid(::std::string* tonodeid) {
+  if (tonodeid != NULL) {
+    set_has_tonodeid();
   } else {
-    clear_has_tonodename();
+    clear_has_tonodeid();
   }
-  tonodename_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), tonodename);
-  // @@protoc_insertion_point(field_set_allocated:modeTable.Link.toNodeName)
+  tonodeid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), tonodeid);
+  // @@protoc_insertion_point(field_set_allocated:modeTable.Link.toNodeID)
 }
 
 // -------------------------------------------------------------------

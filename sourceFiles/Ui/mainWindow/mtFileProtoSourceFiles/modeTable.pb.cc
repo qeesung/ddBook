@@ -40,7 +40,7 @@ void protobuf_AssignDesc_modeTable_2eproto() {
       "modeTable.proto");
   GOOGLE_CHECK(file != NULL);
   Node_descriptor_ = file->message_type(0);
-  static const int Node_offsets_[9] = {
+  static const int Node_offsets_[10] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, xpos_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, ypos_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, nodename_),
@@ -50,6 +50,7 @@ void protobuf_AssignDesc_modeTable_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, startaudio_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, endaudio_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, defaultaudio_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, nodeid_),
   };
   Node_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -65,8 +66,8 @@ void protobuf_AssignDesc_modeTable_2eproto() {
   Link_descriptor_ = file->message_type(1);
   static const int Link_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Link, transcode_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Link, fromnodename_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Link, tonodename_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Link, fromnodeid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Link, tonodeid_),
   };
   Link_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -133,15 +134,16 @@ void protobuf_AddDesc_modeTable_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\017modeTable.proto\022\tmodeTable\"\262\001\n\004Node\022\014\n"
+    "\n\017modeTable.proto\022\tmodeTable\"\302\001\n\004Node\022\014\n"
     "\004xPos\030\001 \002(\001\022\014\n\004yPos\030\002 \002(\001\022\020\n\010nodeName\030\003 "
     "\002(\t\022\021\n\ttextColor\030\004 \002(\t\022\024\n\014outlineColor\030\005"
     " \002(\t\022\027\n\017backgroundColor\030\006 \002(\t\022\022\n\nstartAu"
     "dio\030\007 \001(\t\022\020\n\010endAudio\030\010 \001(\t\022\024\n\014defaultAu"
-    "dio\030\t \003(\t\"C\n\004Link\022\021\n\ttransCode\030\001 \002(\005\022\024\n\014"
-    "fromNodeName\030\004 \002(\t\022\022\n\ntoNodeName\030\005 \002(\t\"N"
-    "\n\006MTFile\022!\n\010nodeList\030\001 \003(\0132\017.modeTable.N"
-    "ode\022!\n\010LinkList\030\002 \003(\0132\017.modeTable.Link", 358);
+    "dio\030\t \003(\t\022\016\n\006nodeID\030\n \002(\t\"\?\n\004Link\022\021\n\ttra"
+    "nsCode\030\001 \002(\005\022\022\n\nfromNodeID\030\004 \002(\t\022\020\n\010toNo"
+    "deID\030\005 \002(\t\"N\n\006MTFile\022!\n\010nodeList\030\001 \003(\0132\017"
+    ".modeTable.Node\022!\n\010LinkList\030\002 \003(\0132\017.mode"
+    "Table.Link", 370);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "modeTable.proto", &protobuf_RegisterTypes);
   Node::default_instance_ = new Node();
@@ -182,6 +184,7 @@ const int Node::kBackgroundColorFieldNumber;
 const int Node::kStartAudioFieldNumber;
 const int Node::kEndAudioFieldNumber;
 const int Node::kDefaultAudioFieldNumber;
+const int Node::kNodeIDFieldNumber;
 #endif  // !_MSC_VER
 
 Node::Node()
@@ -212,6 +215,7 @@ void Node::SharedCtor() {
   backgroundcolor_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   startaudio_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   endaudio_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  nodeid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -227,6 +231,7 @@ void Node::SharedDtor() {
   backgroundcolor_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   startaudio_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   endaudio_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  nodeid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
 }
@@ -287,6 +292,9 @@ void Node::Clear() {
     if (has_endaudio()) {
       endaudio_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
+  }
+  if (has_nodeid()) {
+    nodeid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
 
 #undef OFFSET_OF_FIELD_
@@ -455,6 +463,23 @@ bool Node::MergePartialFromCodedStream(
           goto handle_unusual;
         }
         if (input->ExpectTag(74)) goto parse_defaultAudio;
+        if (input->ExpectTag(82)) goto parse_nodeID;
+        break;
+      }
+
+      // required string nodeID = 10;
+      case 10: {
+        if (tag == 82) {
+         parse_nodeID:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_nodeid()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->nodeid().data(), this->nodeid().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "modeTable.Node.nodeID");
+        } else {
+          goto handle_unusual;
+        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -564,6 +589,16 @@ void Node::SerializeWithCachedSizes(
       9, this->defaultaudio(i), output);
   }
 
+  // required string nodeID = 10;
+  if (has_nodeid()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->nodeid().data(), this->nodeid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.nodeID");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      10, this->nodeid(), output);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -660,6 +695,17 @@ void Node::SerializeWithCachedSizes(
       WriteStringToArray(9, this->defaultaudio(i), target);
   }
 
+  // required string nodeID = 10;
+  if (has_nodeid()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->nodeid().data(), this->nodeid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.nodeID");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        10, this->nodeid(), target);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -709,12 +755,19 @@ int Node::RequiredFieldsByteSizeFallback() const {
         this->backgroundcolor());
   }
 
+  if (has_nodeid()) {
+    // required string nodeID = 10;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->nodeid());
+  }
+
   return total_size;
 }
 int Node::ByteSize() const {
   int total_size = 0;
 
-  if (((_has_bits_[0] & 0x0000003f) ^ 0x0000003f) == 0) {  // All required fields are present.
+  if (((_has_bits_[0] & 0x0000023f) ^ 0x0000023f) == 0) {  // All required fields are present.
     // required double xPos = 1;
     total_size += 1 + 8;
 
@@ -740,6 +793,11 @@ int Node::ByteSize() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->backgroundcolor());
+
+    // required string nodeID = 10;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->nodeid());
 
   } else {
     total_size += RequiredFieldsByteSizeFallback();
@@ -825,6 +883,12 @@ void Node::MergeFrom(const Node& from) {
       endaudio_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.endaudio_);
     }
   }
+  if (from._has_bits_[9 / 32] & (0xffu << (9 % 32))) {
+    if (from.has_nodeid()) {
+      set_has_nodeid();
+      nodeid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.nodeid_);
+    }
+  }
   if (from._internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->MergeFrom(from.unknown_fields());
   }
@@ -843,7 +907,7 @@ void Node::CopyFrom(const Node& from) {
 }
 
 bool Node::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000003f) != 0x0000003f) return false;
+  if ((_has_bits_[0] & 0x0000023f) != 0x0000023f) return false;
 
   return true;
 }
@@ -862,6 +926,7 @@ void Node::InternalSwap(Node* other) {
   startaudio_.Swap(&other->startaudio_);
   endaudio_.Swap(&other->endaudio_);
   defaultaudio_.UnsafeArenaSwap(&other->defaultaudio_);
+  nodeid_.Swap(&other->nodeid_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -880,8 +945,8 @@ void Node::InternalSwap(Node* other) {
 
 #ifndef _MSC_VER
 const int Link::kTransCodeFieldNumber;
-const int Link::kFromNodeNameFieldNumber;
-const int Link::kToNodeNameFieldNumber;
+const int Link::kFromNodeIDFieldNumber;
+const int Link::kToNodeIDFieldNumber;
 #endif  // !_MSC_VER
 
 Link::Link()
@@ -905,8 +970,8 @@ void Link::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
   transcode_ = 0;
-  fromnodename_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  tonodename_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  fromnodeid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  tonodeid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -916,8 +981,8 @@ Link::~Link() {
 }
 
 void Link::SharedDtor() {
-  fromnodename_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  tonodename_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  fromnodeid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  tonodeid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
 }
@@ -950,11 +1015,11 @@ Link* Link::New(::google::protobuf::Arena* arena) const {
 void Link::Clear() {
   if (_has_bits_[0 / 32] & 7) {
     transcode_ = 0;
-    if (has_fromnodename()) {
-      fromnodename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    if (has_fromnodeid()) {
+      fromnodeid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
-    if (has_tonodename()) {
-      tonodename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    if (has_tonodeid()) {
+      tonodeid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -983,37 +1048,37 @@ bool Link::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_fromNodeName;
+        if (input->ExpectTag(34)) goto parse_fromNodeID;
         break;
       }
 
-      // required string fromNodeName = 4;
+      // required string fromNodeID = 4;
       case 4: {
         if (tag == 34) {
-         parse_fromNodeName:
+         parse_fromNodeID:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_fromnodename()));
+                input, this->mutable_fromnodeid()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->fromnodename().data(), this->fromnodename().length(),
+            this->fromnodeid().data(), this->fromnodeid().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
-            "modeTable.Link.fromNodeName");
+            "modeTable.Link.fromNodeID");
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_toNodeName;
+        if (input->ExpectTag(42)) goto parse_toNodeID;
         break;
       }
 
-      // required string toNodeName = 5;
+      // required string toNodeID = 5;
       case 5: {
         if (tag == 42) {
-         parse_toNodeName:
+         parse_toNodeID:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_tonodename()));
+                input, this->mutable_tonodeid()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->tonodename().data(), this->tonodename().length(),
+            this->tonodeid().data(), this->tonodeid().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
-            "modeTable.Link.toNodeName");
+            "modeTable.Link.toNodeID");
         } else {
           goto handle_unusual;
         }
@@ -1051,24 +1116,24 @@ void Link::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->transcode(), output);
   }
 
-  // required string fromNodeName = 4;
-  if (has_fromnodename()) {
+  // required string fromNodeID = 4;
+  if (has_fromnodeid()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->fromnodename().data(), this->fromnodename().length(),
+      this->fromnodeid().data(), this->fromnodeid().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "modeTable.Link.fromNodeName");
+      "modeTable.Link.fromNodeID");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->fromnodename(), output);
+      4, this->fromnodeid(), output);
   }
 
-  // required string toNodeName = 5;
-  if (has_tonodename()) {
+  // required string toNodeID = 5;
+  if (has_tonodeid()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->tonodename().data(), this->tonodename().length(),
+      this->tonodeid().data(), this->tonodeid().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "modeTable.Link.toNodeName");
+      "modeTable.Link.toNodeID");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      5, this->tonodename(), output);
+      5, this->tonodeid(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1086,26 +1151,26 @@ void Link::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->transcode(), target);
   }
 
-  // required string fromNodeName = 4;
-  if (has_fromnodename()) {
+  // required string fromNodeID = 4;
+  if (has_fromnodeid()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->fromnodename().data(), this->fromnodename().length(),
+      this->fromnodeid().data(), this->fromnodeid().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "modeTable.Link.fromNodeName");
+      "modeTable.Link.fromNodeID");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->fromnodename(), target);
+        4, this->fromnodeid(), target);
   }
 
-  // required string toNodeName = 5;
-  if (has_tonodename()) {
+  // required string toNodeID = 5;
+  if (has_tonodeid()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->tonodename().data(), this->tonodename().length(),
+      this->tonodeid().data(), this->tonodeid().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "modeTable.Link.toNodeName");
+      "modeTable.Link.toNodeID");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->tonodename(), target);
+        5, this->tonodeid(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1126,18 +1191,18 @@ int Link::RequiredFieldsByteSizeFallback() const {
         this->transcode());
   }
 
-  if (has_fromnodename()) {
-    // required string fromNodeName = 4;
+  if (has_fromnodeid()) {
+    // required string fromNodeID = 4;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->fromnodename());
+        this->fromnodeid());
   }
 
-  if (has_tonodename()) {
-    // required string toNodeName = 5;
+  if (has_tonodeid()) {
+    // required string toNodeID = 5;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->tonodename());
+        this->tonodeid());
   }
 
   return total_size;
@@ -1151,15 +1216,15 @@ int Link::ByteSize() const {
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->transcode());
 
-    // required string fromNodeName = 4;
+    // required string fromNodeID = 4;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->fromnodename());
+        this->fromnodeid());
 
-    // required string toNodeName = 5;
+    // required string toNodeID = 5;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->tonodename());
+        this->tonodeid());
 
   } else {
     total_size += RequiredFieldsByteSizeFallback();
@@ -1193,13 +1258,13 @@ void Link::MergeFrom(const Link& from) {
     if (from.has_transcode()) {
       set_transcode(from.transcode());
     }
-    if (from.has_fromnodename()) {
-      set_has_fromnodename();
-      fromnodename_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.fromnodename_);
+    if (from.has_fromnodeid()) {
+      set_has_fromnodeid();
+      fromnodeid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.fromnodeid_);
     }
-    if (from.has_tonodename()) {
-      set_has_tonodename();
-      tonodename_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.tonodename_);
+    if (from.has_tonodeid()) {
+      set_has_tonodeid();
+      tonodeid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.tonodeid_);
     }
   }
   if (from._internal_metadata_.have_unknown_fields()) {
@@ -1231,8 +1296,8 @@ void Link::Swap(Link* other) {
 }
 void Link::InternalSwap(Link* other) {
   std::swap(transcode_, other->transcode_);
-  fromnodename_.Swap(&other->fromnodename_);
-  tonodename_.Swap(&other->tonodename_);
+  fromnodeid_.Swap(&other->fromnodeid_);
+  tonodeid_.Swap(&other->tonodeid_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);

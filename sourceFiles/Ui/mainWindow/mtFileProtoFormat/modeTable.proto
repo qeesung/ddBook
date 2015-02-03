@@ -22,14 +22,17 @@ message Node{
 	optional string startAudio=7;//起始音频
 	optional string endAudio=8;//结束音频
 	repeated string defaultAudio=9;//多个默认音频
+
+	/** 唯一的ID标示 */
+	required string nodeID=10;
 }	
 
 /** 链接存储格式 */
 message Link{
 	required int32 transCode=1;//转移码
 
-	required string fromNodeName=4;//起始节点名字
-	required string toNodeName=5;//结束节点名字
+	required string fromNodeID=4;//起始节点名字
+	required string toNodeID=5;//结束节点名字
 }
 
 
