@@ -118,7 +118,7 @@ QPointF Link::getCircleCenter() const
 	QPointF intersectionPoint;
 	QLineF curLine = QLineF(fromNode->pos() , toNode->pos());
 	//左边界
-	QString str = QString("%1 %2").arg(toNode->pos().x()).arg(toNode->pos().y());
+	//QString str = QString("%1 %2").arg(toNode->pos().x()).arg(toNode->pos().y());
 	// qDebug(qPrintable(str));
 	QPointF topLeft = toNode->pos();
 	topLeft.rx()-=rect.width()/2;
@@ -151,7 +151,7 @@ QPointF Link::getCircleCenter() const
 		return intersectionPoint;
 	else
 	{
-		QString debugMsg = QString("Can not get intersectionPoint ---x:%1  y:%2").\
+		//QString debugMsg = QString("Can not get intersectionPoint ---x:%1  y:%2").\
 										arg(intersectionPoint.x()).arg(intersectionPoint.y());
 		// qDebug(qPrintable(debugMsg));
 		return intersectionPoint;
