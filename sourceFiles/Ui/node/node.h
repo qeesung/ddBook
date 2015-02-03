@@ -6,6 +6,7 @@
 #include <QColor>
 #include <QGraphicsItem>
 #include <QSet>
+#include <QDateTime>
 // #include <GraphicsItemChange>
 class Link;
 
@@ -53,6 +54,9 @@ public:
 	void removeDefaultAudio(const QString & audioFilename){defaultAudioList.removeOne(audioFilename);}
 	QStringList getDefaultAudioList() const{return defaultAudioList;}
 
+	void setNodeID(const QString & IDStr){nodeID = IDStr;}
+	QString getNodeID() const{return nodeID;}
+
 protected:
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event);
 	QVariant itemChange(GraphicsItemChange change , const QVariant & value);
@@ -69,6 +73,9 @@ private:
 	QString startAudio;
 	QString endAudio;
 	QStringList defaultAudioList;
+
+	/** node的唯一ID标示 */
+	QString nodeID;
 
 };
 

@@ -24,6 +24,11 @@ Node::Node()
 	outlineColor = Qt::darkRed;
 	backgroundColor = Qt::darkGreen;
 
+	/** 设置唯一标示ID */
+	QDateTime time(QDate::currentDate(), QTime::currentTime());
+	QString timeStr = QString("%1").arg(time.toMSecsSinceEpoch());
+	setNodeID(timeStr);
+
 	this->setFlags(ItemIsMovable | ItemIsSelectable | ItemSendsGeometryChanges);
 }
 
