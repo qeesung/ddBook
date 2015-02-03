@@ -12,7 +12,7 @@ EnterTransCodeDialog::EnterTransCodeDialog(Link * link , QWidget * parent):QDial
 	label = new QLabel("Enter the transCode:(only number)");
 	lineEdit = new QLineEdit;
 	lineEdit->setText(QString("%1").arg(link->getTransCode()));
-	lineEdit->setSelection(0,text().count());
+	lineEdit->setSelection(0,lineEdit->text().count());
 	okButton = new QPushButton("  Ok  ");
 	okButton->setEnabled(false);
 	cancelButton = new QPushButton("Cancel");

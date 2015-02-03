@@ -20,12 +20,12 @@ Link::Link(Node * _fromNode , Node * _toNode)
 	setColor(Qt::darkRed);
 	setTransCode(-1);
 	/** 在创建线段的时候要求用户输入对应的转移码 */
-	EnterTransCodeDialog * transCodeDialog = new EnterTransCodeDialog;
-	if(transCodeDialog -> exec() == QDialog::Accepted)
-	{
-		setTransCode(transCodeDialog->getTransCode());
-	}
-	trackNode();
+	// EnterTransCodeDialog * transCodeDialog = new EnterTransCodeDialog(this);
+	// if(transCodeDialog -> exec() == QDialog::Accepted)
+	// {
+	// 	setTransCode(transCodeDialog->getTransCode());
+	// }
+	// trackNode();
 }
 
 
@@ -119,7 +119,7 @@ QPointF Link::getCircleCenter() const
 	QLineF curLine = QLineF(fromNode->pos() , toNode->pos());
 	//左边界
 	QString str = QString("%1 %2").arg(toNode->pos().x()).arg(toNode->pos().y());
-	qDebug(qPrintable(str));
+	// qDebug(qPrintable(str));
 	QPointF topLeft = toNode->pos();
 	topLeft.rx()-=rect.width()/2;
 	topLeft.ry()-=rect.height()/2;
@@ -153,7 +153,7 @@ QPointF Link::getCircleCenter() const
 	{
 		QString debugMsg = QString("Can not get intersectionPoint ---x:%1  y:%2").\
 										arg(intersectionPoint.x()).arg(intersectionPoint.y());
-		qDebug(qPrintable(debugMsg));
+		// qDebug(qPrintable(debugMsg));
 		return intersectionPoint;
 	}
 }
