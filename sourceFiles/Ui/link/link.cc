@@ -15,7 +15,7 @@ Link::Link(Node * _fromNode , Node * _toNode)
 	toNode->addLink(this);
 
 	setFlags(QGraphicsItem::ItemIsSelectable);
-	setZValue(-1);
+	setZValue(LINEZVALUE);
 
 	setColor(Qt::darkRed);
 	setTransCode(-1);

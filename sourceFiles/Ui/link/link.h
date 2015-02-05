@@ -4,6 +4,7 @@
 #include <QGraphicsLineItem>
 #include "node.h"
 #include <QString>
+#define LINEZVALUE -100000000000
 
 /**
  * 这里定义的是链接节点之间的线段的类
