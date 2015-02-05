@@ -105,7 +105,8 @@ bool GraphicsView::saveAs()
 		tr("Save md table"),\
 		"~/",\
 		tr("mode table files (*.mt)"));
-	filename+=".mt";
+	if(filename.mid(filename.count()-3) != QString(".mt"))
+		filename+=".mt";
 	if(filename.isEmpty())
 		return false;
 	return saveFile(filename);
