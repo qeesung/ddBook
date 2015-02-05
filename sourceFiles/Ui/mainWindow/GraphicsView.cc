@@ -29,6 +29,7 @@ GraphicsView::GraphicsView(QWidget * parent):QGraphicsView(parent)
     /** 用户的可选模式 圈选 */
     setDragMode(QGraphicsView::RubberBandDrag);
     setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
+    setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
     /** 上下文的菜当选项 */
     setContextMenuPolicy(Qt::ActionsContextMenu);
