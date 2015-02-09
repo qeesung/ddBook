@@ -620,6 +620,12 @@ void MainWindow::nodeSurfacceProperties()
         Node * node = activeView()->selectedNode();
         if(node)
             activeView()->nodeSurfacceProperties(node);
+        else
+        {
+            QList<Node *> nodes = activeView()->selectedNodes();
+            if(nodes.count() != 0)
+                activeView()->nodesSurfacceProperties(nodes);//批量修改节点外观
+        }
     }
 }
 void MainWindow::infoProperties()

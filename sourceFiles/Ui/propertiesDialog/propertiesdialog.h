@@ -33,6 +33,17 @@ public:
 	int xValue() const {return spinBox->value();}
 	int yValue() const {return spinBox_2->value();}
 
+
+	void disableSetPosName()
+	{
+		spinBox->clear();
+		spinBox_2->clear();
+		spinBox->setDisabled(true);
+		spinBox_2->setDisabled(true);
+		lineEdit->setDisabled(true);
+		lineEdit->clear();
+	}
+
 public slots:
 	void selectTextColor();
 	void selectOutlineColor();

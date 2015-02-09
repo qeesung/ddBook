@@ -58,6 +58,7 @@ public:
 	void alignVertical(QList<Node *> selectedNodes); 
 	void addChildNode(Node * fatherNode);
 	void nodeSurfacceProperties(Node * node);
+	void nodesSurfacceProperties(QList<Node *> nodes);
 	void infoProperties(Node * node);
 
 	/**
@@ -84,6 +85,7 @@ public:
 
 	/** 节点操作的相关操作 */
 	Node * selectedNode() const;
+	QList<Node *> selectedNodes() const;
 	Link * selectedLink() const;
 	NodePair selectedNodePair() const;
 protected:

@@ -388,6 +388,21 @@ Node * GraphicsView::selectedNode() const
 		return 0;
 }
 
+/** 返回选中的多个节点 */
+QList<Node *> GraphicsView::selectedNodes() const
+{	
+	QList<QGraphicsItem *> items = scene()->selectedItems();
+	QList<Node *> nodes;
+	foreach(QGraphicsItem * item , items)
+	{
+		Node * node = dynamic_cast<Node *>(item);
+
+		if(node != NULL)
+			nodes.push_back(node);
+	}
+	return nodes;
+}
+
 void GraphicsView::alignHorizontal(QList<Node *> nodes)
 {
 	//水平对齐的话是以y为标准
@@ -451,6 +466,25 @@ void GraphicsView::nodeSurfacceProperties(Node * node)
 		node->setOutlineColor(dialog->getOutlineColor());
 		node->setBackgroundColor(dialog->getBackgroundColor());
 		node->setText(dialog->getText());
+	}
+}
+
+/** 批量修改节点外观 */
+void GraphicsView::nodesSurfacceProperties(QList<Node *> nodes)
+{
+	//采取第一个节点的信息
+	PropertiesDialog * dialog = new PropertiesDialog(scene() , nodes[0]);
+	dialog->show();
+	//把设置节点位置关闭
+	dialog->disableSetPosName();
+	if(dialog->exec() == QDialog::Accepted)
+	{
+		foreach(Node * node , nodes)
+		{
+			node->setTextColor(dialog->getTextColor());
+			node->setOutlineColor(dialog->getOutlineColor());
+			node->setBackgroundColor(dialog->getBackgroundColor());
+		}
 	}
 }
 
