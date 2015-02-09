@@ -339,6 +339,8 @@ Node * GraphicsView::createNode(const QPointF & pos)
 	node->setText(tr("Node %1").arg(seqNumber+1));
 	node->setPos(pos);
 	++seqNumber;
+
+	scene()->addItem(node);
 	scene()->clearSelection();
 	node->setSelected(true);
 	bringToFront();
@@ -441,6 +443,15 @@ void GraphicsView::addChildNode(Node * fatherNode)
 void GraphicsView::nodeSurfacceProperties(Node * node)
 {
 	PropertiesDialog * dialog = new PropertiesDialog(scene() , node);//现在就可以修改外观了
+	dialog->show();
+	if(dialog->exec() == QDialog::Accepted)
+	{
+		node->setPos(QPointF(dialog->xValue() , dialog->yValue()));
+		node->setTextColor(dialog->getTextColor());
+		node->setOutlineColor(dialog->getOutlineColor());
+		node->setBackgroundColor(dialog->getBackgroundColor());
+		node->setText(dialog->getText());
+	}
 }
 
 /** 设置节点信息 */

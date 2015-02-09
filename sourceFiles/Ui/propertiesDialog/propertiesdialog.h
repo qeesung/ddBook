@@ -30,8 +30,8 @@ public:
 	QColor getBackgroundColor() const {return backgroundColor;}
 	QString getText()const {return lineEdit->text();}
 
-	int x() const {return spinBox->value();}
-	int y() const {return spinBox_2->value();}
+	int xValue() const {return spinBox->value();}
+	int yValue() const {return spinBox_2->value();}
 
 public slots:
 	void selectTextColor();

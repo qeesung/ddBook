@@ -5,6 +5,7 @@
 #include <QColor>
 #include <QString>
 #include <QColorDialog>
+#include <limits.h>
 #include "node.h"
 #include "link.h"
 
@@ -15,12 +16,12 @@ PropertiesDialog::PropertiesDialog(QGraphicsScene * scene ,  Node * _node , QWid
 	setTextColor(node->getTextColor());
 	setOutlineColor(node->getOutlineColor());
 	setBackgroundColor(node->getBackgroundColor());
-	spinBox->setRange(0,scene->sceneRect().width());
-	spinBox_2->setRange(0,scene->sceneRect().height());
+	spinBox->setRange(INT_MIN,scene->sceneRect().width());
+	spinBox_2->setRange(INT_MIN,scene->sceneRect().height());
 /*	setX(node->x());
 	setY(node->y());*/
-	spinBox->setValue(node->x());
-	spinBox_2->setValue(node->y());
+	spinBox->setValue(node->scenePos().x());
+	spinBox_2->setValue(node->scenePos().y());
 	lineEdit->setText(node->getText());
 
 	connect(pushButton , SIGNAL(clicked()),this , SLOT(selectTextColor()));
