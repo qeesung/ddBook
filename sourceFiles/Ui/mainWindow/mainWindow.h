@@ -38,9 +38,9 @@ private slots:
 	void bringToFront();
 	void sendToBack();
 
-	void createProject();
-	void closeProject();
-	void openProject();
+	// void createProject();
+	// void closeProject();
+	// void openProject();
 
 	void createNode();
 	void alignHorizontal();
@@ -91,9 +91,9 @@ private:
 	QAction * sendToBackAction;//将选中节点移到底层
 
 	/** 工程actions */
-	QAction * createProjectAction;
-	QAction * closeProjectAction;
-	QAction * openProjectAction;
+	// QAction * createProjectAction;
+	// QAction * closeProjectAction;
+	// QAction * openProjectAction;
 
 	/** 窗口actions */
 	QMenu * windowsMenu;
@@ -165,6 +165,13 @@ private:
 	//一些必要的窗口部件 //
 	///////////////
 	QMdiArea * mdiArea;//实现多窗口
+
+	/**
+	 * 与project相关
+	 */
+	// QString projectName;
+	// QString projectPath;
+	// ProjectTreeWidget * projectTreeWidget;
 
 };
 

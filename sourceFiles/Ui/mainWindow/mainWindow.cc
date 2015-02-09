@@ -1,4 +1,5 @@
 #include "mainWindow.h"
+#include <QDir>
 #include <QDebug>
 #include <QtGui>
 
@@ -11,6 +12,7 @@
  {
  	mdiArea = new QMdiArea;
  	setCentralWidget(mdiArea);
+    // projectTreeWidget = NULL;
 
  	/** 马上得到当前的活动窗口，更新各actions */
  	connect(mdiArea , SIGNAL(subWindowActivated(QMdiSubWindow *)),\
@@ -99,23 +101,23 @@
     ////////////////////////////
     // create project actions //
     ////////////////////////////
-    createProjectAction = new QAction(tr("&New project"), this);
-	createProjectAction->setIcon(QIcon(":images/newproject.png"));
-	// createProjectAction->setShortcut(tr("Ctrl+N"));
-	createProjectAction->setStatusTip(tr("Create a new project"));
-	connect(createProjectAction , SIGNAL(triggered()), this , SLOT(createProject()));
+ //    createProjectAction = new QAction(tr("&New project"), this);
+	// createProjectAction->setIcon(QIcon(":images/newproject.png"));
+	// // createProjectAction->setShortcut(tr("Ctrl+N"));
+	// createProjectAction->setStatusTip(tr("Create a new project"));
+	// connect(createProjectAction , SIGNAL(triggered()), this , SLOT(createProject()));
 
-    closeProjectAction = new QAction(tr("&Close project"), this);
-	closeProjectAction->setIcon(QIcon(":images/closeproject.png"));
-	// closeProjectAction->setShortcut(tr("Ctrl+C"));
-	closeProjectAction->setStatusTip(tr("Close the project"));
-	connect(closeProjectAction , SIGNAL(triggered()), this , SLOT(closeProject()));
+ //    closeProjectAction = new QAction(tr("&Close project"), this);
+	// closeProjectAction->setIcon(QIcon(":images/closeproject.png"));
+	// // closeProjectAction->setShortcut(tr("Ctrl+C"));
+	// closeProjectAction->setStatusTip(tr("Close the project"));
+	// connect(closeProjectAction , SIGNAL(triggered()), this , SLOT(closeProject()));
 	
-    openProjectAction = new QAction(tr("&Open project"), this);
-	openProjectAction->setIcon(QIcon(":images/openproject.png"));
-	// openProjectAction->setShortcut(tr("Ctrl+O"));
-	openProjectAction->setStatusTip(tr("open a exists project"));
-	connect(openProjectAction , SIGNAL(triggered()), this , SLOT(openProject()));
+ //    openProjectAction = new QAction(tr("&Open project"), this);
+	// openProjectAction->setIcon(QIcon(":images/openproject.png"));
+	// // openProjectAction->setShortcut(tr("Ctrl+O"));
+	// openProjectAction->setStatusTip(tr("open a exists project"));
+	// connect(openProjectAction , SIGNAL(triggered()), this , SLOT(openProject()));
 
 	//////////////////////
 	// windows actions //
@@ -305,10 +307,10 @@
 	 ///////////////////
  	// project menu //
 	 ///////////////////
- 	QMenu * projMenu = menuBar()->addMenu(tr("&Project"));
- 	projMenu->addAction(createProjectAction);
- 	projMenu->addAction(openProjectAction);
- 	projMenu->addAction(closeProjectAction);
+ 	// QMenu * projMenu = menuBar()->addMenu(tr("&Project"));
+ 	// projMenu->addAction(createProjectAction);
+ 	// projMenu->addAction(openProjectAction);
+ 	// projMenu->addAction(closeProjectAction);
 
 	 ///////////////////
  	// windows menu //
@@ -516,9 +518,50 @@ void MainWindow::sendToBack()
         activeView()->sendToBack();
 }
 
-void MainWindow::createProject(){}
-void MainWindow::closeProject(){}
-void MainWindow::openProject(){}
+/** 创建一个工程来管理mode tables 最后导出的时候将工程里面的全部表导出 */
+/**
+ * ddpro文件格式
+ * projectName
+ *
+ * 下面全是mode table的名字
+ */
+// void MainWindow::createProject()
+// {
+//     CreateProjectDialog * projectDialog = new CreateProjectDialog;
+//     if(projectDialog->exec() == QDialog::Accepted)
+//     {
+//         projectName = projectDialog->getProjectName();
+//         projectPath = projectDialog->getProjectPath();
+//         /** 创建以Project Name为基准的目录文件夹 */
+//         QDir * dir = new QDir;
+//         if(dir->exists(projectPath+Qdir::separator()+projectName))
+//             QMessageBox::warning(this,tr("create Project"),tr("project dir is exists!!!"));
+//         else
+//         {
+//             dir->cd(projectPath);
+//             dir->mkdir(projectName);
+//             //创建工程文件
+//             QFile file(projectName+".ddpro");  
+//             file.open(QIODevice::WriteOnly);  
+//             file.close();
+//             //创建左靠窗
+//             projectTreeWidget = new ProjectTreeWidget("Project" , projectName);
+//             addDockWidget(Qt::LeftDockWidgetArea , projectTreeWidget);
+//         }
+//     }
+// }
+
+// /** 关闭工程时,会自动保存工程的对应的信息 */
+// void MainWindow::closeProject()
+// {
+    
+// }
+
+// /** 打开工程时,会自动读取工程的名字 */
+// void MainWindow::openProject()
+// {
+
+// }
 
 void MainWindow::createNode()
 {
