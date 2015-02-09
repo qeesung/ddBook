@@ -347,8 +347,8 @@ Node * GraphicsView::createNode(const QPointF & pos)
 
 void GraphicsView::setupNode(Node * node)
 {
-	node->setPos(QPoint(80+(100*(seqNumber%5)),\
-						80+((50*(seqNumber/5)%7))));
+	node->setPos(QPoint(80+(100*(seqNumber%10)),\
+						80+(50*((seqNumber/10)%12))));
 	scene()->addItem(node);
 	++seqNumber;
 
