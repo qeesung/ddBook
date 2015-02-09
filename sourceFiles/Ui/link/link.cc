@@ -25,7 +25,7 @@ Link::Link(Node * _fromNode , Node * _toNode)
 	// {
 	// 	setTransCode(transCodeDialog->getTransCode());
 	// }
-	// trackNode();
+	trackNode();
 }
 
 
