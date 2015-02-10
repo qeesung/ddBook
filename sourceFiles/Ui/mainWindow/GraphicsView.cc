@@ -545,7 +545,10 @@ void GraphicsView::linkToChildNode(Node * fatherNode)
 	// 等待选择孩子节点
 	Node * childNode = chooseANode(fatherNode);
 	// 新建父节点指向孩子节点的链接
+	if(childNode == NULL)
+		return ;
 	createLink(fatherNode , childNode);
+	scene()->clearSelection();
 }
 
 /** 从childNode连接到一个父节点 */
@@ -554,7 +557,10 @@ void GraphicsView::linkToFatherNode(Node * childNode)
 	// 等待选择父亲节点
 	Node * fatherNode =chooseANode(childNode);
 	// 新建孩子节点被父亲节点的指向链接
+	if(fatherNode == NULL)
+		return ;
 	createLink(fatherNode , childNode);
+	scene()->clearSelection();
 }
 
 Node * GraphicsView::chooseANode(Node * node)
@@ -581,6 +587,12 @@ Node * GraphicsView::chooseANode(Node * node)
 				return node2;
 			else
 				return node1;
+			for (int i = 0; i < 10000; ++i)
+			{
+				for(int j=0;j<1;++j);
+					qApp->processEvents();
+			}
+			scene()->clearSelection();
 		}
 	}
 	return 0;
@@ -590,25 +602,66 @@ Node * GraphicsView::chooseANode(Node * node)
 void GraphicsView::linkMode()
 {
 	curMode = ChooseNodePairMode;
-	QList<Node *> selectedNodes;
 	while(curMode == ChooseNodePairMode)
 	{
 		Node * fatherNode = 0;
 		// 避免未响应
-		qApp->processEvents();
+		// qApp->processEvents();
 		//一直在等到选择节点
 		QList<QGraphicsItem *> items = scene()->selectedItems();		
 		//首先需要得到父节点
 		if(items.count() == 1)
 		{
+			qDebug()<<"find one selection";
+			qApp->processEvents();
 			fatherNode = dynamic_cast<Node *>(items.first());
 			if(fatherNode)//选中的是一个节点
-				linkToChildNode(fatherNode);//再需要链接一个子节点
-			//还原当前的模式
-			curMode = ChooseNodePairMode;
+			{
+				//需要选择一个新的孩子节点
+				while(curMode == ChooseNodePairMode)
+				{
+					qApp->processEvents();
+					fatherNode->setSelected(true);
+					QList<QGraphicsItem *> items1 = scene()->selectedItems();
+					/** father node 的选中状态 */
+					if(items1.count() == 2)//新选择了一个
+					{
+						Node * node1 = dynamic_cast<Node *>(items1.first());
+						Node * node2 = dynamic_cast<Node *>(items1.last());
+						qApp->processEvents();
+						if(node1 && node2)
+						{
+
+							if(node1 == fatherNode)
+								createLink(node1 , node2);
+							else
+								createLink(node2 , node1);
+							scene()->clearSelection();
+							qApp->processEvents();
+							for (int i = 0; i < 10000; ++i)
+							{
+								for(int j=0;j<1;++j);
+									qApp->processEvents();
+							}
+							break;//退出循环,重新选择父节点
+						}
+					}
+				}
+				//一定要清空所有选择
+				while(scene()->selectedItems().count() !=0)
+					scene()->clearSelection();
+				qDebug()<<"all selection cleared1";
+			}
+			while(scene()->selectedItems().count() !=0)
+			{
+				scene()->clearSelection();
+				qApp->processEvents();
+			}
+			qDebug()<<"all selection cleared2";
 		}
-		scene()->clearSelection();
+		qApp->processEvents();
 	}
+	scene()->clearSelection();
 }
 
 
