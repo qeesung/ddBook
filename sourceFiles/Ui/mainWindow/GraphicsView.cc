@@ -529,12 +529,22 @@ Link * GraphicsView::createLink(Node * fatherNode , Node * childNode)
 GraphicsView::NodePair GraphicsView::selectedNodePair() const
 {
 	QList<QGraphicsItem * > items =scene()->selectedItems();
-	if(items.count() == 2)
+	if(items.count() >= 2)
 	{
-		Node * first = dynamic_cast<Node *>(items.first());
-		Node * second = dynamic_cast<Node *>(items.last());
-		if(first && second)
-			return NodePair(first , second);
+		Node * first =NULL;
+		Node * second =NULL;
+		QList<Node *> nodes;
+		foreach(QGraphicsItem * item , items)
+		{
+			Node * node = dynamic_cast<Node *>(item);
+			if(node)
+				nodes.push_back(node);
+		}
+		if(nodes.count() != 2)
+			return NodePair();
+		first = nodes.first();
+		second = nodes.last();
+		return NodePair(first , second);
 	}
 	return NodePair();
 }
@@ -679,14 +689,12 @@ void GraphicsView::keyPressEvent(QKeyEvent * keyEvent)
     }
     else if((keyEvent->key() == Qt::Key_Space && (keyEvent->modifiers() & Qt::ControlModifier)))
     {
-    	qDebug()<<"wahahah i Found U";
     	//ctrl + space 调换节点父子关系
     	NodePair nodePair = selectedNodePair();
     	if(nodePair == NodePair())
     		QGraphicsView::keyPressEvent(keyEvent);
     	else
     	{
-    		qDebug()<<"node pair is not empty";
     		//搜寻之间的父子关系
     		QList<QGraphicsItem * > items = scene()->items();
     		foreach(QGraphicsItem * item  , items)
@@ -694,12 +702,10 @@ void GraphicsView::keyPressEvent(QKeyEvent * keyEvent)
     			Link * link = dynamic_cast<Link *>(item);
     			if(link)
     			{
-    				qDebug()<<"i found link";
     				if(link->getFromNode() == nodePair.first && link->getToNode() == nodePair.second)
     				{
 
     					//开始改变
-    					qDebug()<<"found the link1";
     					createLink(nodePair.second , nodePair.first);
     					scene()->removeItem(link);
     					return;
@@ -708,7 +714,6 @@ void GraphicsView::keyPressEvent(QKeyEvent * keyEvent)
     				{
     					if(link->getFromNode() == nodePair.second && link->getToNode() == nodePair.first)
     					{
-    						qDebug()<<"found the link2";
 	    					createLink(nodePair.first , nodePair.second);
 	    					scene()->removeItem(link);
 	    					return;
