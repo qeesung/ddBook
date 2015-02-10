@@ -90,7 +90,7 @@ void Link::paint(QPainter * painter ,\
       const QStyleOptionGraphicsItem * /*option*/,\
       QWidget * /*widget*/)
 {
-	QPen pen(getColor());
+	QPen pen(getColor(),2);
 	painter->setPen(pen);
 	/** 画出线 */
 	painter->drawLine(QLineF(fromNode->pos() , toNode->pos()));
