@@ -665,17 +665,62 @@ void GraphicsView::linkMode()
 void GraphicsView::keyPressEvent(QKeyEvent * keyEvent)
 {
 
-    //按下esc ,那么就回归normal模式
-    switch(keyEvent->key())
+    /////////////////////////
+    //按下esc ,那么就回归normal模式 //
+    /////////////////////////
+	int key = keyEvent->key();
+    if(key == Qt::Key_Escape)
     {
-    	case Qt::Key_Escape:
-    		if(curMode == ChooseNodeMode || curMode == ChooseNodePairMode)
-	    		curMode = NormalMode;
-	    	else
-	    		QGraphicsView::keyPressEvent(keyEvent);
-    		break;
-    	default://那么就按照原来的进行
+    	//恢复到正常模式
+    	if(curMode == ChooseNodeMode || curMode == ChooseNodePairMode)
+    		curMode = NormalMode;
+    	else
     		QGraphicsView::keyPressEvent(keyEvent);
+    }
+    else if((keyEvent->key() == Qt::Key_Space && (keyEvent->modifiers() & Qt::ControlModifier)))
+    {
+    	qDebug()<<"wahahah i Found U";
+    	//ctrl + space 调换节点父子关系
+    	NodePair nodePair = selectedNodePair();
+    	if(nodePair == NodePair())
+    		QGraphicsView::keyPressEvent(keyEvent);
+    	else
+    	{
+    		qDebug()<<"node pair is not empty";
+    		//搜寻之间的父子关系
+    		QList<QGraphicsItem * > items = scene()->items();
+    		foreach(QGraphicsItem * item  , items)
+    		{
+    			Link * link = dynamic_cast<Link *>(item);
+    			if(link)
+    			{
+    				qDebug()<<"i found link";
+    				if(link->getFromNode() == nodePair.first && link->getToNode() == nodePair.second)
+    				{
+
+    					//开始改变
+    					qDebug()<<"found the link1";
+    					createLink(nodePair.second , nodePair.first);
+    					scene()->removeItem(link);
+    					return;
+    				}
+    				else
+    				{
+    					if(link->getFromNode() == nodePair.second && link->getToNode() == nodePair.first)
+    					{
+    						qDebug()<<"found the link2";
+	    					createLink(nodePair.first , nodePair.second);
+	    					scene()->removeItem(link);
+	    					return;
+    					}
+    				}
+    			}
+    		}
+    	}
+    }
+    else
+    {
+    	QGraphicsView::keyPressEvent(keyEvent);
     }
 }
 
