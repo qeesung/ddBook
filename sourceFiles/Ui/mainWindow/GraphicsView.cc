@@ -612,7 +612,6 @@ void GraphicsView::linkMode()
 		//首先需要得到父节点
 		if(items.count() == 1)
 		{
-			qDebug()<<"find one selection";
 			qApp->processEvents();
 			fatherNode = dynamic_cast<Node *>(items.first());
 			if(fatherNode)//选中的是一个节点
@@ -650,14 +649,12 @@ void GraphicsView::linkMode()
 				//一定要清空所有选择
 				while(scene()->selectedItems().count() !=0)
 					scene()->clearSelection();
-				qDebug()<<"all selection cleared1";
 			}
 			while(scene()->selectedItems().count() !=0)
 			{
 				scene()->clearSelection();
 				qApp->processEvents();
 			}
-			qDebug()<<"all selection cleared2";
 		}
 		qApp->processEvents();
 	}
