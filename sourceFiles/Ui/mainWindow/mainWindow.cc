@@ -1,4 +1,5 @@
 #include "mainWindow.h"
+#include "aboutDialog.h"
 #include <QDir>
 #include <QDebug>
 #include <QtGui>
@@ -689,7 +690,12 @@ void MainWindow::startToDebug(){}
 void MainWindow::startToDebugFromCurNode(){}
 void MainWindow::stopDebug(){}
 
-void MainWindow::about(){}
+void MainWindow::about()
+{
+    AboutDialog * dialog = new AboutDialog;
+    dialog->show();
+    dialog->exec();
+}
 void MainWindow::tutorial(){}
 
 void MainWindow::updateActions(){}
