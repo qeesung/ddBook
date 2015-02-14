@@ -11,6 +11,8 @@
 #include "link.h"
 #include "propertiesdialog.h"
 #include "setNodeInfo.h"
+#include "audioPlayWidget.h"
+#include <QDockWidget>
 
 
 GraphicsView::GraphicsView(QWidget * parent):QGraphicsView(parent)
@@ -115,7 +117,10 @@ bool GraphicsView::saveAs()
 void GraphicsView::closeEvent(QCloseEvent * event)
 {
 	if(okToContinue())
+	{
+		curMode = NormalMode;
 		event->accept();
+	}
 	else
 		event->ignore();
 }
@@ -682,8 +687,12 @@ void GraphicsView::keyPressEvent(QKeyEvent * keyEvent)
     if(key == Qt::Key_Escape)
     {
     	//恢复到正常模式
-    	if(curMode == ChooseNodeMode || curMode == ChooseNodePairMode)
+    	if(curMode == ChooseNodeMode || curMode == ChooseNodePairMode || curMode == DebugMode)
+    	{
+    		if(curMode == DebugMode)
+    			stopDebug();
     		curMode = NormalMode;
+    	}
     	else
     		QGraphicsView::keyPressEvent(keyEvent);
     }
@@ -850,6 +859,76 @@ QSize GraphicsView::sizeHint() const
 
 
 
+void GraphicsView::startToDebug(QDockWidget * dockWidget)
+{
+	if(dockWidget == NULL)
+		return;
+	AudioPlayWidget * audioPlayWidget = dynamic_cast<AudioPlayWidget*>(dockWidget->widget());
+	if(audioPlayWidget == NULL)
+		return;
+	curMode = DebugMode;
+	//每个view都可以拥有一个dockWidget,而且为了方便删除
+	this->dockWidget = dockWidget;
+	while(curMode == DebugMode)
+	{
+		audioPlayWidget->playStartAudio();//播放入口音乐
+	begin:
+		/** 选中当前调试中的节点 */
+		scene()->clearSelection();
+		audioPlayWidget->getNode()->setSelected(true);
+		/** 得到curNode相关的链接 */
+		QList<QGraphicsItem *> items = scene()->items();
+		QList<Link *> links ;
+		foreach(QGraphicsItem * item , items)
+		{
+			Link * link = dynamic_cast<Link *>(item);
+			if(link && link->getFromNode() == audioPlayWidget->getNode())
+				links.push_back(link);
+		}
+		/** 下面进入循环等待用户输入转移码 */
+		while(curMode == DebugMode)
+		{
+			qApp->processEvents();
+			//现在等待用户的输入
+			int inputTransCode=0;
+			while(curMode == DebugMode && audioPlayWidget->waitForInput())
+				qApp->processEvents();
+			/** 以防用户退出非调试状态 */
+			if(curMode != DebugMode)
+				return;
+			/** 重置等待状态 */
+			audioPlayWidget->resetWaitStatus();
+			inputTransCode =audioPlayWidget->getInput();
+			/** 判断输入的转移码有没有相应的链接符合 */
+			foreach(Link * link , links)
+			{	
+				if(link->getTransCode() == inputTransCode)
+				{
+					/** 开始转移至新的节点 */
+					audioPlayWidget->playEndAudio();
+					audioPlayWidget->transToNewNode(link->getToNode());
+					audioPlayWidget->enqueueStartAudio();
+					goto begin;
+				}
+			}			
+			/** 不能转移,播放默认的音频之一 */
+			audioPlayWidget->playDefaultAudio();
+			qApp->processEvents();		
+		}
+		qApp->processEvents();
+	}
+}
+
+
+void GraphicsView::stopDebug()
+{
+	curMode = NormalMode;
+	if(dockWidget != NULL)
+	{
+		delete dockWidget ;
+		dockWidget = NULL;
+	}
+}
 
 
 

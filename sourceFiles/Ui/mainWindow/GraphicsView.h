@@ -2,6 +2,7 @@
 #define GRAPHICSVIEW_H
 
 #include <QGraphicsView>
+#include <QDockWidget>
 class Node;
 class Link;
 
@@ -78,6 +79,14 @@ public:
 	void transCode(Link * link);
 	void linkSurfacceProperties(Link * link);
 
+	/**
+	 * 调试相关操作
+	 * 开始调试
+	 * 停止调试
+	 */
+	void startToDebug(QDockWidget * dockWidget);
+	void stopDebug();
+
 
 	QSize sizeHint() const;
 	QAction * windowMenuAction() const {return action;}
@@ -132,12 +141,16 @@ private:
 	enum ViewMode{
 		NormalMode=0,//普通模式
 		ChooseNodeMode=1,//选择一个节点的模式
-		ChooseNodePairMode=2//选择节点对模式
+		ChooseNodePairMode=2,//选择节点对模式
+		DebugMode=3
 	};
 	ViewMode curMode;//随时判断当前在那个模式
 
 	/** 鼠标点击的位置 */
 	QPointF mouserPos;
+
+	/** 用来调试的窗口 */
+	QDockWidget * dockWidget;
 
 	/** 第一次打开标志位 */
 	bool firstOpened;
