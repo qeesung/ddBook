@@ -57,7 +57,7 @@ private slots:
 	void linkSurfacceProperties();
 
 	void startToDebug();
-	void startToDebugFromCurNode();
+	// void startToDebugFromCurNode();
 	void stopDebug();
 
 	void about();
@@ -123,7 +123,7 @@ private:
 
 	/** 调试模式actions */
 	QAction * startDebugAction;
-	QAction * startDebugFromCurNodeAction;//从当前的选中节点来开始调试
+	// QAction * startDebugFromCurNodeAction;//从当前的选中节点来开始调试
 	QAction * stopDebugAction;
 
 	/** 帮助actions */

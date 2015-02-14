@@ -1,5 +1,7 @@
 #include "mainWindow.h"
+#include "audioPlayWidget.h"
 #include "aboutDialog.h"
+#include <QDockWidget>
 #include <QDir>
 #include <QDebug>
 #include <QtGui>
@@ -247,11 +249,11 @@
     startDebugAction->setStatusTip(tr("Debug..."));
     connect(startDebugAction , SIGNAL(triggered()), this , SLOT(startToDebug()));
 
- 	startDebugFromCurNodeAction = new QAction(tr("Debug From &Cur Node"), this);
-    startDebugFromCurNodeAction->setIcon(QIcon(":images/debugfromCurNode.png"));
-    // startDebugFromCurNodeAction->setShortcut(tr("Ctrl+"));
-    startDebugFromCurNodeAction->setStatusTip(tr("start to debug from current node "));
-    connect(startDebugFromCurNodeAction , SIGNAL(triggered()), this , SLOT(startToDebugFromCurNode()));
+ 	// startDebugFromCurNodeAction = new QAction(tr("Debug From &Cur Node"), this);
+  //   startDebugFromCurNodeAction->setIcon(QIcon(":images/debugfromCurNode.png"));
+  //   // startDebugFromCurNodeAction->setShortcut(tr("Ctrl+"));
+  //   startDebugFromCurNodeAction->setStatusTip(tr("start to debug from current node "));
+  //   connect(startDebugFromCurNodeAction , SIGNAL(triggered()), this , SLOT(startToDebugFromCurNode()));
 
  	stopDebugAction = new QAction(tr("&Stop Debug"), this);
     stopDebugAction->setIcon(QIcon(":images/stopdebug.png"));
@@ -356,7 +358,7 @@
 	/////////////////
 	QMenu * debugMenu = menuBar()->addMenu(tr("&Debug"));
 	debugMenu->addAction(startDebugAction);
-	debugMenu->addAction(startDebugFromCurNodeAction);
+	// debugMenu->addAction(startDebugFromCurNodeAction);
 	debugMenu->addAction(stopDebugAction);
 
 	//////////////////
@@ -404,7 +406,7 @@
 
  	QToolBar *	debugToolBar = addToolBar(tr("&Debug"));
  	debugToolBar->addAction(startDebugAction);
- 	debugToolBar->addAction(startDebugFromCurNodeAction);
+ 	// debugToolBar->addAction(startDebugFromCurNodeAction);
  	debugToolBar->addAction(stopDebugAction);
  }
 
@@ -686,9 +688,34 @@ void MainWindow::linkSurfacceProperties()
     }
 }
 
-void MainWindow::startToDebug(){}
-void MainWindow::startToDebugFromCurNode(){}
-void MainWindow::stopDebug(){}
+void MainWindow::startToDebug()
+{
+    if(activeView())
+    {
+        Node * curNode = activeView()->selectedNode();
+        if(curNode == NULL)
+        {
+            QMessageBox::warning(this , "debug" , "Before Debug , Please choose a single node first");
+            return;
+        }
+        QDockWidget * dockWidget = new QDockWidget(this);
+        AudioPlayWidget * audioPlayWidget = new AudioPlayWidget(curNode,this);
+        dockWidget->setWidget(audioPlayWidget);
+        dockWidget->setAllowedAreas(Qt::TopDockWidgetArea | Qt::BottomDockWidgetArea);
+        addDockWidget(Qt::BottomDockWidgetArea , dockWidget);
+        dockWidget->show();
+        activeView()->startToDebug(dockWidget);
+        // delete dockWidget;
+    }
+}
+// void MainWindow::startToDebugFromCurNode(){}
+void MainWindow::stopDebug()
+{
+    if(activeView())
+    {
+        activeView()->stopDebug();
+    }
+}
 
 void MainWindow::about()
 {
