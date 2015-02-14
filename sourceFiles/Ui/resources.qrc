@@ -39,5 +39,10 @@
 	<file>images/transcode.png</file>
 	<file>images/tutorial.png</file>
 	<file>images/verticalalign.png</file>
+	<file>images/nextAudio.png</file>
+	<file>images/lastAudio.png</file>
+	<file>images/playAudio.png</file>
+	<file>images/pauseAudio.png</file>
+	<file>images/stopAudio.png</file>
 </qresource>
 </RCC>
