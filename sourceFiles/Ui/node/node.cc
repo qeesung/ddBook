@@ -57,9 +57,11 @@ QRectF Node::outlineRect() const
 	// 填充八个像素
 	const int padding = 8;
 	QFontMetricsF metrics = qApp->font();
-	QRectF rect = metrics.boundingRect(QString("%1 %2").arg(text).arg(transCode));
+	QRectF rect = metrics.boundingRect(QString("%1------%2").arg(text).arg(transCode));
+	QRectF rect2 = nodeTransCodeRect();
 	rect.adjust(-padding , -padding , +padding , +padding);
 	rect.translate(-rect.center());
+	rect.translate(rect2.width()/2 , 0);
 	return rect;
 }
 
@@ -154,5 +156,5 @@ void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event)
 int Node::roundness(double size) const
 {
 	const int diameter = 12;
-	return 100*diameter/int(size);	
+	return 100*diameter/int(size);
 }
