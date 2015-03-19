@@ -76,7 +76,7 @@ public:
 	void linkToChildNode(Node * node);
 	void linkToFatherNode(Node * node);
 	void linkMode();
-	void transCode(Link * link);
+	// void transCode(Link * link);
 	void linkSurfacceProperties(Link * link);
 
 	/**

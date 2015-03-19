@@ -26,8 +26,8 @@
  	QColor getColor() const;
 
  	// 设置该线段的转移码制
- 	void setTransCode(const int & transCode);
- 	int getTransCode() const;
+ 	// void setTransCode(const int & transCode);
+ 	// int getTransCode() const;
 
  	void trackNode();
 
@@ -40,12 +40,12 @@
  	 * 双击这条线所触发的输入转移码事件
  	 * @param event [description]
  	 */
- 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event);
+ 	// void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event);
  private:
  	QPointF getCircleCenter() const;
  	Node * fromNode;
  	Node * toNode;
- 	int transCode;//该线段的转移码
+ 	// int transCode;//该线段的转移码
  };
 
 

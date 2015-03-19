@@ -7,7 +7,7 @@
 #include "GraphicsView.h"
 #include "node.h"
 #include "link.h"
-#include "entertranscodedialog.h"
+// #include "entertranscodedialog.h"
 class QAction;
 class QActionGroup;
 class GraphicsView;//子类化QGraphicsView，添加了文件保存创建等等相关信息
@@ -53,7 +53,7 @@ private slots:
 	void linkToChildNode();
 	void linkToFatherNode();
 	void linkMode();
-	void transCode();
+	// void transCode();
 	void linkSurfacceProperties();
 
 	void startToDebug();

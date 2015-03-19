@@ -227,11 +227,11 @@
     linkModeAction->setStatusTip(tr("turn to link mode"));
     connect(linkModeAction , SIGNAL(triggered()), this , SLOT(linkMode()));
 
-    transCodeAction = new QAction(tr("&TransCode"), this);
-    transCodeAction->setIcon(QIcon(":images/transcode.png"));
-    // transCodeAction->setShortcut(tr("Ctrl+"));
-    transCodeAction->setStatusTip(tr("set the transcode in link"));
-    connect(transCodeAction , SIGNAL(triggered()), this , SLOT(transCode()));
+    // transCodeAction = new QAction(tr("&TransCode"), this);
+    // transCodeAction->setIcon(QIcon(":images/transcode.png"));
+    // // transCodeAction->setShortcut(tr("Ctrl+"));
+    // transCodeAction->setStatusTip(tr("set the transcode in link"));
+    // connect(transCodeAction , SIGNAL(triggered()), this , SLOT(transCode()));
 
     linkSurfaccePropertiesAction = new QAction(tr("&Surfacce Properties"), this);
     linkSurfaccePropertiesAction->setIcon(QIcon(":images/linksurfaceproperties.png"));
@@ -350,7 +350,7 @@
 	linkMenu->addAction(linkToFatherNodeAction);
 	linkMenu->addAction(linkModeAction);
 	linkMenu->addSeparator();
-	linkMenu->addAction(transCodeAction);
+	// linkMenu->addAction(transCodeAction);
 	linkMenu->addAction(linkSurfaccePropertiesAction);
 
 	/////////////////
@@ -401,7 +401,7 @@
  	linkToolBar->addAction(linkToChildNodeAction);
  	linkToolBar->addAction(linkToFatherNodeAction);
  	linkToolBar->addAction(linkModeAction);
- 	linkToolBar->addAction(transCodeAction);
+ 	// linkToolBar->addAction(transCodeAction);
  	linkToolBar->addAction(linkSurfaccePropertiesAction);
 
  	QToolBar *	debugToolBar = addToolBar(tr("&Debug"));
@@ -669,15 +669,15 @@ void MainWindow::linkMode()
     if(activeView())
         activeView()->linkMode();
 }
-void MainWindow::transCode()
-{
-    if(activeView())
-    {
-        Link * link = activeView()->selectedLink();
-        if(link)
-            activeView()->transCode(link);
-    }
-}
+// void MainWindow::transCode()
+// {
+//     if(activeView())
+//     {
+//         Link * link = activeView()->selectedLink();
+//         if(link)
+//             activeView()->transCode(link);
+//     }
+// }
 void MainWindow::linkSurfacceProperties()
 {
     if(activeView())

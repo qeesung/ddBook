@@ -1,7 +1,7 @@
 #include <QPainter>
 #include "link.h"
 #include <QLineF>
-#include "entertranscodedialog.h"
+// #include "entertranscodedialog.h"
 #include <QGraphicsLineItem>
 #include <QPen>
 #include "node.h"
@@ -18,7 +18,7 @@ Link::Link(Node * _fromNode , Node * _toNode)
 	setZValue(LINEZVALUE);
 
 	setColor(Qt::darkRed);
-	setTransCode(-1);
+	// setTransCode(-1);
 	/** 在创建线段的时候要求用户输入对应的转移码 */
 	// EnterTransCodeDialog * transCodeDialog = new EnterTransCodeDialog(this);
 	// if(transCodeDialog -> exec() == QDialog::Accepted)
@@ -71,15 +71,15 @@ QColor Link::getColor() const
 	return pen().color();
 }
 
-void Link::setTransCode(const int & newTransCode)
-{
-	transCode=newTransCode;
-}
+// void Link::setTransCode(const int & newTransCode)
+// {
+// 	transCode=newTransCode;
+// }
 
-int Link::getTransCode() const
-{
-	return transCode;
-}
+// int Link::getTransCode() const
+// {
+// 	return transCode;
+// }
 
 void Link::trackNode()
 {
@@ -101,10 +101,10 @@ void Link::paint(QPainter * painter ,\
 	painter->setBrush(brush);
 	painter->drawEllipse(centerPoint , 5 , 5);
 	/** 在线段的中间写上对应的转移码 */
-	QPointF lineMidPoint = QPointF((toNode->pos().x()+fromNode->pos().x())/2,\
+/*	QPointF lineMidPoint = QPointF((toNode->pos().x()+fromNode->pos().x())/2,\
 		                           (toNode->pos().y()+fromNode->pos().y())/2);
 	painter->drawText(lineMidPoint , QString("%1").arg(transCode));
-
+*/
 	// QString debugMsg = QString("line bound rect width is %1 and height is %2").arg(boundingRect().width()).arg(boundingRect().height());
 	// qDebug(qPrintable(debugMsg));
 }
@@ -159,14 +159,14 @@ QPointF Link::getCircleCenter() const
 }
 
 
-void Link::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * /*event*/)
-{
-	EnterTransCodeDialog * transCodeDialog = new EnterTransCodeDialog(this);
-	if(transCodeDialog -> exec() == QDialog::Accepted)
-	{
-		setTransCode(transCodeDialog->getTransCode());
-	}
-}
+// void Link::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * /*event*/)
+// {
+// 	EnterTransCodeDialog * transCodeDialog = new EnterTransCodeDialog(this);
+// 	if(transCodeDialog -> exec() == QDialog::Accepted)
+// 	{
+// 		setTransCode(transCodeDialog->getTransCode());
+// 	}
+// }
 
 QRectF Link::boundingRect() const
 {

@@ -4,7 +4,7 @@
 #include <fstream>
 // #include <QIcon>
 #include "GraphicsView.h"
-#include "entertranscodedialog.h"
+// #include "entertranscodedialog.h"
 #include "setNodeInfo.h"
 #include "node.h"
 #include "modeTable.pb.h"
@@ -226,7 +226,7 @@ bool GraphicsView::writeFile(const QString & filename)
 			if(linkItem)
 			{
 				modeTable::Link * newLink = mtFile.add_linklist();
-				newLink->set_transcode(linkItem->getTransCode());
+				// newLink->set_transcode(linkItem->getTransCode());
 				newLink->set_fromnodeid(qPrintable(linkItem->getFromNode()->getNodeID()));
 				newLink->set_tonodeid(qPrintable(linkItem->getToNode()->getNodeID()));
 			}
@@ -319,8 +319,8 @@ bool GraphicsView::readFile(const QString & filename)
 			if(fromNode && toNode)
 				break;
 		}
-		Link * newLink = createLink(fromNode , toNode);
-		newLink->setTransCode(link.transcode());
+		createLink(fromNode , toNode);
+		// newLink->setTransCode(link.transcode());
 	}
 
 	// google::protobuf::ShutdownProtobufLibrary();
@@ -749,14 +749,14 @@ Link * GraphicsView::selectedLink() const
 	return 0;
 }
 
-void GraphicsView::transCode(Link * link)
-{
-	EnterTransCodeDialog * transCodeDialog = new EnterTransCodeDialog(link);
-	if(transCodeDialog -> exec() == QDialog::Accepted)
-	{
-		link->setTransCode(transCodeDialog->getTransCode());
-	}
-}
+// void GraphicsView::transCode(Link * link)
+// {
+// 	EnterTransCodeDialog * transCodeDialog = new EnterTransCodeDialog(link);
+// 	if(transCodeDialog -> exec() == QDialog::Accepted)
+// 	{
+// 		link->setTransCode(transCodeDialog->getTransCode());
+// 	}
+// }
 
 void GraphicsView::linkSurfacceProperties(Link * /*link*/)
 {
@@ -902,7 +902,7 @@ void GraphicsView::startToDebug(QDockWidget * dockWidget)
 			/** 判断输入的转移码有没有相应的链接符合 */
 			foreach(Link * link , links)
 			{	
-				if(link->getTransCode() == inputTransCode)
+				// if(link->getTransCode() == inputTransCode)
 				{
 					/** 开始转移至新的节点 */
 					audioPlayWidget->playEndAudio();
