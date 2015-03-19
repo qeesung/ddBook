@@ -23,7 +23,10 @@ Node::Node()
 	textColor = Qt::white;
 	outlineColor = Qt::darkRed;
 	backgroundColor = Qt::darkGreen;
+	transCodeBackgroundColor = QColor("#7CCD7C");
+	transCodeTextColor = Qt::white;
 
+	transCode = QString("-1");
 	/** 设置唯一标示ID */
 	QDateTime time(QDate::currentDate(), QTime::currentTime());
 	QString timeStr = QString("%1").arg(time.toMSecsSinceEpoch());
@@ -54,11 +57,36 @@ QRectF Node::outlineRect() const
 	// 填充八个像素
 	const int padding = 8;
 	QFontMetricsF metrics = qApp->font();
+	QRectF rect = metrics.boundingRect(QString("%1 %2").arg(text).arg(transCode));
+	rect.adjust(-padding , -padding , +padding , +padding);
+	rect.translate(-rect.center());
+	return rect;
+}
+
+QRectF Node::nodeNameRect() const
+{
+	// 填充八个像素
+	const int padding = 8;
+	QFontMetricsF metrics = qApp->font();
 	QRectF rect = metrics.boundingRect(text);
 	rect.adjust(-padding , -padding , +padding , +padding);
 	rect.translate(-rect.center());
 	return rect;
 }
+
+QRectF Node::nodeTransCodeRect() const
+{
+	// 填充八个像素
+	const int padding = 8;
+	QFontMetricsF metrics = qApp->font();
+	QRectF rect = metrics.boundingRect(transCode);
+	rect.adjust(-padding , -padding , +padding , +padding);
+	rect.translate(-rect.center());
+	QRectF rectTemp = nodeNameRect();
+	rect.translate(rectTemp.width()/2+rect.width()/2,0);
+	return rect;
+}
+
 
 QRectF Node::boundingRect() const
 {
@@ -83,13 +111,22 @@ void Node::paint(QPainter * painter ,const QStyleOptionGraphicsItem * option , Q
 		pen.setStyle(Qt::DotLine);
 		pen.setWidth(2);
 	}
+	// draw the nodeName
 	painter->setPen(pen);
 	painter->setBrush(backgroundColor);
-	QRectF rect= outlineRect();
-	painter->drawRoundRect(rect , roundness(rect.width()) , roundness(rect.height()));
+	QRectF rect1= nodeNameRect();
+	painter->drawRoundRect(rect1 , roundness(rect1.width()) , roundness(rect1.height()));
 
+	// draw the node transCode
+	painter->setPen(pen);
+	painter->setBrush(transCodeBackgroundColor);
+	QRectF rect2= nodeTransCodeRect();
+	painter->drawRoundRect(rect2 , roundness(rect2.width()) , roundness(rect2.height()));
+	
 	painter->setPen(textColor);
-	painter->drawText(rect , Qt::AlignCenter , text);
+	painter->drawText(rect1 , Qt::AlignCenter , text);
+	painter->setPen(transCodeTextColor);
+	painter->drawText(rect2 , Qt::AlignCenter , transCode);
 }
 
 QVariant Node::itemChange(GraphicsItemChange change ,const QVariant & value)

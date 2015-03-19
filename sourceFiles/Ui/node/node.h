@@ -33,6 +33,12 @@ public:
 	void setBackgroundColor(const QColor & color){backgroundColor = color;update();}
 	QColor getBackgroundColor() const {return backgroundColor;}
 
+	void setTransCodeBackgroundColor(const QColor & color){transCodeBackgroundColor = color; update();}
+	QColor getTransCodeBackgroundColor()const {return transCodeBackgroundColor;}
+
+	void setTransCodeTextColor(const QColor & color){transCodeTextColor = color; update();}
+	QColor getTransCodeTextColor()const {return transCodeTextColor;}
+
 	void addLink(Link * newLink);
 	void removeLink(Link * oldLink);
 
@@ -40,6 +46,8 @@ public:
 	QPainterPath shape() const;//在boudingRect里面的绘制出来的图形
 	void paint(QPainter * painter , const QStyleOptionGraphicsItem * option , QWidget * widget);//真正的绘制函数
 	QRectF outlineRect() const;//依据文字的长短大小来返回相应的大小矩形
+	QRectF nodeNameRect() const;//节点名字占用的矩形的大小
+	QRectF nodeTransCodeRect() const;//节点转移吗占用的矩形的大小
 
 
 	/** 设置及获得node属性 */
@@ -57,6 +65,13 @@ public:
 	void setNodeID(const QString & IDStr){nodeID = IDStr;}
 	QString getNodeID() const{return nodeID;}
 
+	void setTransCode(const int _transCode){
+		prepareGeometryChange();
+		transCode = QString("%1").arg(_transCode);
+		update();
+	}
+	QString getTransCode() const{return transCode;}
+
 protected:
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event);
 	QVariant itemChange(GraphicsItemChange change , const QVariant & value);
@@ -68,6 +83,8 @@ private:
 	QColor textColor;
 	QColor outlineColor;
 	QColor backgroundColor;
+	QColor transCodeBackgroundColor;
+	QColor transCodeTextColor;
 
 	/** node基本属性 */
 	QString startAudio;
@@ -76,6 +93,9 @@ private:
 
 	/** node的唯一ID标示 */
 	QString nodeID;
+
+	/** 为节点增加一个对应的码值 */
+	QString transCode;
 
 };
 
