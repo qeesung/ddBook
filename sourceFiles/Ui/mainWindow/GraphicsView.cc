@@ -470,7 +470,10 @@ void GraphicsView::nodeSurfacceProperties(Node * node)
 		node->setTextColor(dialog->getTextColor());
 		node->setOutlineColor(dialog->getOutlineColor());
 		node->setBackgroundColor(dialog->getBackgroundColor());
+		node->setTransCodeTextColor(dialog->getTransCodeTextColor());
+		node->setTransCodeBackgroundColor(dialog->getTransCodeBackgroundColor());
 		node->setText(dialog->getText());
+		node->setTransCode(dialog->getTransCodeText());
 	}
 }
 
@@ -489,6 +492,8 @@ void GraphicsView::nodesSurfacceProperties(QList<Node *> nodes)
 			node->setTextColor(dialog->getTextColor());
 			node->setOutlineColor(dialog->getOutlineColor());
 			node->setBackgroundColor(dialog->getBackgroundColor());
+			node->setTransCodeTextColor(dialog->getTransCodeTextColor());
+			node->setTransCodeBackgroundColor(dialog->getTransCodeBackgroundColor());
 		}
 	}
 }

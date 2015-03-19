@@ -70,6 +70,11 @@ public:
 		transCode = QString("%1").arg(_transCode);
 		update();
 	}
+	void setTransCode(const QString & _transCode){
+		prepareGeometryChange();
+		transCode = _transCode;
+		update();
+	}
 	QString getTransCode() const{return transCode;}
 
 protected:

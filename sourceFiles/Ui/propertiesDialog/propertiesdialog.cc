@@ -16,6 +16,8 @@ PropertiesDialog::PropertiesDialog(QGraphicsScene * scene ,  Node * _node , QWid
 	setTextColor(node->getTextColor());
 	setOutlineColor(node->getOutlineColor());
 	setBackgroundColor(node->getBackgroundColor());
+	setTransCodeTextColor(node->getTransCodeTextColor());
+	setTransCodeBackgroundColor(node->getTransCodeBackgroundColor());
 	spinBox->setRange(INT_MIN,scene->sceneRect().width());
 	spinBox_2->setRange(INT_MIN,scene->sceneRect().height());
 /*	setX(node->x());
@@ -23,10 +25,13 @@ PropertiesDialog::PropertiesDialog(QGraphicsScene * scene ,  Node * _node , QWid
 	spinBox->setValue(node->scenePos().x());
 	spinBox_2->setValue(node->scenePos().y());
 	lineEdit->setText(node->getText());
+	lineEdit_2->setText(node->getTransCode());
 
 	connect(pushButton , SIGNAL(clicked()),this , SLOT(selectTextColor()));
 	connect(pushButton_2 , SIGNAL(clicked()),this , SLOT(selectOutlineColor()));
 	connect(pushButton_3 , SIGNAL(clicked()),this , SLOT(selectBackgroundColor()));
+	connect(pushButton_5 , SIGNAL(clicked()),this , SLOT(selectTransCodeTextColor()));
+	connect(pushButton_4 , SIGNAL(clicked()),this , SLOT(selectTransCodeBackgroundColor()));
 	updateColorBar();
 }
 
@@ -54,6 +59,23 @@ void PropertiesDialog::selectBackgroundColor()
 	updateColorBar();
 }
 
+void PropertiesDialog::selectTransCodeTextColor()
+{
+	QColor color = QColorDialog::getColor(getBackgroundColor() , this);
+	if(color.isValid())
+		setTransCodeTextColor(color);
+	updateColorBar();
+}
+
+void PropertiesDialog::selectTransCodeBackgroundColor()
+{
+	QColor color = QColorDialog::getColor(getBackgroundColor() , this);
+	if(color.isValid())
+		setTransCodeBackgroundColor(color);
+	updateColorBar();
+}
+
+
 
 static void _updateColorBar(const QColor & color , QLabel * label)
 {
@@ -66,6 +88,8 @@ void PropertiesDialog::updateColorBar()
 	_updateColorBar(getTextColor(), label_6);
 	_updateColorBar(getOutlineColor() , label_7);
 	_updateColorBar(getBackgroundColor() , label_8);
+	_updateColorBar(getTransCodeText() , label_13);
+	_updateColorBar(getTransCodeBackgroundColor() , label_14);
 }
 
 
