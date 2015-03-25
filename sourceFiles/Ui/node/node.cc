@@ -141,7 +141,7 @@ QVariant Node::itemChange(GraphicsItemChange change ,const QVariant & value)
 	return QGraphicsItem::itemChange(change , value);
 }
 
-void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event)
+void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * /*event*/)
 {
 	SetNodeInfo * setDialog = new SetNodeInfo(this);
 	if(setDialog->exec()==QDialog::Accepted)
@@ -150,6 +150,33 @@ void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event)
 		setEndAudio(setDialog->getEndAudio());
 		setDefaultAudioList(setDialog->getDefaultAudioList());
 		setText(setDialog->getNodeName());
+		setPicture(setDialog->getPictureName());
+		setTransCode(setDialog->getTransCode());
+
+		QList<QPair<QString , QString> > tempList1 = setDialog->getStartAudioTable(); 
+		QList<QPair<QString , QString> > tempList2 = setDialog->getEndAudioTable(); 
+		QList<QPair<QString , QString> > tempList3 = setDialog->getGivenAudioTable(); 
+		startAudioTable.clear();
+		endAudioTable.clear();
+		givenAudioTable.clear();
+
+		for(QList<QPair<QString , QString> >::iterator iter = tempList1.begin() ; iter != tempList1.end();
+						++iter)
+		{
+			startAudioTable[iter->first] = iter->second;
+		}
+
+		for(QList<QPair<QString , QString> >::iterator iter = tempList2.begin() ; iter != tempList2.end();
+						++iter)
+		{
+			endAudioTable[iter->first] = iter->second;
+		}
+
+		for(QList<QPair<QString , QString> >::iterator iter = tempList3.begin() ; iter != tempList3.end();
+						++iter)
+		{
+			givenAudioTable[iter->first] = iter->second;
+		}
 	}
 }
 
