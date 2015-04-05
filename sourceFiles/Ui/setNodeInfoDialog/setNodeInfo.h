@@ -16,69 +16,52 @@ public:
 	QString getStartAudio() const{return startAudioLineEdit->text();}
 	QString getEndAudio() const {return endAudioLineEdit->text();}
 	QString getTransCode() const {return transCodeLineEdit->text();}
-	QString getPictureName() const{return pictureLineEdit->text();}
+	QString getPictureName() const{
+		if(cpMap.count(getTransCode()) == 0)
+			return QString(":/images/about.png");
+		return cpMap[getTransCode()];
+	}
+	bool getSameFlag() const {return !sameFlagCheckBox->isChecked();}
 	/**
 	 * 得到默认音乐列表
 	 * @return 返回列表
 	 */
-	QStringList getDefaultAudioList() const
+	QStringList getBeforeDefaultAudioList() const
 	{
-		int itemCount = defaultAudiotListWidget->count();
-		QStringList defaultList;
-		for (int i = 0; i < itemCount; ++i)
-		{
-			QListWidgetItem * temp = defaultAudiotListWidget->item(i);
-			defaultList<<temp->text();
-		}
-		return defaultList;
+		return beforeDefaultAudioList;
 	}
 
-	/**
-	 *  得到预设好的入口音乐
-	 */
-	QList<QPair<QString , QString> > getStartAudioTable() const
+	QStringList getAfterDefaultAudioList() const
 	{
-		unsigned int startAudioPairCount = startAudioTableWidget->rowCount();
-		QList<QPair<QString , QString> > retList;
-		for (unsigned int i = 0; i < startAudioPairCount; ++i)
-		{
-			QTableWidgetItem * item1 = startAudioTableWidget->item(i,0);
-			QTableWidgetItem * item2 = startAudioTableWidget->item(i,1);
-			retList<<QPair<QString , QString>(item1->text() , item2->text());
-		}
-		return retList;
-	}
-
-	/**
-	 * 得到预设好的出口音乐
-	 */
-	QList<QPair<QString , QString> > getEndAudioTable() const
-	{
-		unsigned int endAudioPairCount = endAudioTableWidget->rowCount();
-		QList<QPair<QString , QString> > retList;
-		for (unsigned int i = 0; i < endAudioPairCount; ++i)
-		{
-			QTableWidgetItem * item1 = endAudioTableWidget->item(i,0);
-			QTableWidgetItem * item2 = endAudioTableWidget->item(i,1);
-			retList<<QPair<QString , QString>(item1->text() , item2->text());
-		}
-		return retList;
+		return afterDefaultAudioList;
 	}
 
 	/**
 	 * 得到给定的码制对应默认音乐
 	 */
-	QList<QPair<QString , QString> > getGivenAudioTable() const
+	QList<QPair<QString , QString> > getBeforeGivenAudioTable() const
 	{
-		unsigned int givenAudioPairCount = givenAudioTableWidget->rowCount();
-		QList<QPair<QString , QString> > retList;
-		for (unsigned int i = 0; i < givenAudioPairCount; ++i)
-		{
-			QTableWidgetItem * item1 = givenAudioTableWidget->item(i,0);
-			QTableWidgetItem * item2 = givenAudioTableWidget->item(i,1);
-			retList<<QPair<QString , QString>(item1->text() , item2->text());
-		}
-		return retList;
+		return beforeGivenAudioList;
+	}
+
+	QList<QPair<QString , QString> > getAfterGivenAudioTable() const
+	{
+		return afterGivenAudioList;
+	}
+
+
+	/** 更新一次数据 */
+	void syncData()
+	{
+		/** 状态前和状态后是一样的 */
+		if(!sameFlagCheckBox->isChecked())
+			saveData(beforeGivenAudioList , beforeDefaultAudioList);
+		/** 马上保存after编辑的数据 */
+		else if(afterRadioButton->isChecked())
+			saveData(afterGivenAudioList , afterDefaultAudioList);
+		/** 马上保存before编辑的数据 */
+		else if(beforeRadioButton->isChecked())
+			saveData(beforeGivenAudioList , beforeDefaultAudioList);
 	}
 private slots:
 	void startAudioView();
@@ -86,17 +69,35 @@ private slots:
 
 	void addDefaultAudio();
 	void deleteDefaultAudio();
-
-	void pictureView();
-
-	void addStartTableAudio();
-	void deleteStartTableAudio();
-
-	void addEndTableAudio();
-	void deleteEndTableAudio();
-
+	
 	void addGivenTableAudio();
 	void deleteGivenTableAudio();
+
+	void beforeRadioToggled(bool);
+	void afterRadioToggled(bool);
+
+	void selectTransCode();
+
+	void updateNodePic(const QString & text);
+private:
+	/** 应该在ｒａｄｉｏ按钮切换时候要保存对应的信息 */
+
+	/** 保存状态前状态后的给定音频 */
+	QList<QPair<QString ,QString> > afterGivenAudioList;
+	QList<QPair<QString ,QString> > beforeGivenAudioList;
+
+	/** 保存状态前状态后的默认音频 */
+	QStringList beforeDefaultAudioList;
+	QStringList afterDefaultAudioList;
+
+	/** 保存cp file的内容 */
+	QMap<QString , QString> cpMap;
+
+	//从列表中读取数据保存到对应的list里面
+	void saveData(QList<QPair<QString,QString> > & givenList ,\
+		QStringList & defaultList);
+	void showData(QList<QPair<QString, QString> > & givenList ,\
+		QStringList & defaultList);
 };
 
 
