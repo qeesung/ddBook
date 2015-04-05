@@ -1,6 +1,7 @@
 #include "selectCodeDialog.h"
 #include <QFile>
 #include <QMessageBox>
+#include <QDebug>
 #include <QTextStream>
 #include "createCodeDialog.h"
 
@@ -12,7 +13,8 @@ SelectCodeDialog::SelectCodeDialog(QWidget * parent):QDialog(parent)
 
 	okPushButton->setEnabled(false);
 	delPushButton->setEnabled(false);
-	codeListWidget->setIconSize(QSize(120,120));
+	codeListWidget->setIconSize(QSize(80,80));
+	searchLineEdit->setFocus();
 	connect(newPushButton , SIGNAL(clicked()),\
 		this , SLOT(createCode()));
 
@@ -105,4 +107,18 @@ void SelectCodeDialog::searchCode(const QString & codeStr)
 		arg("[A-Za-z0-9]{0,}").arg(codeStr).arg("[A-Za-z0-9]{0,}") , Qt::MatchRegExp);
 	if(matchItems.count() !=0)
 		codeListWidget->setCurrentItem(matchItems[0]);
+}
+
+/** 设置按钮事件 */
+void SelectCodeDialog::keyPressEvent(QKeyEvent * event)
+{
+	if(event->key() == Qt::Key_F)
+	{
+		QListWidgetItem *item = codeListWidget->currentItem();
+		QString tempStr = searchLineEdit->text();
+		searchLineEdit->setText(item->text());
+		searchLineEdit->setText(tempStr);
+	}
+	else
+		QDialog::keyPressEvent(event);
 }

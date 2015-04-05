@@ -3,6 +3,7 @@
 
 #include "ui_selectCodeDialog.h"
 #include <QDialog>
+#include <QKeyEvent>
 
 class SelectCodeDialog : public QDialog , public Ui::SelectCodeDialog
 {
@@ -16,6 +17,8 @@ public:
 	QString getPicture() const{
 		return codeListWidget->selectedItems()[0]->icon().name();//返回图片名字
 	}
+protected:
+	void keyPressEvent(QKeyEvent * event);
 private slots:
 	void createCode();
 	void removeCode();
