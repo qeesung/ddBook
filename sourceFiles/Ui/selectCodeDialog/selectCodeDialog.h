@@ -21,6 +21,7 @@ private slots:
 	void removeCode();
 	void enableButtons();
 	void setCodeInfo(const QModelIndex & );
+	void searchCode(const QString & codeStr);
 };
 
 

@@ -27,6 +27,10 @@ SelectCodeDialog::SelectCodeDialog(QWidget * parent):QDialog(parent)
 	connect(codeListWidget , SIGNAL(doubleClicked(const QModelIndex & )),\
 		this , SLOT(setCodeInfo(const QModelIndex & )));
 
+	/** 搜索码值 */
+	connect(searchLineEdit , SIGNAL(textChanged(const QString &)),\
+		this , SLOT(searchCode(const QString &)));
+
 	/**　读取cp文件的内容，插入倒listWidget里面 */
 	QFile cpFile(cpFileName);
 	if(!cpFile.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -92,4 +96,13 @@ void SelectCodeDialog::setCodeInfo(const QModelIndex & index)
 		item->setText(dialog->getTransCode());
 		item->setIcon(QIcon(dialog->getPicturePath()));
 	}
+}
+
+/** 在codelistWidget里面搜索对应符合码值的选项 */
+void SelectCodeDialog::searchCode(const QString & codeStr)
+{
+	QList<QListWidgetItem *> matchItems = codeListWidget->findItems(QString("%1%2%3").\
+		arg("[A-Za-z0-9]{0,}").arg(codeStr).arg("[A-Za-z0-9]{0,}") , Qt::MatchRegExp);
+	if(matchItems.count() !=0)
+		codeListWidget->setCurrentItem(matchItems[0]);
 }

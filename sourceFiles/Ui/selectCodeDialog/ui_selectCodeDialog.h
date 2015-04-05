@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'selectCodeDialog.ui'
 **
-** Created: Sun Apr 5 10:50:34 2015
+** Created: Sun Apr 5 19:37:19 2015
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -17,6 +17,7 @@
 #include <QtGui/QDialog>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
+#include <QtGui/QLineEdit>
 #include <QtGui/QListWidget>
 #include <QtGui/QPushButton>
 #include <QtGui/QSpacerItem>
@@ -32,7 +33,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *newPushButton;
     QPushButton *delPushButton;
-    QSpacerItem *horizontalSpacer_2;
+    QLineEdit *searchLineEdit;
     QListWidget *codeListWidget;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer;
@@ -60,9 +61,10 @@ public:
 
         horizontalLayout->addWidget(delPushButton);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        searchLineEdit = new QLineEdit(SelectCodeDialog);
+        searchLineEdit->setObjectName(QString::fromUtf8("searchLineEdit"));
 
-        horizontalLayout->addItem(horizontalSpacer_2);
+        horizontalLayout->addWidget(searchLineEdit);
 
 
         verticalLayout->addLayout(horizontalLayout);
