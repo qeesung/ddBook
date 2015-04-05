@@ -1,6 +1,7 @@
 #include "createCodeDialog.h"
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QDebug>
 
 CreateCodeDialog::CreateCodeDialog(QWidget * parent):QDialog(parent)
 {
@@ -40,7 +41,14 @@ CreateCodeDialog::CreateCodeDialog(QListWidgetItem * item , QWidget * parent):QD
 		this , SLOT(isValidInput()));
 
 	codeLineEdit->setText(item->text());
-	pictureLineEdit->setText(item->icon().name());
+	QString picPath = item->data(Qt::UserRole).toString();
+	pictureLineEdit->setText(picPath);
+	QPixmap pixmap = item->icon().pixmap(QSize(50,50));
+	QPixmap fitpixmap=pixmap.scaled(50,50, Qt::KeepAspectRatio);  
+	if(fitpixmap.isNull())
+		pictureLabel->setText(QString("<h2><i><font color=red>invalid Code</font></i></h2>"));
+	else
+		pictureLabel->setPixmap(fitpixmap);
 }
 
 /** 从串口开始录入码值 */

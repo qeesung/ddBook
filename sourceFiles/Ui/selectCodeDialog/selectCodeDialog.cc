@@ -49,6 +49,7 @@ SelectCodeDialog::SelectCodeDialog(QWidget * parent):QDialog(parent)
 		QStringList cpTemp = lineStr.split(QString("-Y(^_^)Y-"));
 		QListWidgetItem * item = new QListWidgetItem(cpTemp[0], codeListWidget);
 		item->setIcon(QIcon(cpTemp[1]));
+		item->setData(Qt::UserRole , cpTemp[1]);
 	}
 }
 
@@ -92,7 +93,7 @@ void SelectCodeDialog::enableButtons()
 void SelectCodeDialog::setCodeInfo(const QModelIndex & index)
 {
 	QListWidgetItem * item = codeListWidget->item(index.row());
-	CreateCodeDialog * dialog = new CreateCodeDialog(item);
+	CreateCodeDialog * dialog = new CreateCodeDialog(item,this);
 	if(dialog->exec() == QDialog::Accepted)
 	{
 		item->setText(dialog->getTransCode());
