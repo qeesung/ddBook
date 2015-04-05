@@ -50,6 +50,11 @@ SelectCodeDialog::SelectCodeDialog(QWidget * parent):QDialog(parent)
 		QListWidgetItem * item = new QListWidgetItem(cpTemp[0], codeListWidget);
 		item->setIcon(QIcon(cpTemp[1]));
 		item->setData(Qt::UserRole , cpTemp[1]);
+		QFont font;
+		font.setBold(true);
+		font.setPointSize(15);
+		item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+		item->setFont(font);
 	}
 }
 
