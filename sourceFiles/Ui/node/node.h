@@ -53,25 +53,9 @@ public:
 	/** 设置及获得node属性 */
 	void setStartAudio(const QString & audioFilename){startAudio = audioFilename;}
 	QString getStartAudio() const{return startAudio;}
-	/** code指的是上一个节点的码指 */
-	QString getStartAudio(QString  & code) const
-	{
-		if(startAudioTable.count(code) == 0)
-			return startAudio;
-		else
-			return startAudioTable[code];
-	}
 
 	void setEndAudio(const QString & audioFilename){endAudio = audioFilename;}
 	QString getEndAudio() const{return endAudio;}
-	/** code指的是下一个将要转向的节点的码指 */
-	QString getEndAudio(QString & code) const
-	{
-		if(endAudioTable.count(code) == 0)
-			return endAudio;
-		else
-			return endAudioTable[code];
-	}
 
 	/** 查询不是转移的点之后,现在要添加上一些给定的默认音频 */
 	QString getGivenAudio(QString & code) const
@@ -82,53 +66,19 @@ public:
 			return givenAudioTable[code];
 	}
 
+	/** 得到状态前的默认列表 */
 	void setDefaultAudioList(const QStringList & defaultList){defaultAudioList = defaultList;}
 	void addDefaultAudio(const QString & audioFilename){defaultAudioList.push_back(audioFilename);}
 	void removeDefaultAudio(const QString & audioFilename){defaultAudioList.removeOne(audioFilename);}
 	QStringList getDefaultAudioList() const{return defaultAudioList;}
 
+	/** 得到状态后的默认列表 */
+	void setAfterdefaultAudioList(const QStringList & defaultList){afterDefaultAudioList = defaultList;}
+	void addAfterdefaultAudio(const QString & audioFilename){afterDefaultAudioList.push_back(audioFilename);}
+	void removeAfterDefaultAudio(const QString & audioFilename){afterDefaultAudioList.removeOne(audioFilename);}
+	QStringList getAfterDefaultAudioList() const{return afterDefaultAudioList;}
 
-	/** 设置对应码制对应的音频 */
-	void setStartTableAudio(const QString & fromCode , const QString & _startAudioTable){
-		if(startAudioTable.count(fromCode) == 0)
-			return;
-		startAudioTable[fromCode] = _startAudioTable;
-	}
-	void addStartTableAudio(const QString & fromCode , const QString & audioFilename){
-		startAudioTable[fromCode] = audioFilename;
-	}
-	void removeStartTableAudio(const QString & fromCode){
-		startAudioTable.remove(fromCode);
-	}
-	QString getStartTableAudio(const QString & fromCode) const{
-		if(startAudioTable.count(fromCode) == 0)
-			return QString();
-		return startAudioTable[fromCode];
-	}
-	QMap<QString , QString> getAllStartTableAudio() const{
-		return startAudioTable;
-	}
-	/** 出口的音频 */
-	void setEndTableAudio(const QString & toCode , const QString & _endAudioTable){
-		if(endAudioTable.count(toCode) == 0)
-			return;
-		endAudioTable[toCode] = _endAudioTable;
-	}
-	void addEndTableAudio(const QString & toCode , const QString & audioFilename){
-		endAudioTable[toCode] = audioFilename;
-	}
-	void removeEndTableAudio(const QString & toCode){
-		endAudioTable.remove(toCode);
-	}
-	QString getEndTableAudio(const QString & toCode) const{
-		if(endAudioTable.count(toCode) == 0)
-			return QString();
-		return endAudioTable[toCode];
-	}
-	QMap<QString , QString> getAllEndTableAudio() const{
-		return endAudioTable;
-	}
-	/** 给定的音频 */
+	/** 得到状态前给定的音频 */
 	void setGivenTableAudio(const QString & givenCode , const QString & _givenAudioTable){
 		if(givenAudioTable.count(givenCode) == 0)
 			return;
@@ -147,6 +97,26 @@ public:
 	}
 	QMap<QString , QString> getAllGivenTableAudio() const{
 		return givenAudioTable;
+	}
+	/** 得到状态后给定的音频 */
+	void setAfterGivenTableAudio(const QString & givenCode , const QString & _givenAudioTable){
+		if(afterGivenAudioTable.count(givenCode) == 0)
+			return;
+		afterGivenAudioTable[givenCode] = _givenAudioTable;
+	}
+	void addAfterGivenTableAudio(const QString & givenCode , const QString & audioFilename){
+		afterGivenAudioTable[givenCode] = audioFilename;
+	}
+	void removeAfterGivenTableAudio(const QString & givenCode){
+		afterGivenAudioTable.remove(givenCode);
+	}
+	QString getAfterGivenTableAudio(const QString & givenCode) const{
+		if(afterGivenAudioTable.count(givenCode) == 0)
+			return QString();
+		return afterGivenAudioTable[givenCode];
+	}
+	QMap<QString , QString> getAllAfterGivenTableAudio() const{
+		return afterGivenAudioTable;
 	}
 	/** 一个节点有一个图片 */
 	void setPicture(const QString & _picture){picture = _picture;}
@@ -167,6 +137,17 @@ public:
 	}
 	QString getTransCode() const{return transCode;}
 
+	/** 判断状态前和状态后的音频是否一样 */
+	bool isBeforeSameAsAfter() const
+	{
+		return beforeSameAsAfter;
+	}
+
+	void setSameFlag(bool flag) 
+	{
+		beforeSameAsAfter = flag;
+	}
+
 protected:
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event);
 	QVariant itemChange(GraphicsItemChange change , const QVariant & value);
@@ -185,11 +166,12 @@ private:
 	QString startAudio;
 	QString endAudio;
 	QStringList defaultAudioList;
+	QStringList afterDefaultAudioList;//在状态之后的音频
 
-	/** 下面三个是用来存储对应的Node id 和 音频直接的关系 */
-	QMap<QString , QString> startAudioTable;// first是上一个节点的code,second是对应的音频文件名字
-	QMap<QString , QString> endAudioTable;
+	/** 下面两个个是用来存储对应的Node id 和 音频直接的关系 */
 	QMap<QString , QString> givenAudioTable;//输入的码制不是转移码,那么就来查找这张表
+	QMap<QString , QString> afterGivenAudioTable;//输入的码制不是转移码,那么就来查找这张表
+
 	/** node的唯一ID标示 */
 	QString nodeID;
 
@@ -198,6 +180,9 @@ private:
 
 	/** 一个借点对应一个图片 */
 	QString picture;
+
+	/** 状态前和状态后是否相同 */
+	bool beforeSameAsAfter;
 
 };
 

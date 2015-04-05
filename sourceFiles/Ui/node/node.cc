@@ -26,7 +26,9 @@ Node::Node()
 	transCodeBackgroundColor = QColor("#7CCD7C");
 	transCodeTextColor = Qt::white;
 
-	transCode = QString("-1");
+	transCode = QString("None");
+	beforeSameAsAfter = true;
+	picture = QString("image:about.icon");
 	/** 设置唯一标示ID */
 	QDateTime time(QDate::currentDate(), QTime::currentTime());
 	QString timeStr = QString("%1").arg(time.toMSecsSinceEpoch());
@@ -146,37 +148,37 @@ void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * /*event*/)
 	SetNodeInfo * setDialog = new SetNodeInfo(this);
 	if(setDialog->exec()==QDialog::Accepted)
 	{
+		setDialog->syncData();
 		setStartAudio(setDialog->getStartAudio());
 		setEndAudio(setDialog->getEndAudio());
-		setDefaultAudioList(setDialog->getDefaultAudioList());
+		setDefaultAudioList(setDialog->getBeforeDefaultAudioList());
+		setAfterdefaultAudioList(setDialog->getAfterDefaultAudioList());
 		setText(setDialog->getNodeName());
 		setPicture(setDialog->getPictureName());
 		setTransCode(setDialog->getTransCode());
 
-		QList<QPair<QString , QString> > tempList1 = setDialog->getStartAudioTable(); 
-		QList<QPair<QString , QString> > tempList2 = setDialog->getEndAudioTable(); 
-		QList<QPair<QString , QString> > tempList3 = setDialog->getGivenAudioTable(); 
-		startAudioTable.clear();
-		endAudioTable.clear();
+		setSameFlag(setDialog->getSameFlag());
+
+		QList<QPair<QString , QString> > tempList1 = setDialog->getBeforeGivenAudioTable(); 
+		QList<QPair<QString , QString> > tempList2 = setDialog->getAfterGivenAudioTable(); 
 		givenAudioTable.clear();
+		afterGivenAudioTable.clear();
 
+		/** 设置第一个表的内容 */
 		for(QList<QPair<QString , QString> >::iterator iter = tempList1.begin() ; iter != tempList1.end();
-						++iter)
-		{
-			startAudioTable[iter->first] = iter->second;
-		}
-
-		for(QList<QPair<QString , QString> >::iterator iter = tempList2.begin() ; iter != tempList2.end();
-						++iter)
-		{
-			endAudioTable[iter->first] = iter->second;
-		}
-
-		for(QList<QPair<QString , QString> >::iterator iter = tempList3.begin() ; iter != tempList3.end();
 						++iter)
 		{
 			givenAudioTable[iter->first] = iter->second;
 		}
+		/** 如果前后状态相同 */
+		if(isBeforeSameAsAfter())
+			return;
+		for(QList<QPair<QString , QString> >::iterator iter = tempList2.begin() ; iter != tempList2.end();
+						++iter)
+		{
+			afterGivenAudioTable[iter->first] = iter->second;
+		}
+		
 	}
 }
 
