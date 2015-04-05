@@ -14,6 +14,7 @@ public:
 private slots:
 	void viewFile();
 	void enableOkButton();
+	void selectTransCode();
 };	
 
 #endif

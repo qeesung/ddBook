@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'getTablePairDialog.ui'
 **
-** Created: Wed Mar 25 17:08:33 2015
+** Created: Sun Apr 5 12:08:35 2015
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -28,13 +28,17 @@ QT_BEGIN_NAMESPACE
 class Ui_getTablePairDialog
 {
 public:
-    QVBoxLayout *verticalLayout_2;
-    QVBoxLayout *verticalLayout;
+    QVBoxLayout *verticalLayout_5;
+    QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout;
+    QVBoxLayout *verticalLayout;
     QLabel *label;
-    QLineEdit *codeLineEdit;
     QLabel *label_2;
+    QVBoxLayout *verticalLayout_2;
+    QLineEdit *codeLineEdit;
     QLineEdit *fileLineEdit;
+    QVBoxLayout *verticalLayout_3;
+    QPushButton *viewCodePushButton;
     QPushButton *viewFilePushButton;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer;
@@ -45,32 +49,39 @@ public:
     {
         if (getTablePairDialog->objectName().isEmpty())
             getTablePairDialog->setObjectName(QString::fromUtf8("getTablePairDialog"));
-        getTablePairDialog->resize(475, 84);
-        verticalLayout_2 = new QVBoxLayout(getTablePairDialog);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        getTablePairDialog->resize(392, 119);
+        verticalLayout_5 = new QVBoxLayout(getTablePairDialog);
+        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         label = new QLabel(getTablePairDialog);
         label->setObjectName(QString::fromUtf8("label"));
 
-        horizontalLayout->addWidget(label);
+        verticalLayout->addWidget(label);
 
+        label_2 = new QLabel(getTablePairDialog);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        verticalLayout->addWidget(label_2);
+
+
+        horizontalLayout->addLayout(verticalLayout);
+
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         codeLineEdit = new QLineEdit(getTablePairDialog);
         codeLineEdit->setObjectName(QString::fromUtf8("codeLineEdit"));
-        QSizePolicy sizePolicy(QSizePolicy::Maximum, QSizePolicy::Fixed);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(codeLineEdit->sizePolicy().hasHeightForWidth());
         codeLineEdit->setSizePolicy(sizePolicy);
 
-        horizontalLayout->addWidget(codeLineEdit);
-
-        label_2 = new QLabel(getTablePairDialog);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-
-        horizontalLayout->addWidget(label_2);
+        verticalLayout_2->addWidget(codeLineEdit);
 
         fileLineEdit = new QLineEdit(getTablePairDialog);
         fileLineEdit->setObjectName(QString::fromUtf8("fileLineEdit"));
@@ -80,15 +91,28 @@ public:
         sizePolicy1.setHeightForWidth(fileLineEdit->sizePolicy().hasHeightForWidth());
         fileLineEdit->setSizePolicy(sizePolicy1);
 
-        horizontalLayout->addWidget(fileLineEdit);
+        verticalLayout_2->addWidget(fileLineEdit);
+
+
+        horizontalLayout->addLayout(verticalLayout_2);
+
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        viewCodePushButton = new QPushButton(getTablePairDialog);
+        viewCodePushButton->setObjectName(QString::fromUtf8("viewCodePushButton"));
+
+        verticalLayout_3->addWidget(viewCodePushButton);
 
         viewFilePushButton = new QPushButton(getTablePairDialog);
         viewFilePushButton->setObjectName(QString::fromUtf8("viewFilePushButton"));
 
-        horizontalLayout->addWidget(viewFilePushButton);
+        verticalLayout_3->addWidget(viewFilePushButton);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        horizontalLayout->addLayout(verticalLayout_3);
+
+
+        verticalLayout_4->addLayout(horizontalLayout);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
@@ -107,10 +131,10 @@ public:
         horizontalLayout_2->addWidget(okPushButton);
 
 
-        verticalLayout->addLayout(horizontalLayout_2);
+        verticalLayout_4->addLayout(horizontalLayout_2);
 
 
-        verticalLayout_2->addLayout(verticalLayout);
+        verticalLayout_5->addLayout(verticalLayout_4);
 
 
         retranslateUi(getTablePairDialog);
@@ -124,7 +148,8 @@ public:
     {
         getTablePairDialog->setWindowTitle(QApplication::translate("getTablePairDialog", "Dialog", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("getTablePairDialog", "Code:", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("getTablePairDialog", "File", 0, QApplication::UnicodeUTF8));
+        label_2->setText(QApplication::translate("getTablePairDialog", "Audio File:", 0, QApplication::UnicodeUTF8));
+        viewCodePushButton->setText(QApplication::translate("getTablePairDialog", "...", 0, QApplication::UnicodeUTF8));
         viewFilePushButton->setText(QApplication::translate("getTablePairDialog", "...", 0, QApplication::UnicodeUTF8));
         cancelPushButton->setText(QApplication::translate("getTablePairDialog", "CANCEL", 0, QApplication::UnicodeUTF8));
         okPushButton->setText(QApplication::translate("getTablePairDialog", "OK", 0, QApplication::UnicodeUTF8));

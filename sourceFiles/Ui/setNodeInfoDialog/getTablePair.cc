@@ -1,4 +1,5 @@
 #include "getTablePair.h"
+#include "selectCodeDialog.h"
 #include <QFileDialog>
 
 GetTablePairDialog::GetTablePairDialog(QWidget * parent):QDialog(parent)
@@ -8,6 +9,7 @@ GetTablePairDialog::GetTablePairDialog(QWidget * parent):QDialog(parent)
 	connect(viewFilePushButton, SIGNAL(clicked()) , this , SLOT(viewFile()));
 	connect(codeLineEdit , SIGNAL(textChanged(const QString & )) , this , SLOT(enableOkButton()));
 	connect(fileLineEdit , SIGNAL(textChanged(const QString & )) , this , SLOT(enableOkButton()));
+	connect(viewCodePushButton , SIGNAL(clicked()), this , SLOT(selectTransCode()));
 }
 
 void GetTablePairDialog::viewFile()
@@ -33,4 +35,13 @@ void GetTablePairDialog::enableOkButton()
 	if(codeIsEmpty && fileIsEmpty)
 		return;
 	okPushButton->setEnabled(true);
+}
+
+void GetTablePairDialog::selectTransCode()
+{
+	SelectCodeDialog * dialog = new SelectCodeDialog();
+	if(dialog->exec() == QDialog::Accepted)
+	{
+		codeLineEdit->setText(dialog->getTransCode());
+	}
 }
