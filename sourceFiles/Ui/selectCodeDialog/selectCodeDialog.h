@@ -15,7 +15,7 @@ public:
 		return codeListWidget->selectedItems()[0]->text();//返回节点码
 	}
 	QString getPicture() const{
-		return codeListWidget->selectedItems()[0]->icon().name();//返回图片名字
+		return codeListWidget->selectedItems()[0]->data(Qt::UserRole).toString();//返回图片名字
 	}
 protected:
 	void keyPressEvent(QKeyEvent * event);
@@ -25,6 +25,7 @@ private slots:
 	void enableButtons();
 	void setCodeInfo(const QModelIndex & );
 	void searchCode(const QString & codeStr);
+	void saveCodes();
 };
 
 

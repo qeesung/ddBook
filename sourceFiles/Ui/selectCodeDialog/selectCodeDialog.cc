@@ -32,6 +32,9 @@ SelectCodeDialog::SelectCodeDialog(QWidget * parent):QDialog(parent)
 	/** 搜索码值 */
 	connect(searchLineEdit , SIGNAL(textChanged(const QString &)),\
 		this , SLOT(searchCode(const QString &)));
+	/** 更新文件 */
+	connect(okPushButton , SIGNAL(clicked()),\
+		this , SLOT(saveCodes()));
 
 	/**　读取cp文件的内容，插入倒listWidget里面 */
 	QFile cpFile(cpFileName);
@@ -66,6 +69,12 @@ void SelectCodeDialog::createCode()
 	{
 		QListWidgetItem * item = new QListWidgetItem(dialog->getTransCode() , codeListWidget);
 		item->setIcon(QIcon(dialog->getPicturePath()));
+		item->setData(Qt::UserRole , dialog->getPicturePath());
+		QFont font;
+		font.setBold(true);
+		font.setPointSize(15);
+		item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+		item->setFont(font);
 	}
 }
 
@@ -103,6 +112,7 @@ void SelectCodeDialog::setCodeInfo(const QModelIndex & index)
 	{
 		item->setText(dialog->getTransCode());
 		item->setIcon(QIcon(dialog->getPicturePath()));
+		item->setData(Qt::UserRole , dialog->getPicturePath());
 	}
 }
 
@@ -127,4 +137,28 @@ void SelectCodeDialog::keyPressEvent(QKeyEvent * event)
 	}
 	else
 		QDialog::keyPressEvent(event);
+}
+
+
+void SelectCodeDialog::saveCodes()
+{
+	QFile::remove(cpFileName);
+	/** 现在将数据保存到cpFileName里面 */
+	QFile file(cpFileName);  
+	//方式：Append为追加，WriteOnly，ReadOnly  
+	if (!file.open(QIODevice::WriteOnly|QIODevice::Text)) {    
+	    QMessageBox::critical(NULL, "warning", "can not save file");  
+	    return;    
+	}    
+	QTextStream out(&file); 
+	/** 将所有的item取出 ，存入到文件里面*/
+	int i =0;
+	while(codeListWidget->count() > i)
+	{
+		QListWidgetItem * item = codeListWidget->item(i++);
+		QString lineData = QString("%1-Y(^_^)Y-%2\n").arg(item->text()).arg(item->data(Qt::UserRole).toString());
+		out<<lineData;
+	}
+	file.close();
+	setWindowModified(false);
 }

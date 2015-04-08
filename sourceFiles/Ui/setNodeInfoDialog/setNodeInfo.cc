@@ -28,21 +28,7 @@ SetNodeInfo::SetNodeInfo(const Node * node,QWidget * parent):QDialog(parent)
 	/** 这里采用文件的形式保存全局code : picture 信息 */
 	/** 文件名字用日期信息保存 */
 	/** 这里读取设置cpMap信息 */
-	QFile cpFile(cpFileName);
-	if(!cpFile.open(QIODevice::ReadOnly | QIODevice::Text))
-	{
-		QMessageBox * mBox = new QMessageBox;
-		mBox->setText(QString("Open file %1 failed\n file is destoried or is not existed\n").arg(cpFileName));
-	}
-	QTextStream cpPairInput(&cpFile);
-	QString lineStr;
-	while(!cpPairInput.atEnd())
-	{
-		lineStr = cpPairInput.readLine();//读取到文件的一行数据
-		/** 一行数据的格式　code-Y(^_^)Y-picture */
-		QStringList cpTemp = lineStr.split(QString("-Y(^_^)Y-"));
-		cpMap[cpTemp[0]] = cpTemp[1];//码制和图片对应
-	}
+	updateCpMap();
 
 	/** transCodelineEdit的内容 */
 	transCodeLineEdit->setDisabled(true);
@@ -143,8 +129,8 @@ SetNodeInfo::SetNodeInfo(const Node * node,QWidget * parent):QDialog(parent)
 	connect(afterRadioButton , SIGNAL(toggled(bool)),\
 			this , SLOT(afterRadioToggled(bool)));
 
-	connect(transCodeLineEdit , SIGNAL(textChanged(const QString &)),\
-			this , SLOT(updateNodePic(const QString &)));
+	// connect(transCodeLineEdit , SIGNAL(textChanged(const QString &)),\
+	// 		this , SLOT(updateNodePic(const QString &)));
 
 	connect(transCodeViewButton , SIGNAL(clicked()),\
 			this , SLOT(selectTransCode()));
@@ -329,8 +315,35 @@ void SetNodeInfo::updateNodePic(const QString & text)
 void SetNodeInfo::selectTransCode()
 {
 	SelectCodeDialog * dialog = new SelectCodeDialog();
+	updateCpMap();//更新cpMap
 	if(dialog->exec() == QDialog::Accepted)
 	{
 		transCodeLineEdit->setText(dialog->getTransCode());
+		QPixmap pixmap(dialog->getPicture());
+		QPixmap fitpixmap=pixmap.scaled(100,100, Qt::KeepAspectRatio);  
+		if(fitpixmap.isNull())
+			pictureLabel->setText("<h2><i><font color=red>invalid Code</font></i></h2>");
+		else
+			pictureLabel->setPixmap(fitpixmap);
+	}
+}
+
+void SetNodeInfo::updateCpMap()
+{
+	// cpMap.clear();
+	QFile cpFile(cpFileName);
+	if(!cpFile.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+		QMessageBox * mBox = new QMessageBox;
+		mBox->setText(QString("Open file %1 failed\n file is destoried or is not existed\n").arg(cpFileName));
+	}
+	QTextStream cpPairInput(&cpFile);
+	QString lineStr;
+	while(!cpPairInput.atEnd())
+	{
+		lineStr = cpPairInput.readLine();//读取到文件的一行数据
+		/** 一行数据的格式　code-Y(^_^)Y-picture */
+		QStringList cpTemp = lineStr.split(QString("-Y(^_^)Y-"));
+		cpMap[cpTemp[0]] = cpTemp[1];//码制和图片对应
 	}
 }

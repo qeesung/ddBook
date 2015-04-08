@@ -98,6 +98,8 @@ private:
 		QStringList & defaultList);
 	void showData(QList<QPair<QString, QString> > & givenList ,\
 		QStringList & defaultList);
+
+	void updateCpMap();//这里需要重新读取cp文件的内容，更新cpMap
 };
 
 
