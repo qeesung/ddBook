@@ -30,6 +30,7 @@ private slots:
 	void openModeFiles();
 	void saveFile();
 	void saveAsFile();
+	void setupCodeTable();
 
 	void copy();
 	void cut();
@@ -80,6 +81,7 @@ private:
 	QAction * openFileAction;
 	QAction * saveFileAction;
 	QAction * saveAsFileAction;
+	QAction * setupCodesAction;
 	QAction * exitAction;
 
 	/** 编辑actions */

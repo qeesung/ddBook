@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QDebug>
 #include <QtGui>
+#include "setupCodeDialog.h"
 
 /**
  * 这个文件只是建立主要UI的外观
@@ -52,11 +53,16 @@
  	saveFileAction->setStatusTip(tr("Save the mode file"));
  	connect(saveFileAction , SIGNAL(triggered()), this , SLOT(saveFile()));
 
- 	saveAsFileAction = new QAction(tr("Save &As"), this);
- 	saveAsFileAction->setIcon(QIcon(":images/saveas.png"));
- 	saveAsFileAction->setShortcut(QKeySequence::SaveAs);
- 	saveAsFileAction->setStatusTip(tr("Save the mode file as ..."));
-	connect(saveAsFileAction , SIGNAL(triggered()), this , SLOT(saveAsFile()));
+    saveAsFileAction = new QAction(tr("Save &As"), this);
+    saveAsFileAction->setIcon(QIcon(":images/saveas.png"));
+    saveAsFileAction->setShortcut(QKeySequence::SaveAs);
+    saveAsFileAction->setStatusTip(tr("Save the mode file as ..."));
+    connect(saveAsFileAction , SIGNAL(triggered()), this , SLOT(saveAsFile()));
+
+ 	setupCodesAction = new QAction(tr("Setup &Code"), this);
+ 	setupCodesAction->setIcon(QIcon(":images/setupCodes.png"));
+ 	setupCodesAction->setStatusTip(tr("Set up a global code table..."));
+	connect(setupCodesAction , SIGNAL(triggered()), this , SLOT(setupCodeTable()));
 
 	exitAction = new QAction(tr("E&xit"), this);
 	exitAction->setIcon(QIcon(":images/exit.png"));
@@ -292,6 +298,7 @@
  	fileMenu->addAction(openFileAction);
  	fileMenu->addAction(saveFileAction);
  	fileMenu->addAction(saveAsFileAction);
+    fileMenu->addAction(setupCodesAction);
  	fileMenu->addSeparator();
  	fileMenu->addAction(exitAction);
 
@@ -472,6 +479,12 @@ void MainWindow::saveAsFile()
         activeView()->saveAs();
 }
 
+/** 创建一个码值表 */
+void MainWindow::setupCodeTable()
+{
+    SetupCodeDialog * dialog = new SetupCodeDialog();
+    dialog->exec();
+}
 
 /**
  * 返回当前的活动窗口
