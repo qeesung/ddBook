@@ -6,9 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>290</width>
-    <height>523</height>
+    <width>302</width>
+    <height>542</height>
    </rect>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::NoContextMenu</enum>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -94,8 +97,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>247</x>
-     <y>504</y>
+     <x>325</x>
+     <y>436</y>
     </hint>
     <hint type="destinationlabel">
      <x>244</x>

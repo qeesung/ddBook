@@ -5,7 +5,7 @@
 #include <QDebug>
 #include <QFileDialog>
 
-extern QString cpFileName="cpData";//这个是预先编辑好的code : picture对应的对文件名字
+extern QString cpFileName;//这个是预先编辑好的code : picture对应的对文件名字
 
 SetNodeInfo::SetNodeInfo(const Node * node,QWidget * parent):QDialog(parent)
 {
