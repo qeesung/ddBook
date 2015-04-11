@@ -97,6 +97,9 @@ public:
 	QList<Node *> selectedNodes() const;
 	Link * selectedLink() const;
 	NodePair selectedNodePair() const;
+
+	/** 得到所有的节点 */
+	QList<Node *> allNodes();
 protected:
 	void closeEvent(QCloseEvent * event);
 	//按键捕捉

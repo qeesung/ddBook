@@ -504,10 +504,36 @@ void GraphicsView::infoProperties(Node * node)
 	SetNodeInfo * setDialog = new SetNodeInfo(node);
 	if(setDialog->exec()==QDialog::Accepted)
 	{
-		node->setStartAudio(setDialog->getStartAudio());
-		node->setEndAudio(setDialog->getEndAudio());
-		node->setDefaultAudioList(setDialog->getDefaultAudioList());
-		node->setText(setDialog->getNodeName());
+		// setDialog->syncData();
+		// node->setStartAudio(setDialog->getStartAudio());
+		// node->setEndAudio(setDialog->getEndAudio());
+		// node->setDefaultAudioList(setDialog->getBeforeDefaultAudioList());
+		// node->setAfterdefaultAudioList(setDialog->getAfterDefaultAudioList());
+		// node->setText(setDialog->getNodeName());
+		// node->setPicture(setDialog->getPictureName());
+		// node->setTransCode(setDialog->getTransCode());
+
+		// node->setSameFlag(setDialog->getSameFlag());
+
+		// QList<QPair<QString , QString> > tempList1 = setDialog->getBeforeGivenAudioTable(); 
+		// QList<QPair<QString , QString> > tempList2 = setDialog->getAfterGivenTableAudio(); 
+		// givenAudioTable.clear();
+		// afterGivenAudioTable.clear();
+
+		// /** 设置第一个表的内容 */
+		// for(QList<QPair<QString , QString> >::iterator iter = tempList1.begin() ; iter != tempList1.end();
+		// 				++iter)
+		// {
+		// 	givenAudioTable[iter->first] = iter->second;
+		// }
+		// /** 如果前后状态相同 */
+		// if(isBeforeSameAsAfter())
+		// 	return;
+		// for(QList<QPair<QString , QString> >::iterator iter = tempList2.begin() ; iter != tempList2.end();
+		// 				++iter)
+		// {
+		// 	afterGivenAudioTable[iter->first] = iter->second;
+		// }
 	}
 }
 
@@ -557,6 +583,20 @@ GraphicsView::NodePair GraphicsView::selectedNodePair() const
 		return NodePair(first , second);
 	}
 	return NodePair();
+}
+
+/** 返回一个view里面的全部信息 */
+QList<Node *> GraphicsView::allNodes()
+{
+	QList<QGraphicsItem *> items =scene()->items();
+	QList<Node *> nodes;
+	foreach(QGraphicsItem * item , items)
+	{
+		Node * node = dynamic_cast<Node *>(item);
+		if(node)
+			nodes.push_back(node);
+	}
+	return nodes;
 }
 
 /** 从fatherNode连接到一个新的childNode */
