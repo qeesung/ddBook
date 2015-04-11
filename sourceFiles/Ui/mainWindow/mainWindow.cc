@@ -6,6 +6,8 @@
 #include <QDebug>
 #include <QtGui>
 #include "setupCodeDialog.h"
+#include "setupAudioDialog.h"
+#include "checkCodeAudioDialog.h"
 
 /**
  * 这个文件只是建立主要UI的外观
@@ -59,10 +61,20 @@
     saveAsFileAction->setStatusTip(tr("Save the mode file as ..."));
     connect(saveAsFileAction , SIGNAL(triggered()), this , SLOT(saveAsFile()));
 
- 	setupCodesAction = new QAction(tr("Setup &Code"), this);
- 	setupCodesAction->setIcon(QIcon(":images/setupCodes.png"));
- 	setupCodesAction->setStatusTip(tr("Set up a global code table..."));
-	connect(setupCodesAction , SIGNAL(triggered()), this , SLOT(setupCodeTable()));
+    setupCodesAction = new QAction(tr("Setup &Codes"), this);
+    setupCodesAction->setIcon(QIcon(":images/setupCodes.png"));
+    setupCodesAction->setStatusTip(tr("Set up a global code list..."));
+    connect(setupCodesAction , SIGNAL(triggered()), this , SLOT(setupCodeTable()));
+
+    setupAudioAction = new QAction(tr("Setup &Audios"), this);
+    setupAudioAction->setIcon(QIcon(":images/setupAudios.png"));
+    setupAudioAction->setStatusTip(tr("Set up a global audio list..."));
+    connect(setupAudioAction , SIGNAL(triggered()), this , SLOT(setupAudioList()));
+
+ 	checkAction = new QAction(tr("&Check"), this);
+ 	checkAction->setIcon(QIcon(":images/check.png"));
+ 	checkAction->setStatusTip(tr("check the code and audio use of state"));
+	connect(checkAction , SIGNAL(triggered()), this , SLOT(check()));
 
 	exitAction = new QAction(tr("E&xit"), this);
 	exitAction->setIcon(QIcon(":images/exit.png"));
@@ -298,8 +310,11 @@
  	fileMenu->addAction(openFileAction);
  	fileMenu->addAction(saveFileAction);
  	fileMenu->addAction(saveAsFileAction);
-    fileMenu->addAction(setupCodesAction);
  	fileMenu->addSeparator();
+    fileMenu->addAction(setupCodesAction);
+    fileMenu->addAction(setupAudioAction);
+    fileMenu->addAction(checkAction);
+    fileMenu->addSeparator();
  	fileMenu->addAction(exitAction);
 
 	 ////////////////
@@ -486,6 +501,21 @@ void MainWindow::setupCodeTable()
     dialog->exec();
 }
 
+/** 创建一个音频表 */
+
+void MainWindow::setupAudioList()
+{
+    SetupAudioDialog * dialog = new SetupAudioDialog();
+    dialog->exec();
+}
+
+/** 检查code和audio的使用情况 */
+void MainWindow::check()
+{
+    CheckCodeAudioDialog * dialog = new CheckCodeAudioDialog(allViews());
+    dialog->exec();
+}
+
 /**
  * 返回当前的活动窗口
  * @return 返回的窗口
@@ -496,6 +526,17 @@ GraphicsView * MainWindow::activeView()
     if(subWindow)
         return qobject_cast<GraphicsView *>(subWindow->widget());
     return 0;
+}
+
+QList<GraphicsView *> MainWindow::allViews()
+{
+    QList<QMdiSubWindow *> subWindowList = mdiArea->subWindowList();
+    QList<GraphicsView *> viewList;
+    foreach(QMdiSubWindow * subWindow , subWindowList)
+    {
+        viewList.push_back(qobject_cast<GraphicsView*>(subWindow->widget()));
+    }
+    return viewList;
 }
 
 void MainWindow::copy()

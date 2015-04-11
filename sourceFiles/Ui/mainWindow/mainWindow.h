@@ -31,6 +31,8 @@ private slots:
 	void saveFile();
 	void saveAsFile();
 	void setupCodeTable();
+	void setupAudioList();
+	void check();
 
 	void copy();
 	void cut();
@@ -82,6 +84,8 @@ private:
 	QAction * saveFileAction;
 	QAction * saveAsFileAction;
 	QAction * setupCodesAction;
+	QAction * setupAudioAction;
+	QAction * checkAction;
 	QAction * exitAction;
 
 	/** 编辑actions */
@@ -162,6 +166,11 @@ private:
 	 * @return 返回的窗口
 	 */
 	GraphicsView * activeView();
+
+	/**
+	 * 得到所有的views
+	 */
+	QList<GraphicsView *> allViews();
 
 	///////////////
 	//一些必要的窗口部件 //
