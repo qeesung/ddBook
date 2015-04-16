@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'setNodeInfoDialog.ui'
 **
-** Created: Tue Mar 31 20:50:56 2015
+** Created: Thu Apr 16 17:14:00 2015
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,7 +14,6 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
-#include <QtGui/QCheckBox>
 #include <QtGui/QDialog>
 #include <QtGui/QFrame>
 #include <QtGui/QGridLayout>
@@ -22,9 +21,7 @@
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
-#include <QtGui/QListWidget>
 #include <QtGui/QPushButton>
-#include <QtGui/QRadioButton>
 #include <QtGui/QSpacerItem>
 #include <QtGui/QTableWidget>
 #include <QtGui/QVBoxLayout>
@@ -76,17 +73,8 @@ public:
     QPushButton *givenAudioDeletePushButton;
     QSpacerItem *horizontalSpacer_5;
     QVBoxLayout *verticalLayout_4;
-    QLabel *label_3;
-    QListWidget *defaultAudiotListWidget;
     QHBoxLayout *horizontalLayout_10;
-    QPushButton *defaultAudioAddPushButton;
-    QPushButton *defaultAudioDeletePushButton;
-    QSpacerItem *horizontalSpacer_6;
     QHBoxLayout *horizontalLayout_7;
-    QCheckBox *sameFlagCheckBox;
-    QRadioButton *beforeRadioButton;
-    QRadioButton *afterRadioButton;
-    QSpacerItem *horizontalSpacer;
     QVBoxLayout *verticalLayout_6;
     QSpacerItem *verticalSpacer_2;
     QPushButton *okPushButton;
@@ -321,33 +309,8 @@ public:
 
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
-        label_3 = new QLabel(frame);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setFont(font1);
-
-        verticalLayout_4->addWidget(label_3);
-
-        defaultAudiotListWidget = new QListWidget(frame);
-        defaultAudiotListWidget->setObjectName(QString::fromUtf8("defaultAudiotListWidget"));
-
-        verticalLayout_4->addWidget(defaultAudiotListWidget);
-
         horizontalLayout_10 = new QHBoxLayout();
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
-        defaultAudioAddPushButton = new QPushButton(frame);
-        defaultAudioAddPushButton->setObjectName(QString::fromUtf8("defaultAudioAddPushButton"));
-
-        horizontalLayout_10->addWidget(defaultAudioAddPushButton);
-
-        defaultAudioDeletePushButton = new QPushButton(frame);
-        defaultAudioDeletePushButton->setObjectName(QString::fromUtf8("defaultAudioDeletePushButton"));
-
-        horizontalLayout_10->addWidget(defaultAudioDeletePushButton);
-
-        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_10->addItem(horizontalSpacer_6);
-
 
         verticalLayout_4->addLayout(horizontalLayout_10);
 
@@ -359,25 +322,6 @@ public:
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
-        sameFlagCheckBox = new QCheckBox(frame);
-        sameFlagCheckBox->setObjectName(QString::fromUtf8("sameFlagCheckBox"));
-
-        horizontalLayout_7->addWidget(sameFlagCheckBox);
-
-        beforeRadioButton = new QRadioButton(frame);
-        beforeRadioButton->setObjectName(QString::fromUtf8("beforeRadioButton"));
-
-        horizontalLayout_7->addWidget(beforeRadioButton);
-
-        afterRadioButton = new QRadioButton(frame);
-        afterRadioButton->setObjectName(QString::fromUtf8("afterRadioButton"));
-
-        horizontalLayout_7->addWidget(afterRadioButton);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_7->addItem(horizontalSpacer);
-
 
         verticalLayout_8->addLayout(horizontalLayout_7);
 
@@ -422,14 +366,13 @@ public:
 
         gridLayout_2->addLayout(horizontalLayout_6, 0, 0, 1, 1);
 
+        label_6->raise();
 
         retranslateUi(setNodeInfoDialog);
         QObject::connect(morePushButton, SIGNAL(toggled(bool)), frame, SLOT(setVisible(bool)));
         QObject::connect(okPushButton, SIGNAL(clicked()), setNodeInfoDialog, SLOT(accept()));
         QObject::connect(cancelPushButton, SIGNAL(clicked()), setNodeInfoDialog, SLOT(reject()));
         QObject::connect(morePushButton, SIGNAL(toggled(bool)), label_6, SLOT(setVisible(bool)));
-        QObject::connect(sameFlagCheckBox, SIGNAL(toggled(bool)), beforeRadioButton, SLOT(setVisible(bool)));
-        QObject::connect(sameFlagCheckBox, SIGNAL(toggled(bool)), afterRadioButton, SLOT(setVisible(bool)));
 
         QMetaObject::connectSlotsByName(setNodeInfoDialog);
     } // setupUi
@@ -454,12 +397,6 @@ public:
         ___qtablewidgetitem1->setText(QApplication::translate("setNodeInfoDialog", "Audio", 0, QApplication::UnicodeUTF8));
         givenAudioAddPushButton->setText(QApplication::translate("setNodeInfoDialog", "add", 0, QApplication::UnicodeUTF8));
         givenAudioDeletePushButton->setText(QApplication::translate("setNodeInfoDialog", "delete", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QApplication::translate("setNodeInfoDialog", "Default Audio:", 0, QApplication::UnicodeUTF8));
-        defaultAudioAddPushButton->setText(QApplication::translate("setNodeInfoDialog", "add", 0, QApplication::UnicodeUTF8));
-        defaultAudioDeletePushButton->setText(QApplication::translate("setNodeInfoDialog", "delete", 0, QApplication::UnicodeUTF8));
-        sameFlagCheckBox->setText(QApplication::translate("setNodeInfoDialog", "Different state before and after the state", 0, QApplication::UnicodeUTF8));
-        beforeRadioButton->setText(QApplication::translate("setNodeInfoDialog", "Before", 0, QApplication::UnicodeUTF8));
-        afterRadioButton->setText(QApplication::translate("setNodeInfoDialog", "After", 0, QApplication::UnicodeUTF8));
         okPushButton->setText(QApplication::translate("setNodeInfoDialog", "  OK  ", 0, QApplication::UnicodeUTF8));
         cancelPushButton->setText(QApplication::translate("setNodeInfoDialog", "CANCEL", 0, QApplication::UnicodeUTF8));
         morePushButton->setText(QApplication::translate("setNodeInfoDialog", "More", 0, QApplication::UnicodeUTF8));

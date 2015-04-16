@@ -284,94 +284,14 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_4">
                 <item>
-                 <widget class="QLabel" name="label_3">
-                  <property name="font">
-                   <font>
-                    <pointsize>11</pointsize>
-                    <weight>50</weight>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Default Audio:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QListWidget" name="defaultAudiotListWidget"/>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_10">
-                  <item>
-                   <widget class="QPushButton" name="defaultAudioAddPushButton">
-                    <property name="text">
-                     <string>add</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="defaultAudioDeletePushButton">
-                    <property name="text">
-                     <string>delete</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <spacer name="horizontalSpacer_6">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                 </layout>
+                 <layout class="QHBoxLayout" name="horizontalLayout_10"/>
                 </item>
                </layout>
               </item>
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_7">
-              <item>
-               <widget class="QCheckBox" name="sameFlagCheckBox">
-                <property name="text">
-                 <string>Different state before and after the state</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QRadioButton" name="beforeRadioButton">
-                <property name="text">
-                 <string>Before</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QRadioButton" name="afterRadioButton">
-                <property name="text">
-                 <string>After</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
+             <layout class="QHBoxLayout" name="horizontalLayout_7"/>
             </item>
            </layout>
           </widget>
@@ -437,6 +357,7 @@
     </layout>
    </item>
   </layout>
+  <zorder>label_6</zorder>
  </widget>
  <resources>
   <include location="../resources.qrc"/>
@@ -503,38 +424,6 @@
     <hint type="destinationlabel">
      <x>102</x>
      <y>204</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>sameFlagCheckBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>beforeRadioButton</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>52</x>
-     <y>536</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>154</x>
-     <y>535</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>sameFlagCheckBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>afterRadioButton</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>65</x>
-     <y>531</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>221</x>
-     <y>532</y>
     </hint>
    </hints>
   </connection>
