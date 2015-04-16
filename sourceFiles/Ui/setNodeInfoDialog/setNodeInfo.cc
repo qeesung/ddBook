@@ -62,22 +62,6 @@ SetNodeInfo::SetNodeInfo(const Node * node,QWidget * parent):QDialog(parent)
 	////////////////
 	// 设置节点的附加信息 //
 	////////////////
-	///
-	/** 首先判断是否是状态前状态后一样的 */
-	bool sameFlag = node->isBeforeSameAsAfter();
-	sameFlagCheckBox->setChecked(!sameFlag);
-	beforeRadioButton->setVisible(!sameFlag);
-	afterRadioButton->setVisible(!sameFlag);
-	beforeRadioButton->setChecked(true);
-
-	/**　显示相应的数据*/
-	QStringList filenames = node->getDefaultAudioList();
-	beforeDefaultAudioList = filenames;
-	foreach(QString filename , filenames)
-	{
-		QListWidgetItem * tempItem = new QListWidgetItem(filename);
-		defaultAudiotListWidget->addItem(tempItem);
-	}
 
 	unsigned int i = 0;
 	/** 得到given table的值 */
@@ -90,20 +74,9 @@ SetNodeInfo::SetNodeInfo(const Node * node,QWidget * parent):QDialog(parent)
 		givenAudioTableWidget->insertRow(i);
 		givenAudioTableWidget->setItem(i,0 ,item1);
 		givenAudioTableWidget->setItem(i,1 ,item2);
-		beforeGivenAudioList.push_back(QPair<QString , QString>(iter.key() , iter.value()));
 	}
-	/** 不管sameFlag怎么样,都读入全部数据 */
-	afterDefaultAudioList = node->getAfterDefaultAudioList();
-	givenAudioTableMap = node->getAllAfterGivenTableAudio();
-	for(QMap<QString , QString>::const_iterator iter = givenAudioTableMap.constBegin() ;\
-											   iter != givenAudioTableMap.constEnd() ; ++iter , ++i)
-	{
-		afterGivenAudioList.push_back(QPair<QString , QString>(iter.key() , iter.value()));
-	}
-
 
 	//将表设置为多选选项
-	defaultAudiotListWidget->setSelectionMode(QAbstractItemView::MultiSelection);
 	givenAudioTableWidget->setSelectionMode(QAbstractItemView::MultiSelection);
 	//ok按钮为默认的按钮
 	okPushButton->setDefault(true);
@@ -114,20 +87,10 @@ SetNodeInfo::SetNodeInfo(const Node * node,QWidget * parent):QDialog(parent)
 	connect(endAudioPushButton , SIGNAL(clicked()),\
 		    this , SLOT(endAudioView()));
 
-	connect(defaultAudioAddPushButton, SIGNAL(clicked()),\
-		    this , SLOT(addDefaultAudio()));
-	connect(defaultAudioDeletePushButton , SIGNAL(clicked()),\
-			this , SLOT(deleteDefaultAudio()));
-
 	connect(givenAudioAddPushButton, SIGNAL(clicked()),\
 		    this , SLOT(addGivenTableAudio()));
 	connect(givenAudioDeletePushButton , SIGNAL(clicked()),\
 			this , SLOT(deleteGivenTableAudio()));
-
-	connect(beforeRadioButton , SIGNAL(toggled(bool)),\
-			this , SLOT(beforeRadioToggled(bool)));
-	connect(afterRadioButton , SIGNAL(toggled(bool)),\
-			this , SLOT(afterRadioToggled(bool)));
 
 	// connect(transCodeLineEdit , SIGNAL(textChanged(const QString &)),\
 	// 		this , SLOT(updateNodePic(const QString &)));
@@ -166,35 +129,6 @@ void SetNodeInfo::endAudioView()
 	}
 }
 
-void SetNodeInfo::addDefaultAudio()
-{
-	QFileDialog * fileDialog = new QFileDialog;
-	fileDialog->setFileMode(QFileDialog::ExistingFiles);
-	fileDialog->setNameFilter(QString("audio file(*.mp3 *.wmv)"));
-	fileDialog->setViewMode(QFileDialog::List);
-	fileDialog->setDirectory("../../res/");
-	fileDialog->setWindowTitle("Choose a default audio file");
-	if(fileDialog->exec()==QDialog::Accepted)
-	{
-		QStringList filenames = fileDialog->selectedFiles();
-		foreach(QString filename , filenames)
-		{
-			QListWidgetItem * newItem= new QListWidgetItem(filename);
-			defaultAudiotListWidget->addItem(newItem);
-		}
-	}
-}
-
-void SetNodeInfo::deleteDefaultAudio()
-{
-	QList<QListWidgetItem * > selectedItems = defaultAudiotListWidget->selectedItems();
-	foreach(QListWidgetItem * item , selectedItems)
-	{
-		defaultAudiotListWidget->removeItemWidget(item);
-		delete item;
-	}
-}
-
 
 void SetNodeInfo::addGivenTableAudio()
 {
@@ -216,84 +150,6 @@ void SetNodeInfo::deleteGivenTableAudio()
 	foreach(QTableWidgetItem * item , selectedItems)
 	{
 		givenAudioTableWidget->removeRow(givenAudioTableWidget->row(item));
-	}
-}
-
-
-void SetNodeInfo::beforeRadioToggled(bool state)
-{
-	if(!state)
-		return;
-	/** 马上保存after编辑的数据 */
-	saveData(afterGivenAudioList , afterDefaultAudioList);
-	/** 重现显示before的数据 */
-	showData(beforeGivenAudioList , beforeDefaultAudioList);
-}
-
-void SetNodeInfo::afterRadioToggled(bool state)
-{
-	if(!state)
-		return;
-	/** 马上保存before编辑的数据 */
-	saveData(beforeGivenAudioList , beforeDefaultAudioList);
-	/** 重现显示after的数据 */
-	showData(afterGivenAudioList , afterDefaultAudioList);
-}
-
-
-void SetNodeInfo::saveData(QList<QPair<QString, QString> > & givenList ,\
-					QStringList & defaultList)
-{
-	defaultList.clear();
-	//////////////
-	//更新默认列表信息 //
-	//////////////
-	size_t listCount = defaultAudiotListWidget->count();
-	for (size_t i = 0; i < listCount; ++i)
-	{
-		QListWidgetItem * tempItem = defaultAudiotListWidget->item(i);
-		defaultList.push_back(tempItem->text());
-	}
-	///////////////
-	// 更新给定列表信息 //
-	///////////////
-	givenList.clear();
-	size_t tableCount = givenAudioTableWidget->rowCount();
-	for (size_t i = 0; i < tableCount; ++i)
-	{
-		QTableWidgetItem * item1 = givenAudioTableWidget->item(i,0);
-		QTableWidgetItem * item2 = givenAudioTableWidget->item(i,1);
-		givenList.push_back(QPair<QString , QString>(item1->text() , item2->text()));
-	}
-}
-
-
-void SetNodeInfo::showData(QList<QPair<QString, QString> > & givenList,\
-					QStringList & defaultList)
-{
-	defaultAudiotListWidget->clear();
-	//////////////
-	//更新默认列表Widget //
-	//////////////
-	size_t listCount = defaultList.count();
-	for (size_t i = 0; i < listCount; ++i)
-	{
-		QListWidgetItem * tempItem = new QListWidgetItem(defaultList[i]);
-		defaultAudiotListWidget->insertItem(i,tempItem);
-	}
-	///////////////
-	// 更新给定列表Widget //
-	///////////////
-	while(givenAudioTableWidget->rowCount() !=0)
-		givenAudioTableWidget->removeRow(0);
-	size_t tableCount = givenList.count();
-	for (size_t i = 0; i < tableCount; ++i)
-	{
-		QTableWidgetItem * item1 = new QTableWidgetItem(givenList[i].first);
-		QTableWidgetItem * item2 = new QTableWidgetItem(givenList[i].second);
-		givenAudioTableWidget->insertRow(i);
-		givenAudioTableWidget->setItem(i,0,item1);
-		givenAudioTableWidget->setItem(i,1,item2);
 	}
 }
 
