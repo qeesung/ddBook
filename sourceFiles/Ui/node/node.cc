@@ -1,5 +1,6 @@
 #include "node.h"
 #include "setNodeInfo.h"
+#include "mainWindow.h"
 #include <QInputDialog>
 #include <QGraphicsSceneMouseEvent>
 #include <QLineEdit>
@@ -148,21 +149,16 @@ void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * /*event*/)
 	SetNodeInfo * setDialog = new SetNodeInfo(this);
 	if(setDialog->exec()==QDialog::Accepted)
 	{
-		setDialog->syncData();
 		setStartAudio(setDialog->getStartAudio());
 		setEndAudio(setDialog->getEndAudio());
-		setDefaultAudioList(setDialog->getBeforeDefaultAudioList());
-		setAfterdefaultAudioList(setDialog->getAfterDefaultAudioList());
 		setText(setDialog->getNodeName());
 		setPicture(setDialog->getPictureName());
 		setTransCode(setDialog->getTransCode());
 
-		setSameFlag(setDialog->getSameFlag());
+		setSameFlag(true);
 
-		QList<QPair<QString , QString> > tempList1 = setDialog->getBeforeGivenAudioTable(); 
-		QList<QPair<QString , QString> > tempList2 = setDialog->getAfterGivenAudioTable(); 
+		QList<QPair<QString , QString> > tempList1 = setDialog->getGivenAudioTable(); 
 		givenAudioTable.clear();
-		afterGivenAudioTable.clear();
 
 		/** 设置第一个表的内容 */
 		for(QList<QPair<QString , QString> >::iterator iter = tempList1.begin() ; iter != tempList1.end();
@@ -170,15 +166,6 @@ void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * /*event*/)
 		{
 			givenAudioTable[iter->first] = iter->second;
 		}
-		/** 如果前后状态相同 */
-		if(isBeforeSameAsAfter())
-			return;
-		for(QList<QPair<QString , QString> >::iterator iter = tempList2.begin() ; iter != tempList2.end();
-						++iter)
-		{
-			afterGivenAudioTable[iter->first] = iter->second;
-		}
-		
 	}
 }
 
@@ -186,4 +173,12 @@ int Node::roundness(double size) const
 {
 	const int diameter = 12;
 	return 100*diameter/int(size);
+}
+
+QStringList Node::getDefaultAudioList() const{
+	QMap<QString , QString> cdMap = MainWindow::getCdData();
+	if(cdMap.count(text) == 0)
+		return QStringList();
+	else
+		return QStringList()<<cdMap[text];
 }
