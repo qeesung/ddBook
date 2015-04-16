@@ -20,6 +20,19 @@ class MainWindow : public QMainWindow
 	Q_OBJECT
 public:
 	MainWindow();
+	/** 得到基本数据源 */
+	static QMap<QString ,QString> getCpData()
+	{
+		return cpMapData;
+	}
+	static QStringList getAlData()
+	{
+		return alListData;
+	}
+	static QMap<QString , QString> getCdData()
+	{
+		return cdMapData;
+	}
 protected:
 	void closeEvent(QCloseEvent * event);
 private slots:
@@ -183,7 +196,13 @@ private:
 	// QString projectName;
 	// QString projectPath;
 	// ProjectTreeWidget * projectTreeWidget;
-
+	// 三个基本数据的处理
+	static QMap<QString , QString> cpMapData;
+	static QStringList alListData;
+	static QMap<QString , QString> cdMapData;
+	void loadCpData();
+	void loadAlData();
+	void loadCdData();
 };
 
 #endif

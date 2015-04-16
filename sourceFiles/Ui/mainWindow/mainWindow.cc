@@ -9,6 +9,14 @@
 #include "setupAudioDialog.h"
 #include "checkCodeAudioDialog.h"
 
+extern QString cpFileName;
+extern QString alFileName;
+extern QString cdFileName;
+
+QMap<QString , QString> MainWindow::cpMapData;
+QStringList MainWindow::alListData;
+QMap<QString , QString> MainWindow::cdMapData;
+
 /**
  * 这个文件只是建立主要UI的外观
  * 具体的各项菜单menu的实现分布在相应的"menu".cc里面
@@ -28,6 +36,10 @@
  	createMenus();
  	createToolBars();
  	createStatusBar();
+
+    loadCdData();
+    loadCpData();
+    loadAlData();
 
     setWindowIcon(QIcon(":/images/about.png"));
  }
@@ -789,4 +801,69 @@ void MainWindow::closeEvent(QCloseEvent * event)
         event->ignore();
     else
         event->accept();
+}
+
+void MainWindow::loadCpData()
+{
+    cpMapData.clear();
+    /** 把cpFile里面的东西读出来 */
+    QFile cpFile(cpFileName);
+    if(!cpFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QMessageBox * mBox = new QMessageBox;
+        mBox->setText(QString("Open file %1 failed\n file is destoried or is not existed\n").arg(cpFileName));
+    }
+    QTextStream cpPairInput(&cpFile);
+    QString lineStr;
+    while(!cpPairInput.atEnd())
+    {
+        lineStr = cpPairInput.readLine();//读取到文件的一行数据
+        /** 一行数据的格式　code-Y(^_^)Y-picture */
+        QStringList cpTemp = lineStr.split(QString("-Y(^_^)Y-"));
+        cpMapData[cpTemp[0]] = cpTemp[1];
+    }
+    cpFile.close();
+}
+
+void MainWindow::loadAlData()
+{
+    alListData.clear();
+    /** 把alFile里面的东西读出来 */
+    QFile alFile(alFileName);
+    if(!alFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QMessageBox * mBox = new QMessageBox;
+        mBox->setText(QString("Open file %1 failed\n file is destoried or is not existed\n").arg(alFileName));
+    }
+    QTextStream alInput(&alFile);
+    QString lineStr;
+    while(!alInput.atEnd())
+    {
+        lineStr = alInput.readLine();//读取到文件的一行数据
+        /** 一行数据的格式 */
+        alListData<<lineStr;
+    }
+    alFile.close();
+}
+
+void MainWindow::loadCdData()
+{
+    cdMapData.clear();
+    /** 把cdFile里面的东西读出来 */
+    QFile cdFile(cdFileName);
+    if(!cdFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QMessageBox * mBox = new QMessageBox;
+        mBox->setText(QString("Open file %1 failed\n file is destoried or is not existed\n").arg(cdFileName));
+    }
+    QTextStream cdPairInput(&cdFile);
+    QString lineStr;
+    while(!cdPairInput.atEnd())
+    {
+        lineStr = cdPairInput.readLine();//读取到文件的一行数据
+        /** 一行数据的格式　code-Y(^_^)Y-picture */
+        QStringList cdTemp = lineStr.split(QString("-Y(^_^)Y-"));
+        cdMapData[cdTemp[0]] = cdTemp[1];
+    }
+    cdFile.close();
 }
