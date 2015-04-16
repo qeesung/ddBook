@@ -4,6 +4,7 @@
 
 QString cpFileName = "cpData.cp";
 QString alFileName = "alData.al";
+QString cdFileName = "cdData.cd";
 
 ChooseCpAlDialog::ChooseCpAlDialog(QWidget * parent):QDialog(parent)
 {	
