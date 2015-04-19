@@ -12,14 +12,19 @@ ChooseCpAlDialog::ChooseCpAlDialog(QWidget * parent):QDialog(parent)
 
 	cpFileLineEdit->setText(cpFileName);
 	alFileLineEdit->setText(alFileName);
+	cdFileLineEdit->setText(cdFileName);
 
 	connect(cpFilePushButton , SIGNAL(clicked()),\
 		this , SLOT(chooseCpFile()));
 	connect(alFilePushButton , SIGNAL(clicked()),\
 		this , SLOT(chooseAlFile()));
+	connect(cdFilePushButton , SIGNAL(clicked()),\
+		this , SLOT(chooseCdFile()));
 	connect(cpFileLineEdit , SIGNAL(textChanged(const QString &)),\
 		this , SLOT(enableOkPushButton()));
 	connect(alFileLineEdit , SIGNAL(textChanged(const QString &)),\
+		this , SLOT(enableOkPushButton()));
+	connect(cdFileLineEdit , SIGNAL(textChanged(const QString &)),\
 		this , SLOT(enableOkPushButton()));
 	connect(okPushButton , SIGNAL(clicked()) , \
 		this , SLOT(setFilename()));
@@ -28,7 +33,9 @@ ChooseCpAlDialog::ChooseCpAlDialog(QWidget * parent):QDialog(parent)
 
 void ChooseCpAlDialog::enableOkPushButton()
 {
-	if(cpFileLineEdit->text().isEmpty() || alFileLineEdit->text().isEmpty())
+	if(cpFileLineEdit->text().isEmpty() ||\
+	   alFileLineEdit->text().isEmpty() ||\
+	   cdFileLineEdit->text().isEmpty())
 		okPushButton->setEnabled(false);
 	else
 		okPushButton->setEnabled(true);
@@ -64,10 +71,27 @@ void ChooseCpAlDialog::chooseAlFile()
 	}
 }
 
+
+void ChooseCpAlDialog::chooseCdFile()
+{
+	QFileDialog * fileDialog = new QFileDialog;
+	fileDialog->setFileMode(QFileDialog::ExistingFile);
+	fileDialog->setNameFilter(QString("cd file(*.cd)"));
+	fileDialog->setViewMode(QFileDialog::List);
+	fileDialog->setDirectory("./");
+	fileDialog->setWindowTitle("Choose a cd file");
+	if(fileDialog->exec()==QDialog::Accepted)
+	{
+		QString filename = fileDialog->selectedFiles()[0];
+		cdFileLineEdit->setText(filename);
+	}
+}
+
 void ChooseCpAlDialog::setFilename()
 {
 	cpFileName = cpFileLineEdit->text();
 	alFileName = alFileLineEdit->text();
+	cdFileName = cdFileLineEdit->text();	
 }
 
 

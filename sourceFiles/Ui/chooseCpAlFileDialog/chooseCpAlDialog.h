@@ -13,6 +13,7 @@ private slots:
 	void enableOkPushButton();
 	void chooseCpFile();
 	void chooseAlFile();
+	void chooseCdFile();
 	void setFilename();
 };
 
