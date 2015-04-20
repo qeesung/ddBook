@@ -176,9 +176,9 @@ int Node::roundness(double size) const
 }
 
 QStringList Node::getDefaultAudioList() const{
-	QMap<QString , QString> cdMap = MainWindow::getCdData();
+	QMap<QString , QStringList> cdMap = MainWindow::getCdData();
 	if(cdMap.count(text) == 0)
 		return QStringList();
 	else
-		return QStringList()<<cdMap[text];
+		return cdMap[text];
 }
