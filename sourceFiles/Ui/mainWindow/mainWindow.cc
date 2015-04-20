@@ -8,6 +8,7 @@
 #include "setupCodeDialog.h"
 #include "setupAudioDialog.h"
 #include "checkCodeAudioDialog.h"
+#include "setupDefaultAudioDialog.h"
 
 extern QString cpFileName;
 extern QString alFileName;
@@ -15,7 +16,7 @@ extern QString cdFileName;
 
 QMap<QString , QString> MainWindow::cpMapData;
 QStringList MainWindow::alListData;
-QMap<QString , QString> MainWindow::cdMapData;
+QMap<QString , QStringList> MainWindow::cdMapData;
 
 /**
  * 这个文件只是建立主要UI的外观
@@ -82,6 +83,11 @@ QMap<QString , QString> MainWindow::cdMapData;
     setupAudioAction->setIcon(QIcon(":images/setupAudios.png"));
     setupAudioAction->setStatusTip(tr("Set up a global audio list..."));
     connect(setupAudioAction , SIGNAL(triggered()), this , SLOT(setupAudioList()));
+
+    setupDefaultAudioAction = new QAction(tr("Setup &Default Audios"), this);
+    setupDefaultAudioAction->setIcon(QIcon(":images/setupDeafultAudios.png"));
+    setupDefaultAudioAction->setStatusTip(tr("Set up code default audio list..."));
+    connect(setupDefaultAudioAction , SIGNAL(triggered()), this , SLOT(setupDefaultAudioTree()));
 
  	checkAction = new QAction(tr("&Check"), this);
  	checkAction->setIcon(QIcon(":images/check.png"));
@@ -325,6 +331,7 @@ QMap<QString , QString> MainWindow::cdMapData;
  	fileMenu->addSeparator();
     fileMenu->addAction(setupCodesAction);
     fileMenu->addAction(setupAudioAction);
+    fileMenu->addAction(setupDefaultAudioAction);
     fileMenu->addAction(checkAction);
     fileMenu->addSeparator();
  	fileMenu->addAction(exitAction);
@@ -518,6 +525,12 @@ void MainWindow::setupCodeTable()
 void MainWindow::setupAudioList()
 {
     SetupAudioDialog * dialog = new SetupAudioDialog();
+    dialog->exec();
+}
+
+void MainWindow::setupDefaultAudioTree()
+{
+    SetupDefaultAudioDialog * dialog = new SetupDefaultAudioDialog();
     dialog->exec();
 }
 
@@ -858,12 +871,21 @@ void MainWindow::loadCdData()
     }
     QTextStream cdPairInput(&cdFile);
     QString lineStr;
+    // 这里一个code可能涉及到多个默认的音频
     while(!cdPairInput.atEnd())
     {
-        lineStr = cdPairInput.readLine();//读取到文件的一行数据
-        /** 一行数据的格式　code-Y(^_^)Y-picture */
-        QStringList cdTemp = lineStr.split(QString("-Y(^_^)Y-"));
-        cdMapData[cdTemp[0]] = cdTemp[1];
+        lineStr = cdPairInput.readLine();//读取到文件的一行数据，这一行数据表示码值
+        //在没有遇到-Y(^_^)Y-之前，都是一个code对应的数据格式
+        QStringList tempList;
+        QString tempLine;
+        while(!cdPairInput.atEnd())
+        {
+            tempLine = cdPairInput.readLine();
+            if(tempLine == "-Y(^_^)Y-")
+                break;
+            tempList<<tempLine;
+        }
+        cdMapData[lineStr] = tempList; 
     }
     cdFile.close();
 }

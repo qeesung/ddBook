@@ -29,7 +29,7 @@ public:
 	{
 		return alListData;
 	}
-	static QMap<QString , QString> getCdData()
+	static QMap<QString , QStringList> getCdData()
 	{
 		return cdMapData;
 	}
@@ -45,6 +45,7 @@ private slots:
 	void saveAsFile();
 	void setupCodeTable();
 	void setupAudioList();
+	void setupDefaultAudioTree();
 	void check();
 
 	void copy();
@@ -98,6 +99,7 @@ private:
 	QAction * saveAsFileAction;
 	QAction * setupCodesAction;
 	QAction * setupAudioAction;
+	QAction * setupDefaultAudioAction;
 	QAction * checkAction;
 	QAction * exitAction;
 
@@ -199,10 +201,11 @@ private:
 	// 三个基本数据的处理
 	static QMap<QString , QString> cpMapData;
 	static QStringList alListData;
-	static QMap<QString , QString> cdMapData;
-	void loadCpData();
-	void loadAlData();
-	void loadCdData();
+	static QMap<QString , QStringList> cdMapData;
+public:
+	static void loadCpData();
+	static void loadAlData();
+	static void loadCdData();
 };
 
 #endif
