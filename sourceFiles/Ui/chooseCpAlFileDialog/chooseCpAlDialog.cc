@@ -92,6 +92,25 @@ void ChooseCpAlDialog::setFilename()
 	cpFileName = cpFileLineEdit->text();
 	alFileName = alFileLineEdit->text();
 	cdFileName = cdFileLineEdit->text();	
+	// 文件若不存在，那么就创建
+	if(!QFile::exists(cpFileName))
+	{
+		QFile file(cpFileName);
+		file.open(QIODevice::WriteOnly);
+		file.close();
+	}
+	if(!QFile::exists(alFileName))
+	{
+		QFile file(alFileName);
+		file.open(QIODevice::WriteOnly);
+		file.close();
+	}
+	if(!QFile::exists(cdFileName))
+	{
+		QFile file(cdFileName);
+		file.open(QIODevice::WriteOnly);
+		file.close();
+	}
 }
 
 
