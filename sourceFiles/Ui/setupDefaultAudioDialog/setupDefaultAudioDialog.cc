@@ -77,6 +77,17 @@ void SetupDefaultAudioDialog::addDefaultAudio()
 	if(fileDialog->exec()==QDialog::Accepted)
 	{
 		QString filename = fileDialog->selectedFiles()[0];
+		// 检测需要添加的音频在item里面是否存在
+		int childCount = item->childCount();
+		for(int k = 0 ; k < childCount ; ++k)
+		{	
+			QTreeWidgetItem * childItem = item->child(k);
+			if(childItem->text(0) == filename)
+			{
+				childItem->setSelected(true);
+				return;
+			}
+		}
 		QTreeWidgetItem * childItem = new QTreeWidgetItem(item , 0);
 		childItem->setText(0,filename);
 		childItem->setBackground(0,defaultChildBrush);
