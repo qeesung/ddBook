@@ -166,6 +166,7 @@ void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent * /*event*/)
 		{
 			givenAudioTable[iter->first] = iter->second;
 		}
+		MainWindow::updateDockWidget(this);
 	}
 }
 
