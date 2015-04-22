@@ -82,8 +82,10 @@ public:
 	void addGivenTableAudio(const QString & givenCode , const QString & audioFilename){
 		givenAudioTable[givenCode] = audioFilename;
 	}
-	void removeGivenTableAudio(const QString & givenCode){
+	QString removeGivenTableAudio(const QString & givenCode){
+		QString audio = givenAudioTable[givenCode];
 		givenAudioTable.remove(givenCode);
+		return audio;
 	}
 	QString getGivenTableAudio(const QString & givenCode) const{
 		if(givenAudioTable.count(givenCode) == 0)
