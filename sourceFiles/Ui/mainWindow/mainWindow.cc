@@ -14,11 +14,13 @@
 extern QString cpFileName;
 extern QString alFileName;
 extern QString cdFileName;
+extern MainWindow * globalMainWindow;
 
 QMap<QString , QString> MainWindow::cpMapData;
 QStringList MainWindow::alListData;
 QMap<QString , QStringList> MainWindow::cdMapData;
 QDockWidget * MainWindow::nodeInfoDockWidget = NULL;
+MainWindow * MainWindow::mainWindowObjectPointer= NULL;
 /**
  * 这个文件只是建立主要UI的外观
  * 具体的各项菜单menu的实现分布在相应的"menu".cc里面
@@ -52,6 +54,7 @@ QDockWidget * MainWindow::nodeInfoDockWidget = NULL;
     loadAlData();
 
     setWindowIcon(QIcon(":/images/about.png"));
+    mainWindowObjectPointer = this;
  }
 
  void MainWindow::createActions()
@@ -934,4 +937,57 @@ void MainWindow::updateDockWidget(Node * node)
     PreviewNodeWidget * widget = \
                     dynamic_cast<PreviewNodeWidget *>(nodeInfoDockWidget->widget());
     widget->updateNodeInfo(node);
+}
+
+void MainWindow::updateDockWidget()
+{
+    PreviewNodeWidget * widget = \
+                    dynamic_cast<PreviewNodeWidget *>(nodeInfoDockWidget->widget());
+    Node * currentNode = widget->getCurrentNode();
+    MainWindow::updateDockWidget(currentNode);
+}
+
+void MainWindow::updateAllNodesInfo()
+{
+    QList<GraphicsView * > viewList = mainWindowObjectPointer->allViews();
+    foreach(GraphicsView * view , viewList)
+    {
+        QList<Node *> nodeList = view->allNodes();
+        foreach(Node * node , nodeList)
+        {
+            updateNodeInfo(node);
+        }
+    }
+}
+
+void MainWindow::updateNodeInfo(Node * node)
+{
+    /**
+    * 这里node要更新的内容主要是
+    * 在更改code对应的picture以后，node对应的picture也要变化
+    */
+    /** 首先得到全局的最新变量 */
+    if(node == NULL)
+        return;
+    QMap<QString , QString> cpMapData = getCpData();
+    QString transCode = node->getTransCode();
+    if(cpMapData.count(transCode) == 0)// 已经被删除了
+    {
+        node->setPicture(":images/invalid.png");
+        node->setTransCode("None");
+    }
+    else
+        node->setPicture(cpMapData[transCode]);// 更新了图片
+
+    // 更新给定的
+    QMap<QString , QString> givenAudios = node->getAllGivenTableAudio();
+    for(QMap<QString , QString>::iterator iter = givenAudios.begin() ; iter!= givenAudios.end() ; ++iter)
+    {
+        if(cpMapData.count(iter.key()) == 0)
+        {
+            QString audio = node->removeGivenTableAudio(iter.key());// 移除
+            /** 添加 */
+            node->addGivenTableAudio("None" , audio);
+        }
+    }
 }

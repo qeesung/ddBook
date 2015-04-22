@@ -34,6 +34,10 @@ public:
 		return cdMapData;
 	}
 	static void updateDockWidget(Node * node);
+	static void updateDockWidget();
+	static void updateNodeInfo(Node * );
+	static void updateAllNodesInfo();// 强制更新已有的所有节点 
+	static MainWindow * mainWindowObjectPointer;
 protected:
 	void closeEvent(QCloseEvent * event);
 private slots:
