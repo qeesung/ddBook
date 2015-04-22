@@ -16,7 +16,7 @@ SetNodeInfo::SetNodeInfo(const Node * node,QWidget * parent):QDialog(parent)
 	label_6->setVisible(false);
 	frame->setVisible(false);
 	/** 使得表可以自由伸展 */
-	givenAudioTableWidget->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+	givenAudioTableWidget->horizontalHeader()->setStretchLastSection(true);
 	// startAudioTableWidget->verticalHeader()->setResizeMode(QHeaderView::Stretch);
 	// endAudioTableWidget->verticalHeader()->setResizeMode(QHeaderView::Stretch);
 	// givenAudioTableWidget->verticalHeader()->setResizeMode(QHeaderView::Stretch);
