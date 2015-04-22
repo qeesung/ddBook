@@ -35,24 +35,25 @@ SetNodeInfo::SetNodeInfo(const Node * node,QWidget * parent):QDialog(parent)
 	if(node->getTransCode() == QString("None"))
 	{
 		transCodeLineEdit->setText("None");
-		QPixmap pixmap(":/images/about.png");
+		QPixmap pixmap(":/images/invalid.png");
 		QPixmap fitpixmap=pixmap.scaled(100,100, Qt::KeepAspectRatio);  
 		pictureLabel->setPixmap(fitpixmap);
 	}
 	else
 	{
 		transCodeLineEdit->setText(node->getTransCode());
+		QPixmap pixmap;
 		if(cpMap.count(node->getTransCode()) == 0 )//表明码值不存在
-			pictureLabel->setText(QString("<h2><i><font color=red>invalid Code</font></i></h2>"));
+			// pictureLabel->setText(QString("<h2><i><font color=red>invalid Code</font></i></h2>"));
+			pixmap = QPixmap(":/images/invalid.png");
 		else//设置图片信息
 		{
-			QPixmap pixmap(cpMap[node->getTransCode()]);
-			QPixmap fitpixmap=pixmap.scaled(100,100, Qt::KeepAspectRatio);  
-			if(fitpixmap.isNull())
-				pictureLabel->setText(QString("<h2><i><font color=red>invalid Code</font></i></h2>"));
-			else
-				pictureLabel->setPixmap(fitpixmap);
+			pixmap = QPixmap(cpMap[node->getTransCode()]);
+			if(pixmap.isNull())
+				pixmap = QPixmap(":/images/invalid.png");
 		}
+		QPixmap fitpixmap=pixmap.scaled(100,100, Qt::KeepAspectRatio);  
+		pictureLabel->setPixmap(fitpixmap);
 	}
 	
 
