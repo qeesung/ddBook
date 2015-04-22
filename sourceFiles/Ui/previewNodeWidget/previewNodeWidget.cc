@@ -32,12 +32,9 @@ void PreviewNodeWidget::updateNodeInfo(Node * node)
 	/** show the picture */
 	QPixmap pixmap(node->getPicture());
 	if(pixmap.isNull())
-		pictureLabel->setText(QString("<h2><i><font color=red>invalid Code</font></i></h2>"));
-	else
-	{
-		QPixmap fitpixmap=pixmap.scaled(100,100, Qt::KeepAspectRatio);  
-		pictureLabel->setPixmap(fitpixmap);
-	}
+		pixmap = QPixmap(":images/invalid.png");
+	QPixmap fitpixmap=pixmap.scaled(100,100, Qt::KeepAspectRatio);  
+	pictureLabel->setPixmap(fitpixmap);
 	// show the given audio
 	QMap<QString , QString> givenAudioTable = node->getAllGivenTableAudio();
 	givenAudioTableWidget->setRowCount(givenAudioTable.count());
