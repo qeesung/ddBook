@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QTextStream>
 #include "createCodeDialog.h"
+#include "mainWindow.h"
 
 extern QString cpFileName;//这个是预先编辑好的code : picture对应的对文件名字
 
@@ -70,6 +71,10 @@ void SetupCodeDialog::saveCodes()
 		out<<lineData;
 	}
 	file.close();
+	// 在主窗口里面重新加载这个全局数据
+	MainWindow::loadCpData();
+	MainWindow::updateAllNodesInfo();
+	MainWindow::updateDockWidget();
 	setWindowModified(false);
 }
 
@@ -103,22 +108,12 @@ void SetupCodeDialog::updateSaveButton()
 void SetupCodeDialog::loadCodes()
 {
 	/** 把cpFile里面的东西读出来,保存下载 */
-	QFile cpFile(cpFileName);
-	if(!cpFile.open(QIODevice::ReadOnly | QIODevice::Text))
+	QMap<QString , QString> cpMapData = MainWindow::getCpData();
+	for(QMap<QString , QString>::iterator iter = cpMapData.begin(); iter!= cpMapData.end() ; ++iter)
 	{
-		QMessageBox * mBox = new QMessageBox;
-		mBox->setText(QString("Open file %1 failed\n file is destoried or is not existed\n").arg(cpFileName));
-	}
-	QTextStream cpPairInput(&cpFile);
-	QString lineStr;
-	while(!cpPairInput.atEnd())
-	{
-		lineStr = cpPairInput.readLine();//读取到文件的一行数据
-		/** 一行数据的格式　code-Y(^_^)Y-picture */
-		QStringList cpTemp = lineStr.split(QString("-Y(^_^)Y-"));
-		QListWidgetItem * item = new QListWidgetItem(cpTemp[0], codeListWidget);
-		item->setIcon(QIcon(cpTemp[1]));
-		item->setData(Qt::UserRole , cpTemp[1]);
+		QListWidgetItem * item = new QListWidgetItem(iter.key(), codeListWidget);
+		item->setIcon(QIcon(iter.value()));
+		item->setData(Qt::UserRole , iter.value());
 		QFont font;
 		font.setBold(true);
 		font.setPointSize(15);
