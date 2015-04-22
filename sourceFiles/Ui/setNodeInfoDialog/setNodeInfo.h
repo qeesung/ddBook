@@ -18,7 +18,7 @@ public:
 	QString getTransCode() const {return transCodeLineEdit->text();}
 	QString getPictureName() const{
 		if(cpMap.count(getTransCode()) == 0)
-			return QString(":/images/about.png");
+			return QString(":/images/invalid.png");
 		return cpMap[getTransCode()];
 	}
 
