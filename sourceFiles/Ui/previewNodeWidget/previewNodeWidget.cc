@@ -2,7 +2,7 @@
 #include <QListWidget>
 #include <QTableWidget>
 
-PreviewNodeWidget::PreviewNodeWidget(Node * node , QWidget * parent):QWidget(parent)
+PreviewNodeWidget::PreviewNodeWidget(Node * node , QWidget * parent):QWidget(parent),currentNode(node)
 {
 	setupUi(this);
 	givenAudioTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -14,6 +14,7 @@ PreviewNodeWidget::PreviewNodeWidget(Node * node , QWidget * parent):QWidget(par
 void PreviewNodeWidget::updateNodeInfo(Node * node)
 {
 	givenAudioTableWidget->horizontalHeader()->setStretchLastSection(true);
+	currentNode = node;
 	if(node == NULL)
 	{
 		setEnabled(false);

@@ -11,5 +11,10 @@ Q_OBJECT
 public:
 	PreviewNodeWidget(Node * node , QWidget * parent=NULL);
 	void updateNodeInfo(Node * node);
+	Node * getCurrentNode(){
+		return currentNode;
+	}
+private:
+	Node * currentNode;
 };
 #endif
