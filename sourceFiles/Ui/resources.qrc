@@ -1,6 +1,7 @@
 <RCC>
 <qresource>
 	<file>images/about.png</file>
+	<file>images/invalid.png</file>
 	<file>images/aboutqt.png</file>
 	<file>images/addchildnode.png</file>
 	<file>images/bringtofront.png</file>
