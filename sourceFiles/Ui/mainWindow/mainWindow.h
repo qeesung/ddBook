@@ -33,6 +33,7 @@ public:
 	{
 		return cdMapData;
 	}
+	static void updateDockWidget(Node * node);
 protected:
 	void closeEvent(QCloseEvent * event);
 private slots:
@@ -65,6 +66,7 @@ private slots:
 	void addChildNode();
 	void nodeSurfacceProperties();
 	void infoProperties();
+	void showDockWindow(bool);
 
 	void createLink();
 	void linkToChildNode();
@@ -133,6 +135,7 @@ private:
 	QAction * addChildNodeAction;//添加子节点，添加的时候也自动将其链接起来
 	QAction * nodeSurfaccePropertiesAction;//外观设置的action
 	QAction * infoPropertiesAction;//节点信息设置的action
+	QAction * previewNodeInfoAction;
 
 	/** 链接actions */
 	QAction * createLinkAction;//只是单纯的建立链接
@@ -191,6 +194,12 @@ private:
 	//一些必要的窗口部件 //
 	///////////////
 	QMdiArea * mdiArea;//实现多窗口
+
+	/**
+	 * 节点预览靠窗的实现
+	 */
+	static QDockWidget * nodeInfoDockWidget;
+	// void createNodeInfoDockWidget();
 
 	/**
 	 * 与project相关

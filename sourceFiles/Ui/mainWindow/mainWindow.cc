@@ -9,6 +9,7 @@
 #include "setupAudioDialog.h"
 #include "checkCodeAudioDialog.h"
 #include "setupDefaultAudioDialog.h"
+#include "previewNodeWidget.h"
 
 extern QString cpFileName;
 extern QString alFileName;
@@ -17,7 +18,7 @@ extern QString cdFileName;
 QMap<QString , QString> MainWindow::cpMapData;
 QStringList MainWindow::alListData;
 QMap<QString , QStringList> MainWindow::cdMapData;
-
+QDockWidget * MainWindow::nodeInfoDockWidget = NULL;
 /**
  * 这个文件只是建立主要UI的外观
  * 具体的各项菜单menu的实现分布在相应的"menu".cc里面
@@ -37,6 +38,14 @@ QMap<QString , QStringList> MainWindow::cdMapData;
  	createMenus();
  	createToolBars();
  	createStatusBar();
+  
+    // create dock widget
+    nodeInfoDockWidget = new QDockWidget("Node Info");
+    PreviewNodeWidget * widget = new PreviewNodeWidget(NULL);
+    nodeInfoDockWidget->setWidget(widget);
+    nodeInfoDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    addDockWidget(Qt::RightDockWidgetArea , nodeInfoDockWidget);
+    previewNodeInfoAction->setChecked(true);
 
     loadCdData();
     loadCpData();
@@ -236,7 +245,14 @@ QMap<QString , QStringList> MainWindow::cdMapData;
     infoPropertiesAction->setStatusTip(tr("Set node info"));
     connect(infoPropertiesAction , SIGNAL(triggered()), this , SLOT(infoProperties()));
 
-    //////////////////
+    previewNodeInfoAction = new QAction(tr("node dockWindow"), this);
+    previewNodeInfoAction->setCheckable(true);
+    previewNodeInfoAction->setIcon(QIcon(":images/dockWidget.png"));
+    // previewNodeInfoAction->setShortcut(tr("Ctrl+"));
+    previewNodeInfoAction->setStatusTip(tr("show(hide) node dock window"));
+    connect(previewNodeInfoAction , SIGNAL(toggled(bool)), this , SLOT(showDockWindow(bool)));
+
+    ////////////////// 
     // link actions //
     //////////////////
     createLinkAction = new QAction(tr("Create &Link"), this);
@@ -381,6 +397,8 @@ QMap<QString , QStringList> MainWindow::cdMapData;
 	nodeMenu->addSeparator();
 	nodeMenu->addAction(nodeSurfaccePropertiesAction);
 	nodeMenu->addAction(infoPropertiesAction);
+    nodeMenu->addSeparator();
+    nodeMenu->addAction(previewNodeInfoAction);
 
 	////////////////
 	// link menu //
@@ -720,6 +738,15 @@ void MainWindow::infoProperties()
     }
 }
 
+
+void MainWindow::showDockWindow(bool flag)
+{
+    if(flag)
+        nodeInfoDockWidget->setVisible(true);
+    else
+        nodeInfoDockWidget->setVisible(false);
+}
+
 void MainWindow::createLink()
 {
     if(activeView())
@@ -888,4 +915,23 @@ void MainWindow::loadCdData()
         cdMapData[lineStr] = tempList; 
     }
     cdFile.close();
+}
+
+
+/*void MainWindow::createNodeInfoDockWidget()
+{
+    nodeInfoDockWidget = new QDockWidget("Node Info");
+    PreviewNodeWidget * widget = new PreviewNodeWidget(NULL);
+    nodeInfoDockWidget->setWidget(widget);
+    nodeInfoDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    addDockWidget(Qt::RightDockWidgetArea , nodeInfoDockWidget);
+    previewNodeInfoAction->setChecked(true);
+}*/
+
+
+void MainWindow::updateDockWidget(Node * node)
+{
+    PreviewNodeWidget * widget = \
+                    dynamic_cast<PreviewNodeWidget *>(nodeInfoDockWidget->widget());
+    widget->updateNodeInfo(node);
 }
