@@ -13,7 +13,7 @@
 #include "setNodeInfo.h"
 #include "audioPlayWidget.h"
 #include <QDockWidget>
-
+#include "mainWindow.h"
 
 GraphicsView::GraphicsView(QWidget * parent):QGraphicsView(parent)
 {
@@ -41,6 +41,12 @@ GraphicsView::GraphicsView(QWidget * parent):QGraphicsView(parent)
 			 this , SLOT(documentWasModified(const QList<QRectF> &)));
 	connect( scene(), SIGNAL(changed(const QList<QRectF> &)),\
 			 this , SLOT(updateScene(const QList<QRectF> &)));
+
+	/**
+	 * 选中的项发生改变,要及时更新DockerWidget
+	 */
+	connect(scene() , SIGNAL(selectionChanged()),\
+			this , SLOT(selectedChanged()));
 	setWindowIcon(QIcon(":/images/document.png"));
 	setWindowTitle("[*]");
 	setAttribute(Qt::WA_DeleteOnClose);
@@ -973,6 +979,15 @@ void GraphicsView::stopDebug()
 		delete dockWidget ;
 		dockWidget = NULL;
 	}
+}
+
+void GraphicsView::selectedChanged()
+{
+	QList<Node *> nodes = selectedNodes();
+	if(nodes.count() != 1) 
+		MainWindow::updateDockWidget(NULL);
+	else
+		MainWindow::updateDockWidget(nodes[0]);
 }
 
 

@@ -109,6 +109,7 @@ protected:
 	
 private slots:
 	void documentWasModified(const QList<QRectF> &);
+	void selectedChanged();
 private:
 	/** 一般操作 */
 	bool okToContinue();
