@@ -214,17 +214,24 @@ bool GraphicsView::writeFile(const QString & filename)
 			newNode->set_textcolor(qPrintable(nodeItem->getTextColor().name()));
 			newNode->set_outlinecolor(qPrintable(nodeItem->getOutlineColor().name()));
 			newNode->set_backgroundcolor(qPrintable(nodeItem->getBackgroundColor().name()));
+			newNode->set_transcodetextcolor(qPrintable(nodeItem->getTransCodeTextColor().name()));
+			newNode->set_transcodebackgroundcolor(qPrintable(nodeItem->getTransCodeBackgroundColor().name()));
 			//写入节点信息
 			newNode->set_startaudio(qPrintable(nodeItem->getStartAudio()));
 			newNode->set_endaudio(qPrintable(nodeItem->getEndAudio()));
-			QStringList deafultList = nodeItem->getDefaultAudioList();
-			foreach(QString defaultAudio , deafultList)
+			newNode->set_transcode(qPrintable(nodeItem->getTransCode()));
+			newNode->set_picturefile(qPrintable(nodeItem->getPicture()));
+			// 写入给定音频
+			QMap<QString , QString> givenAudioTable = nodeItem->getAllGivenTableAudio();
+			for(QMap<QString , QString>::iterator iter= givenAudioTable.begin() ; \
+				iter!=givenAudioTable.end() ; ++iter)
 			{
-				newNode->add_defaultaudio(qPrintable(defaultAudio));
+				modeTable::Node_GivenAudioPair * givenPair = newNode->add_givenaudios();
+				givenPair->set_givencode(qPrintable(iter.key()));
+				givenPair->set_givenaudio(qPrintable(iter.value()));
 			}
 			//写入节点ID
 			newNode->set_nodeid(qPrintable(nodeItem->getNodeID()));
-			
 		}
 		else //就是Link
 		{
@@ -232,7 +239,6 @@ bool GraphicsView::writeFile(const QString & filename)
 			if(linkItem)
 			{
 				modeTable::Link * newLink = mtFile.add_linklist();
-				// newLink->set_transcode(linkItem->getTransCode());
 				newLink->set_fromnodeid(qPrintable(linkItem->getFromNode()->getNodeID()));
 				newLink->set_tonodeid(qPrintable(linkItem->getToNode()->getNodeID()));
 			}
@@ -294,15 +300,19 @@ bool GraphicsView::readFile(const QString & filename)
 		newNode->setTextColor(QColor(node.textcolor().c_str()));
 		newNode->setOutlineColor(QColor(node.outlinecolor().c_str()));
 		newNode->setBackgroundColor(QColor(node.backgroundcolor().c_str()));
+		newNode->setTransCodeTextColor(QColor(node.transcodetextcolor().c_str()));
+		newNode->setTransCodeBackgroundColor(QColor(node.transcodebackgroundcolor().c_str()));
 		// 设置节点信息
 		newNode->setStartAudio(node.startaudio().c_str());
 		newNode->setEndAudio(node.endaudio().c_str());
-		QStringList defaultList;
-		for (int i = 0; i < node.defaultaudio_size(); ++i)
+		newNode->setTransCode(node.transcode().c_str());
+		newNode->setPicture(node.picturefile().c_str());
+		//设置给定音频
+		for (int i = 0; i < node.givenaudios_size(); ++i)
 		{
-			defaultList.push_back(node.defaultaudio(i).c_str());
+			modeTable::Node_GivenAudioPair pair = node.givenaudios(i);
+			newNode->addGivenTableAudio(pair.givencode().c_str(),pair.givenaudio().c_str());
 		}
-		newNode->setDefaultAudioList(defaultList);
 		newNode->setNodeID(node.nodeid().c_str());
 		scene()->addItem(newNode);
 		nodes.push_back(newNode);
