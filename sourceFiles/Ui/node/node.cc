@@ -60,12 +60,11 @@ QRectF Node::outlineRect() const
 	// 填充八个像素
 	const int padding = 8;
 	QFontMetricsF metrics = qApp->font();
-	QRectF rect = metrics.boundingRect(QString("%1------%2").arg(text).arg(transCode));
+	QRectF rect1 = nodeNameRect();
 	QRectF rect2 = nodeTransCodeRect();
-	rect.adjust(-padding , -padding , +padding , +padding);
-	rect.translate(-rect.center());
-	rect.translate(rect2.width()/2 , 0);
-	return rect;
+	rect1.adjust(-0,-0,+rect2.width(),+0);
+	rect1.translate(-rect1.center());
+	return rect1;
 }
 
 QRectF Node::nodeNameRect() const
@@ -116,16 +115,18 @@ void Node::paint(QPainter * painter ,const QStyleOptionGraphicsItem * option , Q
 		pen.setStyle(Qt::DotLine);
 		pen.setWidth(2);
 	}
+	QRectF rect1= nodeNameRect();
+	QRectF rect2= nodeTransCodeRect();
+	rect1.translate(-rect2.width()/2,0);
+	rect2.translate(-rect2.width()/2,0);
 	// draw the nodeName
 	painter->setPen(pen);
 	painter->setBrush(backgroundColor);
-	QRectF rect1= nodeNameRect();
 	painter->drawRoundRect(rect1 , roundness(rect1.width()) , roundness(rect1.height()));
 
 	// draw the node transCode
 	painter->setPen(pen);
 	painter->setBrush(transCodeBackgroundColor);
-	QRectF rect2= nodeTransCodeRect();
 	painter->drawRoundRect(rect2 , roundness(rect2.width()) , roundness(rect2.height()));
 	
 	painter->setPen(textColor);
