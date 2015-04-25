@@ -848,14 +848,27 @@ void GraphicsView::copy()
 	if(!node)
 		return;
 	// node 文本颜色 外线颜色 背景色 开始音频 结束音频 默认音频1+默认音频2+...  文本内容
-	QString surfaceStr = QString("Node %1 %2 %3 ").\
+	QString surfaceStr = QString("Node %1 %2 %3 %4 %5 ").\
 								  arg(node->getTextColor().name()).\
 								  arg(node->getOutlineColor().name()).\
-								  arg(node->getBackgroundColor().name());
-	QString infoStr=QString("%1 %2 %3 %4").\
+								  arg(node->getBackgroundColor().name()).\
+								  arg(node->getTransCodeTextColor().name()).\
+								  arg(node->getTransCodeBackgroundColor().name());
+    /** 得到所有的given node pair */
+    QMap<QString , QString> givenAudioMap = node->getAllGivenTableAudio();
+    QStringList givenAudiosList;
+    for(QMap<QString, QString>::iterator iter = givenAudioMap.begin();\
+    	iter!=givenAudioMap.end() ; ++iter)
+    {
+    	QString tempStr = QString("<%1,%2>").arg(iter.key()).arg(iter.value());
+    	givenAudiosList<<tempStr;
+    }
+	QString infoStr=QString("%1 %2 %3 %4 %5 %6").\
 							 arg(node->getStartAudio()).\
 							 arg(node->getEndAudio()).\
-							 arg(node->getDefaultAudioList().join("!+!")).\
+							 arg(node->getTransCode()).\
+							 arg(node->getPicture()).\
+							 arg(givenAudiosList.join("!+!")).\
 							 arg(node->getText());
     QString sumData = surfaceStr+infoStr;
     QApplication::clipboard()->setText(sumData);
@@ -865,19 +878,31 @@ void GraphicsView::paste()
 {
 	QString str = QApplication::clipboard()->text();
 	QStringList parts = str.split(" ");
-	if(parts.count() >=8 && parts.first() == "Node")
+	if(parts.count() >=12 && parts.first() == "Node")
 	{
 		Node * node = new Node;
 		//设置外观
-		node->setText(QStringList(parts.mid(7)).join(" "));
+		node->setText(QStringList(parts.mid(11)).join(" "));
 		node->setTextColor(QColor(parts[1]));
 		node->setOutlineColor(QColor(parts[2]));
 		node->setBackgroundColor(QColor(parts[3]));
+		node->setTransCodeTextColor(QColor(parts[4]));
+		node->setTransCodeBackgroundColor(QColor(parts[5]));
 		//设置节点信息
-		node->setStartAudio(parts[4]);
-		node->setEndAudio(parts[5]);
-		QStringList defaultList = parts[6].split("!+!");
-		node->setDefaultAudioList(defaultList);
+		node->setStartAudio(parts[6]);
+		node->setEndAudio(parts[7]);
+		node->setTransCode(parts[8]);
+		node->setPicture(parts[9]);
+		QStringList givenAudiosList = parts[10].split("!+!");
+		foreach(QString str , givenAudiosList)
+		{
+			// 移除括号
+			str.remove(QChar('<'),Qt::CaseInsensitive);
+			str.remove(QChar('>'),Qt::CaseInsensitive);
+			QStringList mapStr = str.split(",");
+			if(mapStr.size()>=2)
+				node->addGivenTableAudio(mapStr[0],mapStr[1]);
+		}
 
 		//现在需要获得鼠标位置,才好放置节点
 		setupNode(node);
