@@ -37,10 +37,123 @@ void protobuf_AssignDesc_modeTable_2eproto();
 void protobuf_ShutdownFile_modeTable_2eproto();
 
 class Node;
+class Node_GivenAudioPair;
 class Link;
 class MTFile;
 
 // ===================================================================
+
+class Node_GivenAudioPair : public ::google::protobuf::Message {
+ public:
+  Node_GivenAudioPair();
+  virtual ~Node_GivenAudioPair();
+
+  Node_GivenAudioPair(const Node_GivenAudioPair& from);
+
+  inline Node_GivenAudioPair& operator=(const Node_GivenAudioPair& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Node_GivenAudioPair& default_instance();
+
+  void Swap(Node_GivenAudioPair* other);
+
+  // implements Message ----------------------------------------------
+
+  inline Node_GivenAudioPair* New() const { return New(NULL); }
+
+  Node_GivenAudioPair* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Node_GivenAudioPair& from);
+  void MergeFrom(const Node_GivenAudioPair& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(Node_GivenAudioPair* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required string givenCode = 1;
+  inline bool has_givencode() const;
+  inline void clear_givencode();
+  static const int kGivenCodeFieldNumber = 1;
+  inline const ::std::string& givencode() const;
+  inline void set_givencode(const ::std::string& value);
+  inline void set_givencode(const char* value);
+  inline void set_givencode(const char* value, size_t size);
+  inline ::std::string* mutable_givencode();
+  inline ::std::string* release_givencode();
+  inline void set_allocated_givencode(::std::string* givencode);
+
+  // required string givenAudio = 2;
+  inline bool has_givenaudio() const;
+  inline void clear_givenaudio();
+  static const int kGivenAudioFieldNumber = 2;
+  inline const ::std::string& givenaudio() const;
+  inline void set_givenaudio(const ::std::string& value);
+  inline void set_givenaudio(const char* value);
+  inline void set_givenaudio(const char* value, size_t size);
+  inline ::std::string* mutable_givenaudio();
+  inline ::std::string* release_givenaudio();
+  inline void set_allocated_givenaudio(::std::string* givenaudio);
+
+  // @@protoc_insertion_point(class_scope:modeTable.Node.GivenAudioPair)
+ private:
+  inline void set_has_givencode();
+  inline void clear_has_givencode();
+  inline void set_has_givenaudio();
+  inline void clear_has_givenaudio();
+
+  // helper for ByteSize()
+  int RequiredFieldsByteSizeFallback() const;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::google::protobuf::internal::ArenaStringPtr givencode_;
+  ::google::protobuf::internal::ArenaStringPtr givenaudio_;
+  friend void  protobuf_AddDesc_modeTable_2eproto();
+  friend void protobuf_AssignDesc_modeTable_2eproto();
+  friend void protobuf_ShutdownFile_modeTable_2eproto();
+
+  void InitAsDefaultInstance();
+  static Node_GivenAudioPair* default_instance_;
+};
+// -------------------------------------------------------------------
 
 class Node : public ::google::protobuf::Message {
  public:
@@ -103,6 +216,8 @@ class Node : public ::google::protobuf::Message {
   ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
+
+  typedef Node_GivenAudioPair GivenAudioPair;
 
   // accessors -------------------------------------------------------
 
@@ -168,10 +283,34 @@ class Node : public ::google::protobuf::Message {
   inline ::std::string* release_backgroundcolor();
   inline void set_allocated_backgroundcolor(::std::string* backgroundcolor);
 
-  // optional string startAudio = 7;
+  // required string transCodeTextColor = 7;
+  inline bool has_transcodetextcolor() const;
+  inline void clear_transcodetextcolor();
+  static const int kTransCodeTextColorFieldNumber = 7;
+  inline const ::std::string& transcodetextcolor() const;
+  inline void set_transcodetextcolor(const ::std::string& value);
+  inline void set_transcodetextcolor(const char* value);
+  inline void set_transcodetextcolor(const char* value, size_t size);
+  inline ::std::string* mutable_transcodetextcolor();
+  inline ::std::string* release_transcodetextcolor();
+  inline void set_allocated_transcodetextcolor(::std::string* transcodetextcolor);
+
+  // required string transCodeBackgroundColor = 8;
+  inline bool has_transcodebackgroundcolor() const;
+  inline void clear_transcodebackgroundcolor();
+  static const int kTransCodeBackgroundColorFieldNumber = 8;
+  inline const ::std::string& transcodebackgroundcolor() const;
+  inline void set_transcodebackgroundcolor(const ::std::string& value);
+  inline void set_transcodebackgroundcolor(const char* value);
+  inline void set_transcodebackgroundcolor(const char* value, size_t size);
+  inline ::std::string* mutable_transcodebackgroundcolor();
+  inline ::std::string* release_transcodebackgroundcolor();
+  inline void set_allocated_transcodebackgroundcolor(::std::string* transcodebackgroundcolor);
+
+  // optional string startAudio = 9;
   inline bool has_startaudio() const;
   inline void clear_startaudio();
-  static const int kStartAudioFieldNumber = 7;
+  static const int kStartAudioFieldNumber = 9;
   inline const ::std::string& startaudio() const;
   inline void set_startaudio(const ::std::string& value);
   inline void set_startaudio(const char* value);
@@ -180,10 +319,10 @@ class Node : public ::google::protobuf::Message {
   inline ::std::string* release_startaudio();
   inline void set_allocated_startaudio(::std::string* startaudio);
 
-  // optional string endAudio = 8;
+  // optional string endAudio = 10;
   inline bool has_endaudio() const;
   inline void clear_endaudio();
-  static const int kEndAudioFieldNumber = 8;
+  static const int kEndAudioFieldNumber = 10;
   inline const ::std::string& endaudio() const;
   inline void set_endaudio(const ::std::string& value);
   inline void set_endaudio(const char* value);
@@ -192,26 +331,46 @@ class Node : public ::google::protobuf::Message {
   inline ::std::string* release_endaudio();
   inline void set_allocated_endaudio(::std::string* endaudio);
 
-  // repeated string defaultAudio = 9;
-  inline int defaultaudio_size() const;
-  inline void clear_defaultaudio();
-  static const int kDefaultAudioFieldNumber = 9;
-  inline const ::std::string& defaultaudio(int index) const;
-  inline ::std::string* mutable_defaultaudio(int index);
-  inline void set_defaultaudio(int index, const ::std::string& value);
-  inline void set_defaultaudio(int index, const char* value);
-  inline void set_defaultaudio(int index, const char* value, size_t size);
-  inline ::std::string* add_defaultaudio();
-  inline void add_defaultaudio(const ::std::string& value);
-  inline void add_defaultaudio(const char* value);
-  inline void add_defaultaudio(const char* value, size_t size);
-  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& defaultaudio() const;
-  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_defaultaudio();
+  // optional string transCode = 11;
+  inline bool has_transcode() const;
+  inline void clear_transcode();
+  static const int kTransCodeFieldNumber = 11;
+  inline const ::std::string& transcode() const;
+  inline void set_transcode(const ::std::string& value);
+  inline void set_transcode(const char* value);
+  inline void set_transcode(const char* value, size_t size);
+  inline ::std::string* mutable_transcode();
+  inline ::std::string* release_transcode();
+  inline void set_allocated_transcode(::std::string* transcode);
 
-  // required string nodeID = 10;
+  // optional string pictureFile = 12;
+  inline bool has_picturefile() const;
+  inline void clear_picturefile();
+  static const int kPictureFileFieldNumber = 12;
+  inline const ::std::string& picturefile() const;
+  inline void set_picturefile(const ::std::string& value);
+  inline void set_picturefile(const char* value);
+  inline void set_picturefile(const char* value, size_t size);
+  inline ::std::string* mutable_picturefile();
+  inline ::std::string* release_picturefile();
+  inline void set_allocated_picturefile(::std::string* picturefile);
+
+  // repeated .modeTable.Node.GivenAudioPair givenAudios = 13;
+  inline int givenaudios_size() const;
+  inline void clear_givenaudios();
+  static const int kGivenAudiosFieldNumber = 13;
+  inline const ::modeTable::Node_GivenAudioPair& givenaudios(int index) const;
+  inline ::modeTable::Node_GivenAudioPair* mutable_givenaudios(int index);
+  inline ::modeTable::Node_GivenAudioPair* add_givenaudios();
+  inline const ::google::protobuf::RepeatedPtrField< ::modeTable::Node_GivenAudioPair >&
+      givenaudios() const;
+  inline ::google::protobuf::RepeatedPtrField< ::modeTable::Node_GivenAudioPair >*
+      mutable_givenaudios();
+
+  // required string nodeID = 14;
   inline bool has_nodeid() const;
   inline void clear_nodeid();
-  static const int kNodeIDFieldNumber = 10;
+  static const int kNodeIDFieldNumber = 14;
   inline const ::std::string& nodeid() const;
   inline void set_nodeid(const ::std::string& value);
   inline void set_nodeid(const char* value);
@@ -234,10 +393,18 @@ class Node : public ::google::protobuf::Message {
   inline void clear_has_outlinecolor();
   inline void set_has_backgroundcolor();
   inline void clear_has_backgroundcolor();
+  inline void set_has_transcodetextcolor();
+  inline void clear_has_transcodetextcolor();
+  inline void set_has_transcodebackgroundcolor();
+  inline void clear_has_transcodebackgroundcolor();
   inline void set_has_startaudio();
   inline void clear_has_startaudio();
   inline void set_has_endaudio();
   inline void clear_has_endaudio();
+  inline void set_has_transcode();
+  inline void clear_has_transcode();
+  inline void set_has_picturefile();
+  inline void clear_has_picturefile();
   inline void set_has_nodeid();
   inline void clear_has_nodeid();
 
@@ -253,9 +420,13 @@ class Node : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr textcolor_;
   ::google::protobuf::internal::ArenaStringPtr outlinecolor_;
   ::google::protobuf::internal::ArenaStringPtr backgroundcolor_;
+  ::google::protobuf::internal::ArenaStringPtr transcodetextcolor_;
+  ::google::protobuf::internal::ArenaStringPtr transcodebackgroundcolor_;
   ::google::protobuf::internal::ArenaStringPtr startaudio_;
   ::google::protobuf::internal::ArenaStringPtr endaudio_;
-  ::google::protobuf::RepeatedPtrField< ::std::string> defaultaudio_;
+  ::google::protobuf::internal::ArenaStringPtr transcode_;
+  ::google::protobuf::internal::ArenaStringPtr picturefile_;
+  ::google::protobuf::RepeatedPtrField< ::modeTable::Node_GivenAudioPair > givenaudios_;
   ::google::protobuf::internal::ArenaStringPtr nodeid_;
   friend void  protobuf_AddDesc_modeTable_2eproto();
   friend void protobuf_AssignDesc_modeTable_2eproto();
@@ -330,13 +501,6 @@ class Link : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required int32 transCode = 1;
-  inline bool has_transcode() const;
-  inline void clear_transcode();
-  static const int kTransCodeFieldNumber = 1;
-  inline ::google::protobuf::int32 transcode() const;
-  inline void set_transcode(::google::protobuf::int32 value);
-
   // required string fromNodeID = 4;
   inline bool has_fromnodeid() const;
   inline void clear_fromnodeid();
@@ -363,8 +527,6 @@ class Link : public ::google::protobuf::Message {
 
   // @@protoc_insertion_point(class_scope:modeTable.Link)
  private:
-  inline void set_has_transcode();
-  inline void clear_has_transcode();
   inline void set_has_fromnodeid();
   inline void clear_has_fromnodeid();
   inline void set_has_tonodeid();
@@ -378,7 +540,6 @@ class Link : public ::google::protobuf::Message {
   mutable int _cached_size_;
   ::google::protobuf::internal::ArenaStringPtr fromnodeid_;
   ::google::protobuf::internal::ArenaStringPtr tonodeid_;
-  ::google::protobuf::int32 transcode_;
   friend void  protobuf_AddDesc_modeTable_2eproto();
   friend void protobuf_AssignDesc_modeTable_2eproto();
   friend void protobuf_ShutdownFile_modeTable_2eproto();
@@ -495,6 +656,116 @@ class MTFile : public ::google::protobuf::Message {
 
 
 // ===================================================================
+
+// Node_GivenAudioPair
+
+// required string givenCode = 1;
+inline bool Node_GivenAudioPair::has_givencode() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Node_GivenAudioPair::set_has_givencode() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Node_GivenAudioPair::clear_has_givencode() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void Node_GivenAudioPair::clear_givencode() {
+  givencode_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_givencode();
+}
+inline const ::std::string& Node_GivenAudioPair::givencode() const {
+  // @@protoc_insertion_point(field_get:modeTable.Node.GivenAudioPair.givenCode)
+  return givencode_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Node_GivenAudioPair::set_givencode(const ::std::string& value) {
+  set_has_givencode();
+  givencode_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:modeTable.Node.GivenAudioPair.givenCode)
+}
+inline void Node_GivenAudioPair::set_givencode(const char* value) {
+  set_has_givencode();
+  givencode_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:modeTable.Node.GivenAudioPair.givenCode)
+}
+inline void Node_GivenAudioPair::set_givencode(const char* value, size_t size) {
+  set_has_givencode();
+  givencode_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:modeTable.Node.GivenAudioPair.givenCode)
+}
+inline ::std::string* Node_GivenAudioPair::mutable_givencode() {
+  set_has_givencode();
+  // @@protoc_insertion_point(field_mutable:modeTable.Node.GivenAudioPair.givenCode)
+  return givencode_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Node_GivenAudioPair::release_givencode() {
+  clear_has_givencode();
+  return givencode_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Node_GivenAudioPair::set_allocated_givencode(::std::string* givencode) {
+  if (givencode != NULL) {
+    set_has_givencode();
+  } else {
+    clear_has_givencode();
+  }
+  givencode_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), givencode);
+  // @@protoc_insertion_point(field_set_allocated:modeTable.Node.GivenAudioPair.givenCode)
+}
+
+// required string givenAudio = 2;
+inline bool Node_GivenAudioPair::has_givenaudio() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Node_GivenAudioPair::set_has_givenaudio() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Node_GivenAudioPair::clear_has_givenaudio() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Node_GivenAudioPair::clear_givenaudio() {
+  givenaudio_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_givenaudio();
+}
+inline const ::std::string& Node_GivenAudioPair::givenaudio() const {
+  // @@protoc_insertion_point(field_get:modeTable.Node.GivenAudioPair.givenAudio)
+  return givenaudio_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Node_GivenAudioPair::set_givenaudio(const ::std::string& value) {
+  set_has_givenaudio();
+  givenaudio_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:modeTable.Node.GivenAudioPair.givenAudio)
+}
+inline void Node_GivenAudioPair::set_givenaudio(const char* value) {
+  set_has_givenaudio();
+  givenaudio_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:modeTable.Node.GivenAudioPair.givenAudio)
+}
+inline void Node_GivenAudioPair::set_givenaudio(const char* value, size_t size) {
+  set_has_givenaudio();
+  givenaudio_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:modeTable.Node.GivenAudioPair.givenAudio)
+}
+inline ::std::string* Node_GivenAudioPair::mutable_givenaudio() {
+  set_has_givenaudio();
+  // @@protoc_insertion_point(field_mutable:modeTable.Node.GivenAudioPair.givenAudio)
+  return givenaudio_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Node_GivenAudioPair::release_givenaudio() {
+  clear_has_givenaudio();
+  return givenaudio_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Node_GivenAudioPair::set_allocated_givenaudio(::std::string* givenaudio) {
+  if (givenaudio != NULL) {
+    set_has_givenaudio();
+  } else {
+    clear_has_givenaudio();
+  }
+  givenaudio_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), givenaudio);
+  // @@protoc_insertion_point(field_set_allocated:modeTable.Node.GivenAudioPair.givenAudio)
+}
+
+// -------------------------------------------------------------------
 
 // Node
 
@@ -758,15 +1029,121 @@ inline void Node::set_allocated_backgroundcolor(::std::string* backgroundcolor) 
   // @@protoc_insertion_point(field_set_allocated:modeTable.Node.backgroundColor)
 }
 
-// optional string startAudio = 7;
-inline bool Node::has_startaudio() const {
+// required string transCodeTextColor = 7;
+inline bool Node::has_transcodetextcolor() const {
   return (_has_bits_[0] & 0x00000040u) != 0;
 }
-inline void Node::set_has_startaudio() {
+inline void Node::set_has_transcodetextcolor() {
   _has_bits_[0] |= 0x00000040u;
 }
-inline void Node::clear_has_startaudio() {
+inline void Node::clear_has_transcodetextcolor() {
   _has_bits_[0] &= ~0x00000040u;
+}
+inline void Node::clear_transcodetextcolor() {
+  transcodetextcolor_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_transcodetextcolor();
+}
+inline const ::std::string& Node::transcodetextcolor() const {
+  // @@protoc_insertion_point(field_get:modeTable.Node.transCodeTextColor)
+  return transcodetextcolor_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Node::set_transcodetextcolor(const ::std::string& value) {
+  set_has_transcodetextcolor();
+  transcodetextcolor_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:modeTable.Node.transCodeTextColor)
+}
+inline void Node::set_transcodetextcolor(const char* value) {
+  set_has_transcodetextcolor();
+  transcodetextcolor_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:modeTable.Node.transCodeTextColor)
+}
+inline void Node::set_transcodetextcolor(const char* value, size_t size) {
+  set_has_transcodetextcolor();
+  transcodetextcolor_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:modeTable.Node.transCodeTextColor)
+}
+inline ::std::string* Node::mutable_transcodetextcolor() {
+  set_has_transcodetextcolor();
+  // @@protoc_insertion_point(field_mutable:modeTable.Node.transCodeTextColor)
+  return transcodetextcolor_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Node::release_transcodetextcolor() {
+  clear_has_transcodetextcolor();
+  return transcodetextcolor_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Node::set_allocated_transcodetextcolor(::std::string* transcodetextcolor) {
+  if (transcodetextcolor != NULL) {
+    set_has_transcodetextcolor();
+  } else {
+    clear_has_transcodetextcolor();
+  }
+  transcodetextcolor_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), transcodetextcolor);
+  // @@protoc_insertion_point(field_set_allocated:modeTable.Node.transCodeTextColor)
+}
+
+// required string transCodeBackgroundColor = 8;
+inline bool Node::has_transcodebackgroundcolor() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void Node::set_has_transcodebackgroundcolor() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void Node::clear_has_transcodebackgroundcolor() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void Node::clear_transcodebackgroundcolor() {
+  transcodebackgroundcolor_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_transcodebackgroundcolor();
+}
+inline const ::std::string& Node::transcodebackgroundcolor() const {
+  // @@protoc_insertion_point(field_get:modeTable.Node.transCodeBackgroundColor)
+  return transcodebackgroundcolor_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Node::set_transcodebackgroundcolor(const ::std::string& value) {
+  set_has_transcodebackgroundcolor();
+  transcodebackgroundcolor_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:modeTable.Node.transCodeBackgroundColor)
+}
+inline void Node::set_transcodebackgroundcolor(const char* value) {
+  set_has_transcodebackgroundcolor();
+  transcodebackgroundcolor_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:modeTable.Node.transCodeBackgroundColor)
+}
+inline void Node::set_transcodebackgroundcolor(const char* value, size_t size) {
+  set_has_transcodebackgroundcolor();
+  transcodebackgroundcolor_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:modeTable.Node.transCodeBackgroundColor)
+}
+inline ::std::string* Node::mutable_transcodebackgroundcolor() {
+  set_has_transcodebackgroundcolor();
+  // @@protoc_insertion_point(field_mutable:modeTable.Node.transCodeBackgroundColor)
+  return transcodebackgroundcolor_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Node::release_transcodebackgroundcolor() {
+  clear_has_transcodebackgroundcolor();
+  return transcodebackgroundcolor_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Node::set_allocated_transcodebackgroundcolor(::std::string* transcodebackgroundcolor) {
+  if (transcodebackgroundcolor != NULL) {
+    set_has_transcodebackgroundcolor();
+  } else {
+    clear_has_transcodebackgroundcolor();
+  }
+  transcodebackgroundcolor_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), transcodebackgroundcolor);
+  // @@protoc_insertion_point(field_set_allocated:modeTable.Node.transCodeBackgroundColor)
+}
+
+// optional string startAudio = 9;
+inline bool Node::has_startaudio() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void Node::set_has_startaudio() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void Node::clear_has_startaudio() {
+  _has_bits_[0] &= ~0x00000100u;
 }
 inline void Node::clear_startaudio() {
   startaudio_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -811,15 +1188,15 @@ inline void Node::set_allocated_startaudio(::std::string* startaudio) {
   // @@protoc_insertion_point(field_set_allocated:modeTable.Node.startAudio)
 }
 
-// optional string endAudio = 8;
+// optional string endAudio = 10;
 inline bool Node::has_endaudio() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
+  return (_has_bits_[0] & 0x00000200u) != 0;
 }
 inline void Node::set_has_endaudio() {
-  _has_bits_[0] |= 0x00000080u;
+  _has_bits_[0] |= 0x00000200u;
 }
 inline void Node::clear_has_endaudio() {
-  _has_bits_[0] &= ~0x00000080u;
+  _has_bits_[0] &= ~0x00000200u;
 }
 inline void Node::clear_endaudio() {
   endaudio_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -864,69 +1241,151 @@ inline void Node::set_allocated_endaudio(::std::string* endaudio) {
   // @@protoc_insertion_point(field_set_allocated:modeTable.Node.endAudio)
 }
 
-// repeated string defaultAudio = 9;
-inline int Node::defaultaudio_size() const {
-  return defaultaudio_.size();
+// optional string transCode = 11;
+inline bool Node::has_transcode() const {
+  return (_has_bits_[0] & 0x00000400u) != 0;
 }
-inline void Node::clear_defaultaudio() {
-  defaultaudio_.Clear();
+inline void Node::set_has_transcode() {
+  _has_bits_[0] |= 0x00000400u;
 }
-inline const ::std::string& Node::defaultaudio(int index) const {
-  // @@protoc_insertion_point(field_get:modeTable.Node.defaultAudio)
-  return defaultaudio_.Get(index);
+inline void Node::clear_has_transcode() {
+  _has_bits_[0] &= ~0x00000400u;
 }
-inline ::std::string* Node::mutable_defaultaudio(int index) {
-  // @@protoc_insertion_point(field_mutable:modeTable.Node.defaultAudio)
-  return defaultaudio_.Mutable(index);
+inline void Node::clear_transcode() {
+  transcode_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_transcode();
 }
-inline void Node::set_defaultaudio(int index, const ::std::string& value) {
-  // @@protoc_insertion_point(field_set:modeTable.Node.defaultAudio)
-  defaultaudio_.Mutable(index)->assign(value);
+inline const ::std::string& Node::transcode() const {
+  // @@protoc_insertion_point(field_get:modeTable.Node.transCode)
+  return transcode_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void Node::set_defaultaudio(int index, const char* value) {
-  defaultaudio_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:modeTable.Node.defaultAudio)
+inline void Node::set_transcode(const ::std::string& value) {
+  set_has_transcode();
+  transcode_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:modeTable.Node.transCode)
 }
-inline void Node::set_defaultaudio(int index, const char* value, size_t size) {
-  defaultaudio_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:modeTable.Node.defaultAudio)
+inline void Node::set_transcode(const char* value) {
+  set_has_transcode();
+  transcode_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:modeTable.Node.transCode)
 }
-inline ::std::string* Node::add_defaultaudio() {
-  return defaultaudio_.Add();
+inline void Node::set_transcode(const char* value, size_t size) {
+  set_has_transcode();
+  transcode_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:modeTable.Node.transCode)
 }
-inline void Node::add_defaultaudio(const ::std::string& value) {
-  defaultaudio_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:modeTable.Node.defaultAudio)
+inline ::std::string* Node::mutable_transcode() {
+  set_has_transcode();
+  // @@protoc_insertion_point(field_mutable:modeTable.Node.transCode)
+  return transcode_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void Node::add_defaultaudio(const char* value) {
-  defaultaudio_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:modeTable.Node.defaultAudio)
+inline ::std::string* Node::release_transcode() {
+  clear_has_transcode();
+  return transcode_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void Node::add_defaultaudio(const char* value, size_t size) {
-  defaultaudio_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:modeTable.Node.defaultAudio)
-}
-inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
-Node::defaultaudio() const {
-  // @@protoc_insertion_point(field_list:modeTable.Node.defaultAudio)
-  return defaultaudio_;
-}
-inline ::google::protobuf::RepeatedPtrField< ::std::string>*
-Node::mutable_defaultaudio() {
-  // @@protoc_insertion_point(field_mutable_list:modeTable.Node.defaultAudio)
-  return &defaultaudio_;
+inline void Node::set_allocated_transcode(::std::string* transcode) {
+  if (transcode != NULL) {
+    set_has_transcode();
+  } else {
+    clear_has_transcode();
+  }
+  transcode_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), transcode);
+  // @@protoc_insertion_point(field_set_allocated:modeTable.Node.transCode)
 }
 
-// required string nodeID = 10;
+// optional string pictureFile = 12;
+inline bool Node::has_picturefile() const {
+  return (_has_bits_[0] & 0x00000800u) != 0;
+}
+inline void Node::set_has_picturefile() {
+  _has_bits_[0] |= 0x00000800u;
+}
+inline void Node::clear_has_picturefile() {
+  _has_bits_[0] &= ~0x00000800u;
+}
+inline void Node::clear_picturefile() {
+  picturefile_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_picturefile();
+}
+inline const ::std::string& Node::picturefile() const {
+  // @@protoc_insertion_point(field_get:modeTable.Node.pictureFile)
+  return picturefile_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Node::set_picturefile(const ::std::string& value) {
+  set_has_picturefile();
+  picturefile_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:modeTable.Node.pictureFile)
+}
+inline void Node::set_picturefile(const char* value) {
+  set_has_picturefile();
+  picturefile_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:modeTable.Node.pictureFile)
+}
+inline void Node::set_picturefile(const char* value, size_t size) {
+  set_has_picturefile();
+  picturefile_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:modeTable.Node.pictureFile)
+}
+inline ::std::string* Node::mutable_picturefile() {
+  set_has_picturefile();
+  // @@protoc_insertion_point(field_mutable:modeTable.Node.pictureFile)
+  return picturefile_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Node::release_picturefile() {
+  clear_has_picturefile();
+  return picturefile_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Node::set_allocated_picturefile(::std::string* picturefile) {
+  if (picturefile != NULL) {
+    set_has_picturefile();
+  } else {
+    clear_has_picturefile();
+  }
+  picturefile_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), picturefile);
+  // @@protoc_insertion_point(field_set_allocated:modeTable.Node.pictureFile)
+}
+
+// repeated .modeTable.Node.GivenAudioPair givenAudios = 13;
+inline int Node::givenaudios_size() const {
+  return givenaudios_.size();
+}
+inline void Node::clear_givenaudios() {
+  givenaudios_.Clear();
+}
+inline const ::modeTable::Node_GivenAudioPair& Node::givenaudios(int index) const {
+  // @@protoc_insertion_point(field_get:modeTable.Node.givenAudios)
+  return givenaudios_.Get(index);
+}
+inline ::modeTable::Node_GivenAudioPair* Node::mutable_givenaudios(int index) {
+  // @@protoc_insertion_point(field_mutable:modeTable.Node.givenAudios)
+  return givenaudios_.Mutable(index);
+}
+inline ::modeTable::Node_GivenAudioPair* Node::add_givenaudios() {
+  // @@protoc_insertion_point(field_add:modeTable.Node.givenAudios)
+  return givenaudios_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::modeTable::Node_GivenAudioPair >&
+Node::givenaudios() const {
+  // @@protoc_insertion_point(field_list:modeTable.Node.givenAudios)
+  return givenaudios_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::modeTable::Node_GivenAudioPair >*
+Node::mutable_givenaudios() {
+  // @@protoc_insertion_point(field_mutable_list:modeTable.Node.givenAudios)
+  return &givenaudios_;
+}
+
+// required string nodeID = 14;
 inline bool Node::has_nodeid() const {
-  return (_has_bits_[0] & 0x00000200u) != 0;
+  return (_has_bits_[0] & 0x00002000u) != 0;
 }
 inline void Node::set_has_nodeid() {
-  _has_bits_[0] |= 0x00000200u;
+  _has_bits_[0] |= 0x00002000u;
 }
 inline void Node::clear_has_nodeid() {
-  _has_bits_[0] &= ~0x00000200u;
+  _has_bits_[0] &= ~0x00002000u;
 }
 inline void Node::clear_nodeid() {
   nodeid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -975,39 +1434,15 @@ inline void Node::set_allocated_nodeid(::std::string* nodeid) {
 
 // Link
 
-// required int32 transCode = 1;
-inline bool Link::has_transcode() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void Link::set_has_transcode() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void Link::clear_has_transcode() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline void Link::clear_transcode() {
-  transcode_ = 0;
-  clear_has_transcode();
-}
-inline ::google::protobuf::int32 Link::transcode() const {
-  // @@protoc_insertion_point(field_get:modeTable.Link.transCode)
-  return transcode_;
-}
-inline void Link::set_transcode(::google::protobuf::int32 value) {
-  set_has_transcode();
-  transcode_ = value;
-  // @@protoc_insertion_point(field_set:modeTable.Link.transCode)
-}
-
 // required string fromNodeID = 4;
 inline bool Link::has_fromnodeid() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
+  return (_has_bits_[0] & 0x00000001u) != 0;
 }
 inline void Link::set_has_fromnodeid() {
-  _has_bits_[0] |= 0x00000002u;
+  _has_bits_[0] |= 0x00000001u;
 }
 inline void Link::clear_has_fromnodeid() {
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void Link::clear_fromnodeid() {
   fromnodeid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -1054,13 +1489,13 @@ inline void Link::set_allocated_fromnodeid(::std::string* fromnodeid) {
 
 // required string toNodeID = 5;
 inline bool Link::has_tonodeid() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000002u) != 0;
 }
 inline void Link::set_has_tonodeid() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000002u;
 }
 inline void Link::clear_has_tonodeid() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void Link::clear_tonodeid() {
   tonodeid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());

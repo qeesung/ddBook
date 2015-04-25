@@ -23,6 +23,9 @@ namespace {
 const ::google::protobuf::Descriptor* Node_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Node_reflection_ = NULL;
+const ::google::protobuf::Descriptor* Node_GivenAudioPair_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  Node_GivenAudioPair_reflection_ = NULL;
 const ::google::protobuf::Descriptor* Link_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Link_reflection_ = NULL;
@@ -40,16 +43,20 @@ void protobuf_AssignDesc_modeTable_2eproto() {
       "modeTable.proto");
   GOOGLE_CHECK(file != NULL);
   Node_descriptor_ = file->message_type(0);
-  static const int Node_offsets_[10] = {
+  static const int Node_offsets_[14] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, xpos_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, ypos_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, nodename_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, textcolor_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, outlinecolor_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, backgroundcolor_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, transcodetextcolor_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, transcodebackgroundcolor_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, startaudio_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, endaudio_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, defaultaudio_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, transcode_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, picturefile_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, givenaudios_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, nodeid_),
   };
   Node_reflection_ =
@@ -63,9 +70,24 @@ void protobuf_AssignDesc_modeTable_2eproto() {
       sizeof(Node),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, _internal_metadata_),
       -1);
+  Node_GivenAudioPair_descriptor_ = Node_descriptor_->nested_type(0);
+  static const int Node_GivenAudioPair_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node_GivenAudioPair, givencode_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node_GivenAudioPair, givenaudio_),
+  };
+  Node_GivenAudioPair_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      Node_GivenAudioPair_descriptor_,
+      Node_GivenAudioPair::default_instance_,
+      Node_GivenAudioPair_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node_GivenAudioPair, _has_bits_[0]),
+      -1,
+      -1,
+      sizeof(Node_GivenAudioPair),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node_GivenAudioPair, _internal_metadata_),
+      -1);
   Link_descriptor_ = file->message_type(1);
-  static const int Link_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Link, transcode_),
+  static const int Link_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Link, fromnodeid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Link, tonodeid_),
   };
@@ -111,6 +133,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       Node_descriptor_, &Node::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      Node_GivenAudioPair_descriptor_, &Node_GivenAudioPair::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       Link_descriptor_, &Link::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MTFile_descriptor_, &MTFile::default_instance());
@@ -121,6 +145,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void protobuf_ShutdownFile_modeTable_2eproto() {
   delete Node::default_instance_;
   delete Node_reflection_;
+  delete Node_GivenAudioPair::default_instance_;
+  delete Node_GivenAudioPair_reflection_;
   delete Link::default_instance_;
   delete Link_reflection_;
   delete MTFile::default_instance_;
@@ -134,22 +160,28 @@ void protobuf_AddDesc_modeTable_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\017modeTable.proto\022\tmodeTable\"\302\001\n\004Node\022\014\n"
+    "\n\017modeTable.proto\022\tmodeTable\"\200\003\n\004Node\022\014\n"
     "\004xPos\030\001 \002(\001\022\014\n\004yPos\030\002 \002(\001\022\020\n\010nodeName\030\003 "
     "\002(\t\022\021\n\ttextColor\030\004 \002(\t\022\024\n\014outlineColor\030\005"
-    " \002(\t\022\027\n\017backgroundColor\030\006 \002(\t\022\022\n\nstartAu"
-    "dio\030\007 \001(\t\022\020\n\010endAudio\030\010 \001(\t\022\024\n\014defaultAu"
-    "dio\030\t \003(\t\022\016\n\006nodeID\030\n \002(\t\"\?\n\004Link\022\021\n\ttra"
-    "nsCode\030\001 \002(\005\022\022\n\nfromNodeID\030\004 \002(\t\022\020\n\010toNo"
-    "deID\030\005 \002(\t\"N\n\006MTFile\022!\n\010nodeList\030\001 \003(\0132\017"
-    ".modeTable.Node\022!\n\010LinkList\030\002 \003(\0132\017.mode"
-    "Table.Link", 370);
+    " \002(\t\022\027\n\017backgroundColor\030\006 \002(\t\022\032\n\022transCo"
+    "deTextColor\030\007 \002(\t\022 \n\030transCodeBackground"
+    "Color\030\010 \002(\t\022\022\n\nstartAudio\030\t \001(\t\022\020\n\010endAu"
+    "dio\030\n \001(\t\022\021\n\ttransCode\030\013 \001(\t\022\023\n\013pictureF"
+    "ile\030\014 \001(\t\0223\n\013givenAudios\030\r \003(\0132\036.modeTab"
+    "le.Node.GivenAudioPair\022\016\n\006nodeID\030\016 \002(\t\0327"
+    "\n\016GivenAudioPair\022\021\n\tgivenCode\030\001 \002(\t\022\022\n\ng"
+    "ivenAudio\030\002 \002(\t\",\n\004Link\022\022\n\nfromNodeID\030\004 "
+    "\002(\t\022\020\n\010toNodeID\030\005 \002(\t\"N\n\006MTFile\022!\n\010nodeL"
+    "ist\030\001 \003(\0132\017.modeTable.Node\022!\n\010LinkList\030\002"
+    " \003(\0132\017.modeTable.Link", 541);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "modeTable.proto", &protobuf_RegisterTypes);
   Node::default_instance_ = new Node();
+  Node_GivenAudioPair::default_instance_ = new Node_GivenAudioPair();
   Link::default_instance_ = new Link();
   MTFile::default_instance_ = new MTFile();
   Node::default_instance_->InitAsDefaultInstance();
+  Node_GivenAudioPair::default_instance_->InitAsDefaultInstance();
   Link::default_instance_->InitAsDefaultInstance();
   MTFile::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_modeTable_2eproto);
@@ -175,15 +207,346 @@ static void MergeFromFail(int line) {
 // ===================================================================
 
 #ifndef _MSC_VER
+const int Node_GivenAudioPair::kGivenCodeFieldNumber;
+const int Node_GivenAudioPair::kGivenAudioFieldNumber;
+#endif  // !_MSC_VER
+
+Node_GivenAudioPair::Node_GivenAudioPair()
+  : ::google::protobuf::Message() , _internal_metadata_(NULL)  {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:modeTable.Node.GivenAudioPair)
+}
+
+void Node_GivenAudioPair::InitAsDefaultInstance() {
+}
+
+Node_GivenAudioPair::Node_GivenAudioPair(const Node_GivenAudioPair& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:modeTable.Node.GivenAudioPair)
+}
+
+void Node_GivenAudioPair::SharedCtor() {
+  ::google::protobuf::internal::GetEmptyString();
+  _cached_size_ = 0;
+  givencode_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  givenaudio_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+Node_GivenAudioPair::~Node_GivenAudioPair() {
+  // @@protoc_insertion_point(destructor:modeTable.Node.GivenAudioPair)
+  SharedDtor();
+}
+
+void Node_GivenAudioPair::SharedDtor() {
+  givencode_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  givenaudio_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != default_instance_) {
+  }
+}
+
+void Node_GivenAudioPair::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* Node_GivenAudioPair::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return Node_GivenAudioPair_descriptor_;
+}
+
+const Node_GivenAudioPair& Node_GivenAudioPair::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_modeTable_2eproto();
+  return *default_instance_;
+}
+
+Node_GivenAudioPair* Node_GivenAudioPair::default_instance_ = NULL;
+
+Node_GivenAudioPair* Node_GivenAudioPair::New(::google::protobuf::Arena* arena) const {
+  Node_GivenAudioPair* n = new Node_GivenAudioPair;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void Node_GivenAudioPair::Clear() {
+  if (_has_bits_[0 / 32] & 3) {
+    if (has_givencode()) {
+      givencode_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    }
+    if (has_givenaudio()) {
+      givenaudio_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    }
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  if (_internal_metadata_.have_unknown_fields()) {
+    mutable_unknown_fields()->Clear();
+  }
+}
+
+bool Node_GivenAudioPair::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:modeTable.Node.GivenAudioPair)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // required string givenCode = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_givencode()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->givencode().data(), this->givencode().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "modeTable.Node.GivenAudioPair.givenCode");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_givenAudio;
+        break;
+      }
+
+      // required string givenAudio = 2;
+      case 2: {
+        if (tag == 18) {
+         parse_givenAudio:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_givenaudio()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->givenaudio().data(), this->givenaudio().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "modeTable.Node.GivenAudioPair.givenAudio");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:modeTable.Node.GivenAudioPair)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:modeTable.Node.GivenAudioPair)
+  return false;
+#undef DO_
+}
+
+void Node_GivenAudioPair::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:modeTable.Node.GivenAudioPair)
+  // required string givenCode = 1;
+  if (has_givencode()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->givencode().data(), this->givencode().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.GivenAudioPair.givenCode");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->givencode(), output);
+  }
+
+  // required string givenAudio = 2;
+  if (has_givenaudio()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->givenaudio().data(), this->givenaudio().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.GivenAudioPair.givenAudio");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->givenaudio(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:modeTable.Node.GivenAudioPair)
+}
+
+::google::protobuf::uint8* Node_GivenAudioPair::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:modeTable.Node.GivenAudioPair)
+  // required string givenCode = 1;
+  if (has_givencode()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->givencode().data(), this->givencode().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.GivenAudioPair.givenCode");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->givencode(), target);
+  }
+
+  // required string givenAudio = 2;
+  if (has_givenaudio()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->givenaudio().data(), this->givenaudio().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.GivenAudioPair.givenAudio");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->givenaudio(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:modeTable.Node.GivenAudioPair)
+  return target;
+}
+
+int Node_GivenAudioPair::RequiredFieldsByteSizeFallback() const {
+  int total_size = 0;
+
+  if (has_givencode()) {
+    // required string givenCode = 1;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->givencode());
+  }
+
+  if (has_givenaudio()) {
+    // required string givenAudio = 2;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->givenaudio());
+  }
+
+  return total_size;
+}
+int Node_GivenAudioPair::ByteSize() const {
+  int total_size = 0;
+
+  if (((_has_bits_[0] & 0x00000003) ^ 0x00000003) == 0) {  // All required fields are present.
+    // required string givenCode = 1;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->givencode());
+
+    // required string givenAudio = 2;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->givenaudio());
+
+  } else {
+    total_size += RequiredFieldsByteSizeFallback();
+  }
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void Node_GivenAudioPair::MergeFrom(const ::google::protobuf::Message& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const Node_GivenAudioPair* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const Node_GivenAudioPair*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void Node_GivenAudioPair::MergeFrom(const Node_GivenAudioPair& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_givencode()) {
+      set_has_givencode();
+      givencode_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.givencode_);
+    }
+    if (from.has_givenaudio()) {
+      set_has_givenaudio();
+      givenaudio_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.givenaudio_);
+    }
+  }
+  if (from._internal_metadata_.have_unknown_fields()) {
+    mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+  }
+}
+
+void Node_GivenAudioPair::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Node_GivenAudioPair::CopyFrom(const Node_GivenAudioPair& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Node_GivenAudioPair::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+
+  return true;
+}
+
+void Node_GivenAudioPair::Swap(Node_GivenAudioPair* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Node_GivenAudioPair::InternalSwap(Node_GivenAudioPair* other) {
+  givencode_.Swap(&other->givencode_);
+  givenaudio_.Swap(&other->givenaudio_);
+  std::swap(_has_bits_[0], other->_has_bits_[0]);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata Node_GivenAudioPair::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = Node_GivenAudioPair_descriptor_;
+  metadata.reflection = Node_GivenAudioPair_reflection_;
+  return metadata;
+}
+
+
+// -------------------------------------------------------------------
+
+#ifndef _MSC_VER
 const int Node::kXPosFieldNumber;
 const int Node::kYPosFieldNumber;
 const int Node::kNodeNameFieldNumber;
 const int Node::kTextColorFieldNumber;
 const int Node::kOutlineColorFieldNumber;
 const int Node::kBackgroundColorFieldNumber;
+const int Node::kTransCodeTextColorFieldNumber;
+const int Node::kTransCodeBackgroundColorFieldNumber;
 const int Node::kStartAudioFieldNumber;
 const int Node::kEndAudioFieldNumber;
-const int Node::kDefaultAudioFieldNumber;
+const int Node::kTransCodeFieldNumber;
+const int Node::kPictureFileFieldNumber;
+const int Node::kGivenAudiosFieldNumber;
 const int Node::kNodeIDFieldNumber;
 #endif  // !_MSC_VER
 
@@ -213,8 +576,12 @@ void Node::SharedCtor() {
   textcolor_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   outlinecolor_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   backgroundcolor_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  transcodetextcolor_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  transcodebackgroundcolor_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   startaudio_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   endaudio_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  transcode_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  picturefile_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   nodeid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -229,8 +596,12 @@ void Node::SharedDtor() {
   textcolor_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   outlinecolor_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   backgroundcolor_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  transcodetextcolor_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  transcodebackgroundcolor_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   startaudio_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   endaudio_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  transcode_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  picturefile_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   nodeid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
@@ -286,21 +657,35 @@ void Node::Clear() {
     if (has_backgroundcolor()) {
       backgroundcolor_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
+    if (has_transcodetextcolor()) {
+      transcodetextcolor_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    }
+    if (has_transcodebackgroundcolor()) {
+      transcodebackgroundcolor_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    }
+  }
+  if (_has_bits_[8 / 32] & 12032) {
     if (has_startaudio()) {
       startaudio_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
     if (has_endaudio()) {
       endaudio_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
-  }
-  if (has_nodeid()) {
-    nodeid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    if (has_transcode()) {
+      transcode_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    }
+    if (has_picturefile()) {
+      picturefile_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    }
+    if (has_nodeid()) {
+      nodeid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    }
   }
 
 #undef OFFSET_OF_FIELD_
 #undef ZR_
 
-  defaultaudio_.Clear();
+  givenaudios_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->Clear();
@@ -410,13 +795,47 @@ bool Node::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(58)) goto parse_startAudio;
+        if (input->ExpectTag(58)) goto parse_transCodeTextColor;
         break;
       }
 
-      // optional string startAudio = 7;
+      // required string transCodeTextColor = 7;
       case 7: {
         if (tag == 58) {
+         parse_transCodeTextColor:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_transcodetextcolor()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->transcodetextcolor().data(), this->transcodetextcolor().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "modeTable.Node.transCodeTextColor");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(66)) goto parse_transCodeBackgroundColor;
+        break;
+      }
+
+      // required string transCodeBackgroundColor = 8;
+      case 8: {
+        if (tag == 66) {
+         parse_transCodeBackgroundColor:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_transcodebackgroundcolor()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->transcodebackgroundcolor().data(), this->transcodebackgroundcolor().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "modeTable.Node.transCodeBackgroundColor");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(74)) goto parse_startAudio;
+        break;
+      }
+
+      // optional string startAudio = 9;
+      case 9: {
+        if (tag == 74) {
          parse_startAudio:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_startaudio()));
@@ -427,13 +846,13 @@ bool Node::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(66)) goto parse_endAudio;
+        if (input->ExpectTag(82)) goto parse_endAudio;
         break;
       }
 
-      // optional string endAudio = 8;
-      case 8: {
-        if (tag == 66) {
+      // optional string endAudio = 10;
+      case 10: {
+        if (tag == 82) {
          parse_endAudio:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_endaudio()));
@@ -444,32 +863,61 @@ bool Node::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(74)) goto parse_defaultAudio;
+        if (input->ExpectTag(90)) goto parse_transCode;
         break;
       }
 
-      // repeated string defaultAudio = 9;
-      case 9: {
-        if (tag == 74) {
-         parse_defaultAudio:
+      // optional string transCode = 11;
+      case 11: {
+        if (tag == 90) {
+         parse_transCode:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_defaultaudio()));
+                input, this->mutable_transcode()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->defaultaudio(this->defaultaudio_size() - 1).data(),
-            this->defaultaudio(this->defaultaudio_size() - 1).length(),
+            this->transcode().data(), this->transcode().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
-            "modeTable.Node.defaultAudio");
+            "modeTable.Node.transCode");
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(74)) goto parse_defaultAudio;
-        if (input->ExpectTag(82)) goto parse_nodeID;
+        if (input->ExpectTag(98)) goto parse_pictureFile;
         break;
       }
 
-      // required string nodeID = 10;
-      case 10: {
-        if (tag == 82) {
+      // optional string pictureFile = 12;
+      case 12: {
+        if (tag == 98) {
+         parse_pictureFile:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_picturefile()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->picturefile().data(), this->picturefile().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "modeTable.Node.pictureFile");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(106)) goto parse_givenAudios;
+        break;
+      }
+
+      // repeated .modeTable.Node.GivenAudioPair givenAudios = 13;
+      case 13: {
+        if (tag == 106) {
+         parse_givenAudios:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_givenaudios()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(106)) goto parse_givenAudios;
+        if (input->ExpectTag(114)) goto parse_nodeID;
+        break;
+      }
+
+      // required string nodeID = 14;
+      case 14: {
+        if (tag == 114) {
          parse_nodeID:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_nodeid()));
@@ -559,44 +1007,80 @@ void Node::SerializeWithCachedSizes(
       6, this->backgroundcolor(), output);
   }
 
-  // optional string startAudio = 7;
+  // required string transCodeTextColor = 7;
+  if (has_transcodetextcolor()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->transcodetextcolor().data(), this->transcodetextcolor().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.transCodeTextColor");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      7, this->transcodetextcolor(), output);
+  }
+
+  // required string transCodeBackgroundColor = 8;
+  if (has_transcodebackgroundcolor()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->transcodebackgroundcolor().data(), this->transcodebackgroundcolor().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.transCodeBackgroundColor");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      8, this->transcodebackgroundcolor(), output);
+  }
+
+  // optional string startAudio = 9;
   if (has_startaudio()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->startaudio().data(), this->startaudio().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
       "modeTable.Node.startAudio");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      7, this->startaudio(), output);
+      9, this->startaudio(), output);
   }
 
-  // optional string endAudio = 8;
+  // optional string endAudio = 10;
   if (has_endaudio()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->endaudio().data(), this->endaudio().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
       "modeTable.Node.endAudio");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      8, this->endaudio(), output);
+      10, this->endaudio(), output);
   }
 
-  // repeated string defaultAudio = 9;
-  for (int i = 0; i < this->defaultaudio_size(); i++) {
-  ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-    this->defaultaudio(i).data(), this->defaultaudio(i).length(),
-    ::google::protobuf::internal::WireFormat::SERIALIZE,
-    "modeTable.Node.defaultAudio");
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      9, this->defaultaudio(i), output);
+  // optional string transCode = 11;
+  if (has_transcode()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->transcode().data(), this->transcode().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.transCode");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      11, this->transcode(), output);
   }
 
-  // required string nodeID = 10;
+  // optional string pictureFile = 12;
+  if (has_picturefile()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->picturefile().data(), this->picturefile().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.pictureFile");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      12, this->picturefile(), output);
+  }
+
+  // repeated .modeTable.Node.GivenAudioPair givenAudios = 13;
+  for (unsigned int i = 0, n = this->givenaudios_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      13, this->givenaudios(i), output);
+  }
+
+  // required string nodeID = 14;
   if (has_nodeid()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->nodeid().data(), this->nodeid().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
       "modeTable.Node.nodeID");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      10, this->nodeid(), output);
+      14, this->nodeid(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -663,7 +1147,29 @@ void Node::SerializeWithCachedSizes(
         6, this->backgroundcolor(), target);
   }
 
-  // optional string startAudio = 7;
+  // required string transCodeTextColor = 7;
+  if (has_transcodetextcolor()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->transcodetextcolor().data(), this->transcodetextcolor().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.transCodeTextColor");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        7, this->transcodetextcolor(), target);
+  }
+
+  // required string transCodeBackgroundColor = 8;
+  if (has_transcodebackgroundcolor()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->transcodebackgroundcolor().data(), this->transcodebackgroundcolor().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.transCodeBackgroundColor");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        8, this->transcodebackgroundcolor(), target);
+  }
+
+  // optional string startAudio = 9;
   if (has_startaudio()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->startaudio().data(), this->startaudio().length(),
@@ -671,10 +1177,10 @@ void Node::SerializeWithCachedSizes(
       "modeTable.Node.startAudio");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        7, this->startaudio(), target);
+        9, this->startaudio(), target);
   }
 
-  // optional string endAudio = 8;
+  // optional string endAudio = 10;
   if (has_endaudio()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->endaudio().data(), this->endaudio().length(),
@@ -682,20 +1188,39 @@ void Node::SerializeWithCachedSizes(
       "modeTable.Node.endAudio");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        8, this->endaudio(), target);
+        10, this->endaudio(), target);
   }
 
-  // repeated string defaultAudio = 9;
-  for (int i = 0; i < this->defaultaudio_size(); i++) {
+  // optional string transCode = 11;
+  if (has_transcode()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->defaultaudio(i).data(), this->defaultaudio(i).length(),
+      this->transcode().data(), this->transcode().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "modeTable.Node.defaultAudio");
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteStringToArray(9, this->defaultaudio(i), target);
+      "modeTable.Node.transCode");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        11, this->transcode(), target);
   }
 
-  // required string nodeID = 10;
+  // optional string pictureFile = 12;
+  if (has_picturefile()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->picturefile().data(), this->picturefile().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "modeTable.Node.pictureFile");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        12, this->picturefile(), target);
+  }
+
+  // repeated .modeTable.Node.GivenAudioPair givenAudios = 13;
+  for (unsigned int i = 0, n = this->givenaudios_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        13, this->givenaudios(i), target);
+  }
+
+  // required string nodeID = 14;
   if (has_nodeid()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->nodeid().data(), this->nodeid().length(),
@@ -703,7 +1228,7 @@ void Node::SerializeWithCachedSizes(
       "modeTable.Node.nodeID");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        10, this->nodeid(), target);
+        14, this->nodeid(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -755,8 +1280,22 @@ int Node::RequiredFieldsByteSizeFallback() const {
         this->backgroundcolor());
   }
 
+  if (has_transcodetextcolor()) {
+    // required string transCodeTextColor = 7;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->transcodetextcolor());
+  }
+
+  if (has_transcodebackgroundcolor()) {
+    // required string transCodeBackgroundColor = 8;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->transcodebackgroundcolor());
+  }
+
   if (has_nodeid()) {
-    // required string nodeID = 10;
+    // required string nodeID = 14;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->nodeid());
@@ -767,7 +1306,7 @@ int Node::RequiredFieldsByteSizeFallback() const {
 int Node::ByteSize() const {
   int total_size = 0;
 
-  if (((_has_bits_[0] & 0x0000023f) ^ 0x0000023f) == 0) {  // All required fields are present.
+  if (((_has_bits_[0] & 0x000020ff) ^ 0x000020ff) == 0) {  // All required fields are present.
     // required double xPos = 1;
     total_size += 1 + 8;
 
@@ -794,7 +1333,17 @@ int Node::ByteSize() const {
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->backgroundcolor());
 
-    // required string nodeID = 10;
+    // required string transCodeTextColor = 7;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->transcodetextcolor());
+
+    // required string transCodeBackgroundColor = 8;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->transcodebackgroundcolor());
+
+    // required string nodeID = 14;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->nodeid());
@@ -802,27 +1351,42 @@ int Node::ByteSize() const {
   } else {
     total_size += RequiredFieldsByteSizeFallback();
   }
-  if (_has_bits_[6 / 32] & 192) {
-    // optional string startAudio = 7;
+  if (_has_bits_[8 / 32] & 3840) {
+    // optional string startAudio = 9;
     if (has_startaudio()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->startaudio());
     }
 
-    // optional string endAudio = 8;
+    // optional string endAudio = 10;
     if (has_endaudio()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->endaudio());
     }
 
+    // optional string transCode = 11;
+    if (has_transcode()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->transcode());
+    }
+
+    // optional string pictureFile = 12;
+    if (has_picturefile()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->picturefile());
+    }
+
   }
-  // repeated string defaultAudio = 9;
-  total_size += 1 * this->defaultaudio_size();
-  for (int i = 0; i < this->defaultaudio_size(); i++) {
-    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
-      this->defaultaudio(i));
+  // repeated .modeTable.Node.GivenAudioPair givenAudios = 13;
+  total_size += 1 * this->givenaudios_size();
+  for (int i = 0; i < this->givenaudios_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->givenaudios(i));
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -850,7 +1414,7 @@ void Node::MergeFrom(const ::google::protobuf::Message& from) {
 
 void Node::MergeFrom(const Node& from) {
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  defaultaudio_.MergeFrom(from.defaultaudio_);
+  givenaudios_.MergeFrom(from.givenaudios_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_xpos()) {
       set_xpos(from.xpos());
@@ -874,6 +1438,16 @@ void Node::MergeFrom(const Node& from) {
       set_has_backgroundcolor();
       backgroundcolor_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.backgroundcolor_);
     }
+    if (from.has_transcodetextcolor()) {
+      set_has_transcodetextcolor();
+      transcodetextcolor_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.transcodetextcolor_);
+    }
+    if (from.has_transcodebackgroundcolor()) {
+      set_has_transcodebackgroundcolor();
+      transcodebackgroundcolor_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.transcodebackgroundcolor_);
+    }
+  }
+  if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
     if (from.has_startaudio()) {
       set_has_startaudio();
       startaudio_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.startaudio_);
@@ -882,8 +1456,14 @@ void Node::MergeFrom(const Node& from) {
       set_has_endaudio();
       endaudio_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.endaudio_);
     }
-  }
-  if (from._has_bits_[9 / 32] & (0xffu << (9 % 32))) {
+    if (from.has_transcode()) {
+      set_has_transcode();
+      transcode_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.transcode_);
+    }
+    if (from.has_picturefile()) {
+      set_has_picturefile();
+      picturefile_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.picturefile_);
+    }
     if (from.has_nodeid()) {
       set_has_nodeid();
       nodeid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.nodeid_);
@@ -907,8 +1487,9 @@ void Node::CopyFrom(const Node& from) {
 }
 
 bool Node::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000023f) != 0x0000023f) return false;
+  if ((_has_bits_[0] & 0x000020ff) != 0x000020ff) return false;
 
+  if (!::google::protobuf::internal::AllAreInitialized(this->givenaudios())) return false;
   return true;
 }
 
@@ -923,9 +1504,13 @@ void Node::InternalSwap(Node* other) {
   textcolor_.Swap(&other->textcolor_);
   outlinecolor_.Swap(&other->outlinecolor_);
   backgroundcolor_.Swap(&other->backgroundcolor_);
+  transcodetextcolor_.Swap(&other->transcodetextcolor_);
+  transcodebackgroundcolor_.Swap(&other->transcodebackgroundcolor_);
   startaudio_.Swap(&other->startaudio_);
   endaudio_.Swap(&other->endaudio_);
-  defaultaudio_.UnsafeArenaSwap(&other->defaultaudio_);
+  transcode_.Swap(&other->transcode_);
+  picturefile_.Swap(&other->picturefile_);
+  givenaudios_.UnsafeArenaSwap(&other->givenaudios_);
   nodeid_.Swap(&other->nodeid_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
@@ -944,7 +1529,6 @@ void Node::InternalSwap(Node* other) {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Link::kTransCodeFieldNumber;
 const int Link::kFromNodeIDFieldNumber;
 const int Link::kToNodeIDFieldNumber;
 #endif  // !_MSC_VER
@@ -969,7 +1553,6 @@ Link::Link(const Link& from)
 void Link::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
-  transcode_ = 0;
   fromnodeid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   tonodeid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -1013,8 +1596,7 @@ Link* Link::New(::google::protobuf::Arena* arena) const {
 }
 
 void Link::Clear() {
-  if (_has_bits_[0 / 32] & 7) {
-    transcode_ = 0;
+  if (_has_bits_[0 / 32] & 3) {
     if (has_fromnodeid()) {
       fromnodeid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     }
@@ -1038,24 +1620,9 @@ bool Link::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 transCode = 1;
-      case 1: {
-        if (tag == 8) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &transcode_)));
-          set_has_transcode();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(34)) goto parse_fromNodeID;
-        break;
-      }
-
       // required string fromNodeID = 4;
       case 4: {
         if (tag == 34) {
-         parse_fromNodeID:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_fromnodeid()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
@@ -1111,11 +1678,6 @@ failure:
 void Link::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:modeTable.Link)
-  // required int32 transCode = 1;
-  if (has_transcode()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->transcode(), output);
-  }
-
   // required string fromNodeID = 4;
   if (has_fromnodeid()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
@@ -1146,11 +1708,6 @@ void Link::SerializeWithCachedSizes(
 ::google::protobuf::uint8* Link::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:modeTable.Link)
-  // required int32 transCode = 1;
-  if (has_transcode()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->transcode(), target);
-  }
-
   // required string fromNodeID = 4;
   if (has_fromnodeid()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
@@ -1184,13 +1741,6 @@ void Link::SerializeWithCachedSizes(
 int Link::RequiredFieldsByteSizeFallback() const {
   int total_size = 0;
 
-  if (has_transcode()) {
-    // required int32 transCode = 1;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->transcode());
-  }
-
   if (has_fromnodeid()) {
     // required string fromNodeID = 4;
     total_size += 1 +
@@ -1210,12 +1760,7 @@ int Link::RequiredFieldsByteSizeFallback() const {
 int Link::ByteSize() const {
   int total_size = 0;
 
-  if (((_has_bits_[0] & 0x00000007) ^ 0x00000007) == 0) {  // All required fields are present.
-    // required int32 transCode = 1;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->transcode());
-
+  if (((_has_bits_[0] & 0x00000003) ^ 0x00000003) == 0) {  // All required fields are present.
     // required string fromNodeID = 4;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -1255,9 +1800,6 @@ void Link::MergeFrom(const ::google::protobuf::Message& from) {
 void Link::MergeFrom(const Link& from) {
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_transcode()) {
-      set_transcode(from.transcode());
-    }
     if (from.has_fromnodeid()) {
       set_has_fromnodeid();
       fromnodeid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.fromnodeid_);
@@ -1285,7 +1827,7 @@ void Link::CopyFrom(const Link& from) {
 }
 
 bool Link::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
 
   return true;
 }
@@ -1295,7 +1837,6 @@ void Link::Swap(Link* other) {
   InternalSwap(other);
 }
 void Link::InternalSwap(Link* other) {
-  std::swap(transcode_, other->transcode_);
   fromnodeid_.Swap(&other->fromnodeid_);
   tonodeid_.Swap(&other->tonodeid_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
