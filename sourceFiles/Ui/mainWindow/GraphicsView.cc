@@ -852,10 +852,21 @@ void GraphicsView::copy()
 								  arg(node->getTextColor().name()).\
 								  arg(node->getOutlineColor().name()).\
 								  arg(node->getBackgroundColor().name());
-	QString infoStr=QString("%1 %2 %3 %4").\
+    /** 得到所有的given node pair */
+    QMap<QString , QString> givenAudioMap = node->getAllGivenTableAudio();
+    QStringList givenAudiosList;
+    for(QMap<QString, QString>::iterator iter = givenAudioMap.begin();\
+    	iter!=givenAudioMap.end() ; ++iter)
+    {
+    	QString tempStr = QString("<%1,%2>").arg(iter.key()).arg(iter.value());
+    	givenAudiosList<<tempStr;
+    }
+	QString infoStr=QString("%1 %2 %3 %4 %5 %6").\
 							 arg(node->getStartAudio()).\
 							 arg(node->getEndAudio()).\
-							 arg(node->getDefaultAudioList().join("!+!")).\
+							 arg(node->getTransCode()).\
+							 arg(node->getPicture()).\
+							 arg(givenAudiosList.join("!+!")).\
 							 arg(node->getText());
     QString sumData = surfaceStr+infoStr;
     QApplication::clipboard()->setText(sumData);
@@ -865,19 +876,29 @@ void GraphicsView::paste()
 {
 	QString str = QApplication::clipboard()->text();
 	QStringList parts = str.split(" ");
-	if(parts.count() >=8 && parts.first() == "Node")
+	if(parts.count() >=10 && parts.first() == "Node")
 	{
 		Node * node = new Node;
 		//设置外观
-		node->setText(QStringList(parts.mid(7)).join(" "));
+		node->setText(QStringList(parts.mid(9)).join(" "));
 		node->setTextColor(QColor(parts[1]));
 		node->setOutlineColor(QColor(parts[2]));
 		node->setBackgroundColor(QColor(parts[3]));
 		//设置节点信息
 		node->setStartAudio(parts[4]);
 		node->setEndAudio(parts[5]);
-		QStringList defaultList = parts[6].split("!+!");
-		node->setDefaultAudioList(defaultList);
+		node->setTransCode(parts[6]);
+		node->setPicture(parts[7]);
+		QStringList givenAudiosList = parts[8].split("!+!");
+		foreach(QString str , givenAudiosList)
+		{
+			// 移除括号
+			str.remove(QChar('<'),Qt::CaseInsensitive);
+			str.remove(QChar('>'),Qt::CaseInsensitive);
+			QStringList mapStr = str.split(",");
+			if(mapStr.size()>=2)
+				node->addGivenTableAudio(mapStr[0],mapStr[1]);
+		}
 
 		//现在需要获得鼠标位置,才好放置节点
 		setupNode(node);
