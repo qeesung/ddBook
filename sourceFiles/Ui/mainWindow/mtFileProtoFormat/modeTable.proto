@@ -17,20 +17,26 @@ message Node{
 	required string textColor=4;//文本颜色
 	required string outlineColor=5;//外线颜色
 	required string backgroundColor=6;//背景颜色
-
+	required string transCodeTextColor=7;//转移码文本颜色
+	required string transCodeBackgroundColor=8;//转移码背景色
 	/** 节点信息 */
-	optional string startAudio=7;//起始音频
-	optional string endAudio=8;//结束音频
-	repeated string defaultAudio=9;//多个默认音频
+	optional string startAudio=9;//起始音频
+	optional string endAudio=10;//结束音频
+	optional string transCode=11;//对应的转移码
+	optional string pictureFile=12;//对应的图片
+	/** 给定音频 */
+	message GivenAudioPair{
+		required string givenCode=1;
+		required string givenAudio=2;
+	}
+	repeated GivenAudioPair givenAudios=13;
 
 	/** 唯一的ID标示 */
-	required string nodeID=10;
+	required string nodeID=14;
 }	
 
 /** 链接存储格式 */
 message Link{
-	required int32 transCode=1;//转移码
-
 	required string fromNodeID=4;//起始节点名字
 	required string toNodeID=5;//结束节点名字
 }
