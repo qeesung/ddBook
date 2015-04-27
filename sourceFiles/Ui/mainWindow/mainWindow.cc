@@ -55,6 +55,11 @@ MainWindow * MainWindow::mainWindowObjectPointer= NULL;
 
     setWindowIcon(QIcon(":/images/about.png"));
     mainWindowObjectPointer = this;
+    updateActions();
+    connect(closeAction , SIGNAL(triggered()), this , SLOT(updateActions()));
+    connect(closeAllAction , SIGNAL(triggered()), this , SLOT(updateActions()));
+
+
  }
 
  void MainWindow::createActions()
@@ -514,6 +519,8 @@ void MainWindow::addView(GraphicsView * view)
     //         cutAction , SLOT(setEnabled(bool)));
     // connect(view ,SIGNAL(copyAvailable(bool)),\
     //         copyAction , SLOT(setEnabled(bool)));
+    connect(view->scene(), SIGNAL(selectionChanged()),\
+        this, SLOT(updateActions()));
     QMdiSubWindow * subWindow = mdiArea->addSubWindow(view);
     windowsMenu->addAction(view->windowMenuAction());
     windowActionGroup->addAction(view->windowMenuAction());
@@ -834,7 +841,77 @@ void MainWindow::about()
 }
 void MainWindow::tutorial(){}
 
-void MainWindow::updateActions(){}
+/**
+ * 更新各个actions的接口
+ */
+void MainWindow::updateActions()
+{
+    /** 首先得到窗口总数 */
+    unsigned int subWindowCount = mdiArea->subWindowList().count();
+    /** 设置file menu里面的actions */
+    saveFileAction->setEnabled(subWindowCount != 0);
+    saveAsFileAction->setEnabled(subWindowCount != 0);
+    checkAction->setEnabled(subWindowCount!=0);
+
+    /** 得到scene里面选中的item */
+    GraphicsView * currentView = activeView();
+
+    bool manyNodes = false;
+    bool isNodePair = false;
+    bool isLonlyNode = false;
+    bool linkSelected = false;
+    bool nodeSelected = false;
+    bool clipboardIsEmpty = false;
+
+    if(currentView!=NULL)
+    {
+        QList<Node *> selectedNodes = currentView->selectedNodes();
+        Link * selectedLink = currentView->selectedLink();
+        manyNodes = (selectedNodes.count() > 1 );
+        isNodePair = (selectedNodes.count() == 2);
+        isLonlyNode = (selectedNodes.count() == 1);
+        linkSelected = (selectedLink != 0);
+        nodeSelected = (selectedNodes.count() != 0);
+        clipboardIsEmpty = QApplication::clipboard()->text().isEmpty();
+    }
+    /** 设置edit菜当actions */
+    cutAction->setEnabled(isLonlyNode);
+    copyAction->setEnabled(isLonlyNode);
+    pasteAction->setEnabled(!clipboardIsEmpty && subWindowCount!=0);
+    deleteAction->setEnabled(nodeSelected || linkSelected);
+    bringToFrontAction->setEnabled(isLonlyNode);
+    sendToBackAction->setEnabled(isLonlyNode);
+    /** 设置window菜当的actions */
+    closeAction->setEnabled(subWindowCount);
+    closeAllAction->setEnabled(subWindowCount);
+    tileAction->setEnabled(subWindowCount);
+    cascadeAction->setEnabled(subWindowCount);
+    nextAction->setEnabled(subWindowCount);
+    previousAction->setEnabled(subWindowCount);
+    /** 设置node菜单actions */
+    hAlignAction->setEnabled(manyNodes);
+    vAlignAction->setEnabled(manyNodes);
+    addChildNodeAction->setEnabled(isLonlyNode);
+    nodeSurfaccePropertiesAction->setEnabled(nodeSelected);
+    infoPropertiesAction->setEnabled(isLonlyNode);
+    createNodeAction->setEnabled(subWindowCount != 0);
+    /** 设置link菜单actions */
+    createLinkAction->setEnabled(isNodePair);
+    linkToChildNodeAction->setEnabled(isLonlyNode);
+    linkToFatherNodeAction->setEnabled(isLonlyNode);
+    linkSurfaccePropertiesAction->setEnabled(linkSelected);
+    linkModeAction->setEnabled(subWindowCount != 0);
+    /** 设置debug的菜单actions */
+    startDebugAction->setEnabled(isLonlyNode);
+    bool isDebugMode = false;
+    if(currentView!=NULL)
+    {
+        GraphicsView::ViewMode curMode = currentView->getCurMode();
+        isDebugMode = (curMode == GraphicsView::DebugMode);
+    }
+    stopDebugAction->setEnabled(isDebugMode);
+    startDebugAction->setEnabled(!stopDebugAction->isEnabled());
+}
 
 
 void MainWindow::closeEvent(QCloseEvent * event)
