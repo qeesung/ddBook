@@ -142,12 +142,17 @@ private:
 	int seqNumber;
 
 	/** 当前的状态是那一种 */
+public:
 	enum ViewMode{
 		NormalMode=0,//普通模式
 		ChooseNodeMode=1,//选择一个节点的模式
 		ChooseNodePairMode=2,//选择节点对模式
 		DebugMode=3
 	};
+	ViewMode getCurMode() const{
+		return curMode;
+	}
+private:
 	ViewMode curMode;//随时判断当前在那个模式
 
 	/** 鼠标点击的位置 */
