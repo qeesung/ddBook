@@ -95,6 +95,10 @@ public:
 	QMap<QString , QString> getAllGivenTableAudio() const{
 		return givenAudioTable;
 	}
+
+	QMap<QString , QString> *getAllMutableGivenTableAudio(){
+		return &givenAudioTable;
+	}
 	/** 得到状态后给定的音频 */
 	QMap<QString , QString> getAllAfterGivenTableAudio() const{
 		return QMap<QString , QString>();
