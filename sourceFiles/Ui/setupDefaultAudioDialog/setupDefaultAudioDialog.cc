@@ -143,6 +143,7 @@ void SetupDefaultAudioDialog::saveDefaultAudio()
 	}
 	file.close();
 	MainWindow::loadCdData();
+	MainWindow::updateDockWidget();
 }
 
 void SetupDefaultAudioDialog::searchCode(const QString & code)
