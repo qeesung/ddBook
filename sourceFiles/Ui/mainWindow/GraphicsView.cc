@@ -977,7 +977,9 @@ void GraphicsView::startToDebug(QDockWidget * dockWidget)
 			/** 判断输入的转移码有没有相应的链接符合 */
 			foreach(Link * link , links)
 			{	
-				// if(link->getTransCode() == inputTransCode)
+				Node * toNode = link->getToNode();
+				QString toNodeTransCode = toNode->getTransCode();
+				if(toNodeTransCode == QString("%1").arg(inputTransCode))
 				{
 					/** 开始转移至新的节点 */
 					audioPlayWidget->playEndAudio();
@@ -986,6 +988,14 @@ void GraphicsView::startToDebug(QDockWidget * dockWidget)
 					goto begin;
 				}
 			}			
+			/** 检测是不是给定音频 */
+			QMap<QString , QString> givenAudioMap = \
+						audioPlayWidget->getNode()->getAllGivenTableAudio();
+			if(givenAudioMap.count(QString("%1").arg(inputTransCode))!=0)
+			{// 说明检测到给定音频
+				audioPlayWidget->playGivenAudio(QString("%1").arg(inputTransCode));
+				goto begin;
+			}
 			/** 不能转移,播放默认的音频之一 */
 			audioPlayWidget->playDefaultAudio();
 			qApp->processEvents();		
