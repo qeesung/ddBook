@@ -908,6 +908,7 @@ void MainWindow::updateActions()
     {
         GraphicsView::ViewMode curMode = currentView->getCurMode();
         isDebugMode = (curMode == GraphicsView::DebugMode);
+        linkModeAction->setEnabled(!isDebugMode);
     }
     stopDebugAction->setEnabled(isDebugMode);
     startDebugAction->setEnabled(!stopDebugAction->isEnabled());
