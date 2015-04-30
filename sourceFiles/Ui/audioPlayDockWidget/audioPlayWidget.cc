@@ -84,6 +84,16 @@ void AudioPlayWidget::playEndAudio()
 	mediaObject->play();
 }
 
+void AudioPlayWidget::playGivenAudio(const QString & givenCode)
+{
+	mediaObject->stop();
+	audioKindLabel->setText("<font color=yellow>Given Audio:</font>");
+	QString givenAudio = curNode->getAllGivenTableAudio()[givenCode];
+	mediaObject->setCurrentSource(givenAudio);
+	showLabel->setText(givenAudio);
+	mediaObject->play();
+}
+
 
 void AudioPlayWidget::playOrPauseAudio()
 {

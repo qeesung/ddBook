@@ -19,6 +19,7 @@ public:
 	void playStartAudio();
 	void playEndAudio();
 	void playDefaultAudio();
+	void playGivenAudio(const QString & givenCode);
 
 	void transToNewNode(Node * node)
 	{
