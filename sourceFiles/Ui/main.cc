@@ -2,7 +2,7 @@
 #include "mainWindow.h"
 #include "chooseCpAlDialog.h"
 
-//int main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 	MainWindow * mainwindow = new MainWindow;
