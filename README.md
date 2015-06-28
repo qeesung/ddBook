@@ -1,2 +1,2 @@
 # ddBook
-这个是基于QT还有protobuf来自由设计点读语音的软件
+这个是基于Qt还有protobuf来自由设计点读语音的软件
